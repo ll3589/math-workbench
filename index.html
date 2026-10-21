@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Interactive HSE math practice: decimal division, fractions, conversions, and a TABE math fact sheet.">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Fractions &amp; Decimals Workbench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+/* Layout: a tape-measure strip across the top, a numbered skill rail on the left, the practice bench on the right; stacks on phones */
+:root{
+  --bg:#EDF0F4; --surface:#FFFFFF; --ink:#16213A; --muted:#566074; --line:#D2D8E1;
+  --tape:#F3C333; --tape-ink:#2A2310;
+  --accent:#2457C5; --accent-soft:#DCE6FA;
+  --good:#1C7F55; --good-soft:#DDF2E8; --bad:#B8402B; --bad-soft:#F8E1DB;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible",Verdana,system-ui,sans-serif;
+  --f-math:"Atkinson Hyperlegible Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10151F; --surface:#182131; --ink:#E7ECF4; --muted:#9DA8BB; --line:#2C374B;
+  --tape:#E7B82B; --tape-ink:#231C08;
+  --accent:#7BA6FF; --accent-soft:#22355C;
+  --good:#52C995; --good-soft:#173B2C; --bad:#F2846D; --bad-soft:#47231C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151F; --surface:#182131; --ink:#E7ECF4; --muted:#9DA8BB; --line:#2C374B;
+  --tape:#E7B82B; --tape-ink:#231C08;
+  --accent:#7BA6FF; --accent-soft:#22355C;
+  --good:#52C995; --good-soft:#173B2C; --bad:#F2846D; --bad-soft:#47231C; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.tape{height:24px;background-color:var(--tape);
+  background-image:repeating-linear-gradient(90deg,var(--tape-ink) 0 2px,transparent 2px 64px),
+    repeating-linear-gradient(90deg,var(--tape-ink) 0 1px,transparent 1px 16px),
+    repeating-linear-gradient(90deg,var(--tape-ink) 0 1px,transparent 1px 8px);
+  background-size:100% 15px,100% 10px,100% 6px;background-repeat:no-repeat}
+
+header .wrap{padding-block:22px 6px;display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:4px 0 0;text-wrap:balance;letter-spacing:-.01em}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{border:2px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 16px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;text-align:left}
+.tab b{font-family:var(--f-display);font-size:19px;font-weight:600}
+.tab small{font-size:13px;color:var(--muted)}
+.tab[aria-selected="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.tab[aria-selected="true"] small{color:inherit;opacity:.8}
+.trackintro{margin:0;color:var(--muted);max-width:62ch}
+
+main .wrap{display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;padding-block:18px 40px;align-items:start}
+.rail{display:flex;flex-direction:column;gap:4px;position:sticky;top:12px}
+.rail h2{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.skill{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;text-align:left;border:0;background:transparent;border-radius:8px;padding:8px 10px;cursor:pointer;font-size:16px}
+.skill:hover{background:var(--surface)}
+.skill .no{font-family:var(--f-math);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.skill .ct{font-family:var(--f-math);font-size:13px;color:var(--good);font-variant-numeric:tabular-nums}
+.skill[aria-current="true"]{background:var(--surface);box-shadow:inset 4px 0 0 var(--tape),0 0 0 1px var(--line)}
+.skill[aria-current="true"] .no{color:var(--ink)}
+
+.bench{display:flex;flex-direction:column;gap:16px;min-width:0}
+.learn{background:var(--accent-soft);border-radius:12px;padding:14px 18px}
+.learn summary{cursor:pointer;font-weight:700;font-size:16px}
+.learn .body{margin-top:8px;display:flex;flex-direction:column;gap:10px;max-width:64ch}
+.learn p{margin:0}
+.ex{font-family:var(--f-math);background:var(--surface);border-radius:8px;padding:10px 14px;display:block;white-space:pre-wrap;font-size:17px;overflow-x:auto}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px clamp(16px,3vw,30px) 26px;display:flex;flex-direction:column;gap:18px}
+.cardtop{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.cardtop h3{margin:0;font-family:var(--f-display);font-weight:600;font-size:20px}
+.tally{font-size:14px;color:var(--muted)}
+.tally b{color:var(--ink);font-family:var(--f-math)}
+.promptrow{display:flex;gap:12px;align-items:flex-start}
+.prompt{font-family:var(--f-math);font-size:clamp(28px,6vw,42px);line-height:1.3;flex:1;min-width:0;overflow-wrap:anywhere}
+.prompt.word{font-family:var(--f-body);font-size:clamp(20px,3.4vw,24px);line-height:1.45;max-width:46ch}
+.speak{flex:none;border:1px solid var(--line);background:transparent;border-radius:999px;padding:6px 12px;font-size:14px;cursor:pointer;color:var(--muted)}
+.speak:hover{color:var(--ink);border-color:var(--ink)}
+
+.m{font-family:var(--f-math)}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-family:var(--f-math);line-height:1.05;margin:0 .12em;font-size:.86em}
+.fr>span{padding:0 .18em}
+.fr>span:first-child{border-bottom:.08em solid currentColor}
+
+.visual{display:flex;flex-direction:column;gap:12px;overflow-x:auto}
+.bar{display:grid;grid-template-columns:repeat(var(--n),1fr);width:100%;max-width:560px;height:50px;border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+.bar.sm{height:30px;max-width:420px}
+.cell{border-right:2px solid var(--ink);background:transparent;padding:0}
+.cell:last-child{border-right:0}
+.cell.on{background:var(--accent)}
+.bar.tap .cell{cursor:pointer}
+.bar.tap .cell:hover{background:var(--accent-soft)}
+.bar.tap .cell.on:hover{background:var(--accent)}
+.barlabel{font-size:14px;color:var(--muted);margin:2px 0 6px}
+.tapesvg{width:100%;max-width:640px;height:auto;display:block}
+
+.answer{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.ans-num{display:flex;align-items:center;gap:6px;font-family:var(--f-math);font-size:28px}
+input.box{font-family:var(--f-math);font-size:28px;border:2px solid var(--line);background:var(--bg);border-radius:10px;padding:6px 12px;width:7.5em;text-align:center}
+input.box:focus{border-color:var(--accent);outline:none}
+input.box.sm{width:3.4em;padding:2px 6px}
+input.box.whole{width:2.6em;font-size:40px;padding:6px}
+.ans-frac{display:inline-flex;flex-direction:column;align-items:center;gap:6px}
+.ans-frac .fbar{width:100%;height:3px;background:var(--ink);border-radius:2px}
+.mixedwrap{display:flex;align-items:center;gap:10px}
+.hint-s{font-size:14px;color:var(--muted);flex-basis:100%;margin:0}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 22px;font-size:26px;cursor:pointer;font-family:var(--f-math);min-width:4.5em}
+.choice:hover:not(:disabled){border-color:var(--ink)}
+.choice.txt{font-family:var(--f-body);font-size:18px}
+.choice.right{border-color:var(--good);background:var(--good-soft)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft);opacity:.75}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn{border:2px solid var(--ink);background:transparent;border-radius:10px;padding:10px 18px;cursor:pointer;font-weight:700;font-size:17px}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.primary.go{background:var(--good);border-color:var(--good);color:var(--surface)}
+.btn:hover{filter:brightness(1.08)}
+.feedback{min-height:1.5em;font-weight:700;margin:0}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.steps{border-top:1px dashed var(--line);padding-top:14px}
+.steps h4{margin:0 0 8px;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.steps ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:10px}
+.steps li{padding-left:4px}
+.steps li .bar{margin-top:6px}
+.btable{border-collapse:collapse;font-family:var(--f-math);font-size:17px;background:var(--surface);border-radius:8px;overflow:hidden}
+.btable th,.btable td{padding:6px 16px;border-bottom:1px solid var(--line);text-align:center}
+.btable th{font-family:var(--f-body);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tw{overflow-x:auto}
+.tab.ref{border-style:dashed}
+.tab.ref[aria-selected="true"]{border-style:solid;background:var(--tape);border-color:var(--tape);color:var(--tape-ink)}
+.sheet .wrap{padding-block:18px 40px;display:flex;flex-direction:column;gap:18px}
+.jump{display:flex;flex-wrap:wrap;gap:6px}
+.jump button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:14px;cursor:pointer}
+.jump button:hover{border-color:var(--ink)}
+.sheetgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px;align-items:start}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0;scroll-margin-top:16px}
+.fact h3{margin:0;font-family:var(--f-display);font-weight:600;font-size:20px;display:flex;align-items:baseline;gap:10px}
+.fact h3 .tag{font-family:var(--f-body);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.fact p,.fact ul{margin:0}
+.fact ul{padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+.fact .ex{font-size:16px;background:var(--bg)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:16px;margin:0}
+.kv dt{font-family:var(--f-math);font-weight:600;white-space:nowrap}
+.kv dd{margin:0;color:var(--muted)}
+.fact .btable{font-size:15px;width:100%}
+.fact .btable td,.fact .btable th{padding:5px 8px;background:var(--surface)}
+.note{color:var(--muted);font-size:15px;max-width:70ch;margin:0}
+footer .wrap{padding-block:0 32px;color:var(--muted);font-size:14px}
+footer p{margin:0;max-width:70ch}
+
+@media (max-width:820px){
+  main .wrap{grid-template-columns:minmax(0,1fr);gap:16px}
+  .rail{position:static;flex-direction:row;flex-wrap:wrap;gap:6px}
+  .rail h2{flex-basis:100%;margin:0}
+  .skill{grid-template-columns:auto auto auto;background:var(--surface);border:1px solid var(--line);padding:6px 10px;font-size:15px}
+  .skill[aria-current="true"]{box-shadow:inset 0 -4px 0 var(--tape);border-color:var(--ink)}
+}
+@media (prefers-reduced-motion:no-preference){.feedback{transition:color .2s}}
+</style>
+
+</head>
+<body>
+<div class="tape" aria-hidden="true"></div>
+<header>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">HSE math practice</p>
+      <h1>Fractions &amp; Decimals Workbench</h1>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <p class="trackintro" id="trackintro"></p>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <nav class="rail" id="rail" aria-label="Skills"></nav>
+    <section class="bench">
+      <details class="learn" id="learn" open>
+        <summary>How it works</summary>
+        <div class="body" id="learnbody"></div>
+      </details>
+      <div class="card">
+        <div class="cardtop">
+          <h3 id="skilltitle"></h3>
+          <span class="tally">Correct today: <b id="tally">0</b></span>
+        </div>
+        <div class="promptrow">
+          <div class="prompt" id="prompt"></div>
+          <button class="speak" id="speak" type="button" hidden>Read aloud</button>
+        </div>
+        <div class="visual" id="visual"></div>
+        <div class="answer" id="answer"></div>
+        <div class="actions">
+          <button class="btn primary" id="check" type="button">Check</button>
+          <button class="btn" id="showsteps" type="button">Show steps</button>
+          <button class="btn" id="newp" type="button">New problem</button>
+        </div>
+        <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        <div class="steps" id="steps" hidden>
+          <h4>Steps</h4>
+          <ol id="steplist"></ol>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<section class="sheet" id="sheet" hidden>
+  <div class="wrap">
+    <div class="jump" id="jump" aria-label="Jump to a topic"></div>
+    <div class="sheetgrid">
+
+      <article class="fact" id="r-order"><h3>Order of operations <span class="tag">PEMDAS</span></h3>
+        <ol style="margin:0;padding-left:1.3em"><li><b>P</b>arentheses</li><li><b>E</b>xponents</li><li><b>M</b>ultiply and <b>D</b>ivide, left to right</li><li><b>A</b>dd and <b>S</b>ubtract, left to right</li></ol>
+        <span class="ex">3 + 4 × 2 = 3 + 8 = 11   (not 14)
+(3 + 4) × 2 = 7 × 2 = 14</span></article>
+
+      <article class="fact" id="r-place"><h3>Place value</h3>
+        <div class="tw"><table class="btable"><tr><th>thousands</th><th>hundreds</th><th>tens</th><th>ones</th><th>.</th><th>tenths</th><th>hundredths</th><th>thousandths</th></tr>
+        <tr><td>4</td><td>3</td><td>2</td><td>1</td><td>.</td><td>5</td><td>6</td><td>7</td></tr></table></div>
+        <p>Places after the point end in <b>-ths</b>. 0.5 = five tenths, 0.07 = seven hundredths.</p>
+        <p>Comparing decimals: line up the points and add zeros. 0.5 vs 0.45 → 0.50 vs 0.45, so 0.5 is bigger.</p></article>
+
+      <article class="fact" id="r-round"><h3>Rounding</h3>
+        <p>Look at the digit just to the <b>right</b> of the place you're rounding to.</p>
+        <ul><li>5 or more: round up</li><li>4 or less: keep it the same</li></ul>
+        <span class="ex">3.47 to the nearest tenth → 3.5
+$12.632 to the nearest cent → $12.63</span></article>
+
+      <article class="fact" id="r-dec"><h3>Decimal rules</h3>
+        <dl class="kv"><dt>+ −</dt><dd>Line up the decimal points. Fill gaps with 0.</dd>
+        <dt>×</dt><dd>Multiply as whole numbers. Count the decimal places in both numbers; the answer gets that many.</dd>
+        <dt>÷ whole</dt><dd>Point goes straight up into the answer.</dd>
+        <dt>÷ decimal</dt><dd>Move both points right until the divisor is a whole number.</dd>
+        <dt>× 10, 100</dt><dd>Move the point right (1 place per zero).</dd>
+        <dt>÷ 10, 100</dt><dd>Move the point left (1 place per zero).</dd></dl></article>
+
+      <article class="fact" id="r-frac"><h3>Fraction rules</h3>
+        <dl class="kv"><dt>Simplify</dt><dd>Divide top and bottom by the same number.</dd>
+        <dt>+ −</dt><dd>Same bottom first. Then add or subtract the tops. The bottom stays.</dd>
+        <dt>×</dt><dd>Top × top, bottom × bottom.</dd>
+        <dt>÷</dt><dd>Keep, change, flip: keep the first, change ÷ to ×, flip the second.</dd>
+        <dt>Mixed → top-heavy</dt><dd>Bottom × whole + top, over the same bottom.</dd>
+        <dt>Whole number</dt><dd>Write it over 1: 5 = 5/1.</dd></dl>
+        <p>Change mixed numbers to top-heavy fractions before you multiply or divide.</p></article>
+
+      <article class="fact" id="r-divis"><h3>Divisibility shortcuts</h3>
+        <p>Handy for simplifying fractions.</p>
+        <dl class="kv"><dt>2</dt><dd>last digit is even</dd><dt>3</dt><dd>digits add up to a multiple of 3 (a number in 3, 6, 9…)</dd>
+        <dt>4</dt><dd>last two digits divide by 4</dd><dt>5</dt><dd>ends in 0 or 5</dd><dt>9</dt><dd>digits add up to a multiple of 9</dd><dt>10</dt><dd>ends in 0</dd></dl></article>
+
+      <article class="fact" id="r-fdp"><h3>Fraction · decimal · percent</h3>
+        <div class="tw"><table class="btable"><tr><th>Fraction</th><th>Decimal</th><th>Percent</th></tr>
+        <tr><td>1/2</td><td>0.5</td><td>50%</td></tr><tr><td>1/3</td><td>≈ 0.33</td><td>≈ 33⅓%</td></tr><tr><td>2/3</td><td>≈ 0.67</td><td>≈ 66⅔%</td></tr>
+        <tr><td>1/4</td><td>0.25</td><td>25%</td></tr><tr><td>3/4</td><td>0.75</td><td>75%</td></tr><tr><td>1/5</td><td>0.2</td><td>20%</td></tr>
+        <tr><td>1/8</td><td>0.125</td><td>12.5%</td></tr><tr><td>1/10</td><td>0.1</td><td>10%</td></tr><tr><td>1/100</td><td>0.01</td><td>1%</td></tr></table></div>
+        <span class="ex">fraction → decimal:  top ÷ bottom
+decimal → percent:  move point 2 right
+percent → decimal:  move point 2 left</span></article>
+
+      <article class="fact" id="r-pct"><h3>Percent problems</h3>
+        <span class="ex">part = percent × whole
+20% of 45 → 0.20 × 45 = 9</span>
+        <dl class="kv"><dt>Tax, tip</dt><dd>Find the percent, then <b>add</b> it to the price.</dd>
+        <dt>Discount</dt><dd>Find the percent, then <b>subtract</b> it from the price.</dd>
+        <dt>% change</dt><dd>(new − old) ÷ old, then × 100.</dd>
+        <dt>10% trick</dt><dd>Move the point 1 left. 10% of $64 = $6.40, so 20% = $12.80.</dd></dl></article>
+
+      <article class="fact" id="r-ratio"><h3>Ratios &amp; proportions</h3>
+        <p>A ratio compares two amounts: 3 to 4, 3:4, or 3/4. A proportion sets two ratios equal. Solve by cross multiplying.</p>
+        <span class="ex">3 cans cost $4. How much for 12 cans?
+3/4 = 12/x  →  3 × x = 4 × 12
+3x = 48  →  x = 16  →  $16</span>
+        <p>Unit rate = amount for 1. $4 for 3 cans is about $1.33 per can.</p></article>
+
+      <article class="fact" id="r-int"><h3>Negative numbers</h3>
+        <dl class="kv"><dt>+ −</dt><dd>Think of a number line or money owed. −5 + 8 = 3. Subtracting a negative is adding: 6 − (−2) = 8.</dd>
+        <dt>× ÷</dt><dd>Same signs → positive. Different signs → negative.</dd></dl>
+        <span class="ex">−4 × −3 = 12      −12 ÷ 3 = −4</span></article>
+
+      <article class="fact" id="r-exp"><h3>Exponents &amp; square roots</h3>
+        <p>An exponent says how many times to multiply a number by itself. 5² = 5 × 5 = 25. 2³ = 2 × 2 × 2 = 8.</p>
+        <p>A square root undoes a square: √49 = 7 because 7 × 7 = 49.</p>
+        <div class="tw"><table class="btable"><tr><th>n</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><th>n²</th><td>1</td><td>4</td><td>9</td><td>16</td><td>25</td><td>36</td><td>49</td><td>64</td><td>81</td><td>100</td><td>121</td><td>144</td></tr></table></div></article>
+
+      <article class="fact" id="r-alg"><h3>Solving equations</h3>
+        <p>Get x alone. Undo each step with its opposite, and always do the <b>same thing to both sides</b>.</p>
+        <span class="ex">3x + 5 = 20
+subtract 5:   3x = 15
+divide by 3:   x = 5
+check: 3 × 5 + 5 = 20 ✓</span>
+        <p>3x means 3 × x. Opposites: + and −, × and ÷.</p></article>
+
+      <article class="fact" id="r-meas"><h3>Measurement</h3>
+        <dl class="kv"><dt>Length</dt><dd>12 in = 1 ft · 3 ft = 1 yd · 5,280 ft = 1 mile</dd>
+        <dt>Weight</dt><dd>16 oz = 1 lb · 2,000 lb = 1 ton</dd>
+        <dt>Liquid</dt><dd>8 fl oz = 1 cup · 2 cups = 1 pint · 2 pints = 1 quart · 4 quarts = 1 gallon</dd>
+        <dt>Time</dt><dd>60 sec = 1 min · 60 min = 1 hr · 52 weeks ≈ 1 year</dd>
+        <dt>Metric</dt><dd>kilo = 1,000 · centi = 1/100 · milli = 1/1,000. 1 m = 100 cm = 1,000 mm. 1 kg = 1,000 g.</dd></dl>
+        <p>Big unit → small unit: multiply. Small → big: divide.</p></article>
+
+      <article class="fact" id="r-geo"><h3>Geometry formulas</h3>
+        <dl class="kv"><dt>Perimeter</dt><dd>add all the sides (distance around)</dd>
+        <dt>Rectangle</dt><dd>A = length × width</dd>
+        <dt>Square</dt><dd>A = side × side</dd>
+        <dt>Triangle</dt><dd>A = ½ × base × height</dd>
+        <dt>Circle</dt><dd>C = π × d (or 2πr) · A = π × r² · π ≈ 3.14</dd>
+        <dt>Box</dt><dd>V = length × width × height</dd>
+        <dt>Cylinder</dt><dd>V = π × r² × height</dd></dl>
+        <p>Radius is half the diameter. Area is in square units (ft²), volume in cubic units (ft³).</p></article>
+
+      <article class="fact" id="r-ang"><h3>Angles &amp; triangles</h3>
+        <dl class="kv"><dt>90°</dt><dd>right angle (a square corner)</dd><dt>180°</dt><dd>straight line; also the 3 angles of any triangle</dd><dt>360°</dt><dd>full circle; also the 4 angles of any rectangle</dd></dl>
+        <p><b>Pythagorean theorem</b>, right triangles only: a² + b² = c², where c is the longest side.</p>
+        <span class="ex">legs 3 and 4:  9 + 16 = 25  →  c = √25 = 5</span></article>
+
+      <article class="fact" id="r-data"><h3>Data &amp; averages</h3>
+        <dl class="kv"><dt>Mean</dt><dd>the average: add them all, divide by how many</dd>
+        <dt>Median</dt><dd>the middle number after putting them in order (two middles: average them)</dd>
+        <dt>Mode</dt><dd>the number that shows up most</dd>
+        <dt>Range</dt><dd>biggest − smallest</dd></dl>
+        <span class="ex">4, 7, 7, 10, 12
+mean 40 ÷ 5 = 8 · median 7 · mode 7 · range 8</span></article>
+
+      <article class="fact" id="r-words"><h3>Word problem clue words</h3>
+        <dl class="kv"><dt>+</dt><dd>total, sum, in all, combined, more than, increased by</dd>
+        <dt>−</dt><dd>difference, how many more, left, less than, decreased by</dd>
+        <dt>×</dt><dd>product, times, of, each (when finding a total), twice, double</dd>
+        <dt>÷</dt><dd>per, each (when sharing), split, average, quotient, how many fit</dd>
+        <dt>=</dt><dd>is, was, will be, gives</dd></dl>
+        <p>Careful: “5 less than x” is x − 5, not 5 − x.</p></article>
+
+      <article class="fact" id="r-tips"><h3>Test-day habits</h3>
+        <ul><li>Estimate first, so you can spot an answer that's way off.</li>
+        <li>Check: does the answer make sense in the story? A person can't buy 2.4 cars.</li>
+        <li>Work backward from the answer choices when you're stuck.</li>
+        <li>Check the units the question asks for: inches or feet, dollars or cents.</li>
+        <li>Skip a hard one and come back to it. Don't leave any blank.</li></ul></article>
+
+    </div>
+    <p class="note">Some tests, and some sections of a test, give you a formula sheet. Check what your test allows. Knowing these by heart still saves time.</p>
+  </div>
+</section>
+<footer><div class="wrap"><p>Every problem is new each time, so there is always more practice. Press Enter to check an answer, and Enter again for the next one. Progress counts are kept in this browser only.</p></div></footer>
+
+<script>
+// ---------- helpers ----------
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const P=a=>a[Math.floor(Math.random()*a.length)];
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a};
+const lcm=(a,b)=>a/gcd(a,b)*b;
+const fmt=x=>String(Math.round(x*1e6)/1e6);
+const money=x=>'$'+x.toFixed(2);
+const F=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
+const M=s=>`<span class="m">${s}</span>`;
+const sayF=(n,d)=>`${n} over ${d}`;
+const simp=(n,d)=>{const g=gcd(n,d);return [n/g,d/g]};
+const decs=x=>(fmt(x).split('.')[1]||'').length;
+const pl=(n,w)=>`${n} ${w}${n==1?'':'s'}`;
+function simpleFrac(maxD=9,minD=2){let b,a;do{b=R(minD,maxD);a=R(1,b-1)}while(gcd(a,b)!==1);return [a,b]}
+function bar(n,k,label){return `${label?`<div class="barlabel">${label}</div>`:''}<div class="bar sm" style="--n:${n}">${Array.from({length:n},(_,i)=>`<span class="cell${i<k?' on':''}"></span>`).join('')}</div>`}
+function bigBar(n,k){return `<div class="bar" style="--n:${n}" aria-label="${k} of ${n} parts shaded">${Array.from({length:n},(_,i)=>`<span class="cell${i<k?' on':''}"></span>`).join('')}</div>`}
+function simpNote(n,d){const [x,y]=simp(n,d);if(y===1)return ` = <b>${x}</b>`;if(x!==n)return ` = <b>${F(x,y)}</b> (simplified)`;return ''}
+function longDiv(n,d){
+  const out=[];const q=Math.floor(n/d);let r=n%d;
+  out.push(M(`${n} ÷ ${d} = ${q}`)+(r?` with ${r} left over.`:'.'));
+  if(r) out.push(`Put a decimal point after the ${q} in the answer. Add a 0 to the leftover: ${r} becomes ${r}0.`);
+  let guard=0;
+  while(r&&guard<5){const t=r*10,dg=Math.floor(t/d);r=t%d;out.push(M(`${t} ÷ ${d} = ${dg}`)+(r?` with ${r} left over. Add another 0.`:', nothing left over.'));guard++}
+  return out;
+}
+function tapeSVG(pos){
+  const x0=26,u=18;let t='';
+  for(let i=0;i<=32;i++){const x=x0+i*u,h=i%16===0?60:i%8===0?46:i%4===0?35:i%2===0?27:19;t+=`<line x1="${x}" y1="8" x2="${x}" y2="${8+h}" stroke-width="${i%16===0?3:2}"/>`}
+  let lab='';for(let i=0;i<=2;i++)lab+=`<text x="${x0+i*16*u}" y="94" text-anchor="middle">${i}</text>`;
+  const mx=x0+pos*u;
+  return `<svg class="tapesvg" viewBox="0 0 628 124" role="img" aria-label="Tape measure from 0 to 2 inches with a red mark">
+    <rect x="4" y="4" width="620" height="98" rx="5" fill="var(--tape)"/>
+    <g stroke="var(--tape-ink)">${t}</g>
+    <g fill="var(--tape-ink)" font-family="Atkinson Hyperlegible Mono, monospace" font-size="22" font-weight="600">${lab}</g>
+    <line x1="${mx}" y1="2" x2="${mx}" y2="104" stroke="var(--bad)" stroke-width="3"/>
+    <path d="M${mx-10} 122 L${mx+10} 122 L${mx} 106 Z" fill="var(--bad)"/>
+  </svg>`;
+}
+
+// ---------- skills ----------
+const TRACKS=[
+{id:'dec',name:'Decimals',tag:'Focus: division',intro:'Adding, subtracting and multiplying decimals already work. These skills are all about dividing.',skills:[
+{id:'d1',title:'Decimal ÷ whole number',
+ learn:`<p>The decimal point goes <b>straight up</b> into the answer. Then divide the way you always do.</p><span class="ex">8.4 ÷ 4
+→ ignore the point:  84 ÷ 4 = 21
+→ put the point back: 2.1</span>`,
+ gen(){let d,ai,p;do{d=R(2,9);p=Math.random()<.6?1:2;ai=p===1?R(11,99):R(11,399)}while(ai%10===0);
+  const sc=10**p,ans=ai/sc,di=ai*d,dv=(di/sc).toFixed(p);
+  return{prompt:M(`${dv} ÷ ${d} = ?`),say:`${dv} divided by ${d}`,type:'num',ans,
+  steps:[`The decimal point goes straight up into the answer, right above where it sits in ${M(dv)}.`,
+   `Ignore the point and divide like whole numbers: ${M(`${di} ÷ ${d} = ${ai}`)}.`,
+   `Put the point back so the answer has ${pl(p,'digit')} after it: <b>${M(fmt(ans))}</b>.`,
+   `Check by multiplying: ${M(`${fmt(ans)} × ${d} = ${dv}`)} ✓`]}}},
+{id:'d2',title:'÷ 10, 100, 1000',
+ learn:`<p>Count the zeros. Move the decimal point that many places to the <b>left</b>. If you run out of digits, fill in with 0.</p><span class="ex">45.6 ÷ 100   (2 zeros)
+→ move the point 2 places left
+→ 0.456</span>`,
+ gen(){const k=R(1,3),dv=10**k,p=R(0,1),xi=p?R(12,9999):R(2,999);if(xi%10===0)return this.gen();
+  const x=fmt(xi/10**p),ans=xi/10**(p+k);
+  return{prompt:M(`${x} ÷ ${dv} = ?`),say:`${x} divided by ${dv}`,type:'num',ans,
+  steps:[`${dv} has ${pl(k,'zero')}, so the point moves ${pl(k,'place')} to the left.`,
+   p?`Start at ${M(x)}.`:`${M(x)} is a whole number. Its decimal point is hiding at the end: ${M(x+'.')}`,
+   `Move the point ${pl(k,'place')} left, adding 0s in front if you need them: <b>${M(fmt(ans))}</b>.`]}}},
+{id:'d3',title:'Dividing by a decimal',
+ learn:`<p>Move the point in the number you divide <b>by</b> until it is a whole number. Move the point in the other number the <b>same</b> number of places. Then divide.</p><span class="ex">2.8 ÷ 0.4
+→ 0.4 becomes 4   (1 place right)
+→ 2.8 becomes 28  (1 place right)
+→ 28 ÷ 4 = 7</span><p>Why it works: both numbers got 10 times bigger, so the answer stays the same. It is like asking how many groups of 4 dimes fit in 28 dimes.</p>`,
+ gen(){const dv=P([0.2,0.4,0.5,0.25,1.5,0.3,0.6,0.8,1.2,2.5,0.05,0.75]),k=decs(dv),dvi=Math.round(dv*10**k);
+  const ap=Math.random()<.3?1:0;let ai=ap?R(11,99):R(2,40);if(ap&&ai%10===0)ai++;
+  const ans=ai/10**ap,big=ai*dvi/10**ap,dividend=big/10**k;
+  return{prompt:M(`${fmt(dividend)} ÷ ${fmt(dv)} = ?`),say:`${fmt(dividend)} divided by ${fmt(dv)}`,type:'num',ans,
+  steps:[`You are dividing by ${M(fmt(dv))}. Move its point ${pl(k,'place')} right to make a whole number: ${M(fmt(dv))} → ${M(dvi)}.`,
+   `Move the point in ${M(fmt(dividend))} the same ${pl(k,'place')} right (add 0s if needed): ${M(fmt(dividend))} → ${M(fmt(big))}.`,
+   `Now divide: ${M(`${fmt(big)} ÷ ${dvi}`)} = <b>${M(fmt(ans))}</b>.`,
+   `Check: ${M(`${fmt(ans)} × ${fmt(dv)} = ${fmt(dividend)}`)} ✓`]}}},
+{id:'d4',title:'When it doesn’t come out even',
+ learn:`<p>Put a decimal point after the number you are dividing and add zeros. Keep dividing until nothing is left over.</p><span class="ex">7 ÷ 4  →  7.00 ÷ 4
+7 ÷ 4 = 1, 3 left over → 30
+30 ÷ 4 = 7, 2 left over → 20
+20 ÷ 4 = 5, nothing left
+answer: 1.75</span>`,
+ gen(){const d=P([2,4,5,8,20,25,4,8]);let n;do{n=R(1,d<10?30:60)}while(n%d===0);
+  return{prompt:M(`${n} ÷ ${d} = ?`),say:`${n} divided by ${d}`,type:'num',ans:n/d,
+  steps:[`Think of ${M(n)} as ${M(n+'.000')}. The zeros don't change its value.`,...longDiv(n,d),`Answer: <b>${M(fmt(n/d))}</b>`]}}},
+{id:'d5',title:'Money word problems',
+ learn:`<p>Words like <b>each</b>, <b>per</b>, <b>split</b> and <b>how many</b> usually mean divide. Estimate first so you know if your answer makes sense.</p><span class="ex">$26.00 at $3.25 a gallon
+estimate: 26 ÷ 3 is about 8
+exact: 2600 ÷ 325 = 8 gallons</span>`,
+ gen(){return P([
+  ()=>{const n=R(2,6),pc=R(450,2500),tot=pc*n/100,ans=pc/100;return{word:1,prompt:`A dinner bill of ${money(tot)} is split evenly among ${n} friends. How much does each person pay?`,unit:'$',type:'num',ans,
+   steps:[`“Split evenly” means divide: ${M(`${tot.toFixed(2)} ÷ ${n}`)}.`,`Estimate: about ${M(`${Math.round(tot)} ÷ ${n}`)}, so close to ${money(Math.round(tot/n))}.`,`Divide, with the point going straight up: ${M(`${tot.toFixed(2)} ÷ ${n} = ${ans.toFixed(2)}`)}.`,`Each person pays <b>${money(ans)}</b>.`]}},
+  ()=>{const pc=P([289,315,349,375,295,325,365]),g=R(4,15),tot=pc*g/100;return{word:1,prompt:`Gas costs ${money(pc/100)} per gallon. You spend ${money(tot)}. How many gallons did you buy?`,type:'num',ans:g,
+   steps:[`How many ${money(pc/100)}s fit into ${money(tot)}? Divide: ${M(`${tot.toFixed(2)} ÷ ${(pc/100).toFixed(2)}`)}.`,`Estimate: about ${M(`${Math.round(tot)} ÷ ${Math.round(pc/100)}`)} ≈ ${Math.round(tot/Math.round(pc/100))}.`,`Move both points 2 places right: ${M(`${pc*g} ÷ ${pc}`)}.`,`${M(`${pc*g} ÷ ${pc} = ${g}`)}. You bought <b>${g} gallons</b>.`,`Check: ${M(`${g} × ${(pc/100).toFixed(2)} = ${tot.toFixed(2)}`)} ✓`]}},
+  ()=>{const h=R(4,9),hc=R(56,128)*25,tot=hc*h/100,ans=hc/100;return{word:1,prompt:`You earned ${money(tot)} for ${h} hours of work. What is your pay per hour?`,unit:'$',type:'num',ans,
+   steps:[`“Per hour” means divide by the hours: ${M(`${tot.toFixed(2)} ÷ ${h}`)}.`,`Estimate: about ${M(`${Math.round(tot)} ÷ ${h}`)} ≈ ${money(Math.round(tot/h))}.`,`Divide: ${M(`${tot.toFixed(2)} ÷ ${h} = ${ans.toFixed(2)}`)}.`,`Your pay is <b>${money(ans)}</b> per hour.`]}},
+  ()=>{const pk=P([4,6,8,12]),ec=R(35,250),tot=pk*ec/100,ans=ec/100,item=P(['batteries','bottles of water','light bulbs','cans of soup']);return{word:1,prompt:`A ${pk}-pack of ${item} costs ${money(tot)}. What is the price of one?`,unit:'$',type:'num',ans,
+   steps:[`Price of one = total ÷ how many: ${M(`${tot.toFixed(2)} ÷ ${pk}`)}.`,`Divide: ${M(`${tot.toFixed(2)} ÷ ${pk} = ${ans.toFixed(2)}`)}.`,`One costs <b>${money(ans)}</b>.`]}},
+  ()=>{const n=R(2,5);let ai;do{ai=R(11,60)}while(ai%10===0);const L=fmt(ai*n/10),ans=ai/10;return{word:1,prompt:`A board ${L} feet long is cut into ${n} equal pieces. How long is each piece, in feet?`,type:'num',ans,
+   steps:[`Equal pieces means divide: ${M(`${L} ÷ ${n}`)}.`,`Ignore the point: ${M(`${ai*n} ÷ ${n} = ${ai}`)}.`,`Put the point back: each piece is <b>${fmt(ans)} feet</b>.`]}}
+ ])()}}
+]},
+{id:'frac',name:'Fractions',tag:'Start from the ground up',intro:'Go in order. Each skill builds on the one before it, and the pictures matter more than the rules at first.',skills:[
+{id:'f1',title:'Name the fraction',
+ learn:`<p>The <b>bottom</b> number tells how many equal pieces the whole is cut into. The <b>top</b> number tells how many pieces you have.</p>${bar(5,3)}<p>5 equal pieces, 3 shaded: ${F(3,5)}</p>`,
+ gen(){const n=R(2,10),k=R(1,n-1);return{prompt:'What fraction of the bar is shaded?',word:1,say:'What fraction of the bar is shaded?',visual:bigBar(n,k),type:'frac',fn:k,fd:n,
+  steps:[`Count all the equal pieces: <b>${n}</b>. That is the bottom number.`,`Count the shaded pieces: <b>${k}</b>. That is the top number.`,`So ${F(k,n)} of the bar is shaded.`]}}},
+{id:'f2',title:'Shade a fraction',
+ learn:`<p>Read the bottom number first: it tells you how many pieces the bar is cut into. Then shade as many pieces as the top number says.</p><p>Sometimes the bar has more pieces than the bottom number. Then you need a little more thinking: ${F(1,2)} of 8 pieces is 4 pieces.</p>`,
+ gen(){if(Math.random()<.3){const [a,b]=simpleFrac(5),m=R(2,3);return{prompt:`Tap pieces to shade ${F(a,b)} of the bar.`,say:`Tap pieces to shade ${sayF(a,b)} of the bar.`,type:'shade',n:b*m,k:a*m,
+   steps:[`This bar has ${b*m} pieces, not ${b}. Split it into ${b} equal groups: each group is ${m} pieces.`,`You need ${a} of those groups: ${M(`${a} × ${m} = ${a*m}`)} pieces.`,`Shade <b>${a*m}</b> pieces.`]}}
+  const n=R(3,10),k=R(1,n-1);return{prompt:`Tap pieces to shade ${F(k,n)} of the bar.`,say:`Tap pieces to shade ${sayF(k,n)} of the bar.`,type:'shade',n,k,
+  steps:[`The bottom number, ${n}, matches the ${n} pieces in the bar.`,`The top number, ${k}, says how many to shade. Shade <b>${k}</b> pieces.`]}}},
+{id:'f3',title:'Read a tape measure',
+ learn:`<p>Each inch is cut into <b>16</b> small spaces. Count the spaces past the last whole inch, then simplify.</p><span class="ex">8/16 = 1/2    4/16 = 1/4
+2/16 = 1/8   12/16 = 3/4</span><p>The longer the line, the simpler the fraction: the half-inch line is longest, then quarters, then eighths.</p>`,
+ gen(){let pos;do{pos=R(1,31)}while(pos===16);const w=Math.floor(pos/16),r=pos%16,[sn,sd]=simp(r,16);
+  return{prompt:'Where is the red mark? Answer in inches.',word:1,say:'Where is the red mark? Answer in inches.',visual:tapeSVG(pos),type:'mixed',aw:w,an:r,ad:16,
+  steps:[w?`The mark is past the 1-inch line, so the whole number is <b>1</b>.`:`The mark is before the 1-inch line, so there is no whole number.`,
+   `Count the small spaces from the ${w}-inch line to the mark: <b>${r}</b>. That is ${F(r,16)} of an inch.`,
+   sd<16?`Simplify: ${F(r,16)} = ${F(sn,sd)}.`:`${F(r,16)} can't be simplified.`,
+   `Answer: <b>${w?M(w):''}${F(sn,sd)} inch${w?'es':''}</b>`]}}},
+{id:'f4',title:'Same amount, different names',
+ learn:`<p>Multiply the top and bottom by the <b>same</b> number. The pieces get smaller, but you get more of them, so the amount stays the same.</p>${bar(2,1,F(1,2))}${bar(4,2,F(2,4)+' (each half cut in 2)')}`,
+ gen(){const [a,b]=simpleFrac(6),m=R(2,5),top=Math.random()<.7;
+  return{prompt:top?`${F(a,b)} = ${F('?',b*m)}`:`${F(a,b)} = ${F(a*m,'?')}`,say:top?`${sayF(a,b)} equals what over ${b*m}?`:`${sayF(a,b)} equals ${a*m} over what?`,visual:bar(b,a,F(a,b)),type:'num',ans:top?a*m:b*m,
+  steps:[top?`Bottom: ${b} became ${b*m}. That is ${M(`${b} × ${m}`)}.`:`Top: ${a} became ${a*m}. That is ${M(`${a} × ${m}`)}.`,
+   top?`Do the same to the top: ${M(`${a} × ${m} = ${a*m}`)}.`:`Do the same to the bottom: ${M(`${b} × ${m} = ${b*m}`)}.`,
+   `${F(a,b)} = <b>${F(a*m,b*m)}</b>. Same amount, smaller pieces:${bar(b,a)}${bar(b*m,a*m)}`]}}},
+{id:'f5',title:'Simplify',
+ learn:`<p>Divide the top and bottom by the <b>same</b> number. Keep going until no number except 1 divides both.</p><span class="ex">6/8 → both divide by 2 → 3/4</span><p>Try 2, 3, and 5 first. If both numbers are even, 2 always works.</p>`,
+ gen(){const [a,b]=simpleFrac(9),m=R(2,6),n=a*m,d=b*m;
+  return{prompt:`Simplify ${F(n,d)}`,say:`Simplify ${sayF(n,d)}`,type:'frac',fn:a,fd:b,simplest:true,
+  steps:[`Find the biggest number that divides both ${n} and ${d}. It is <b>${m}</b>.`,`${M(`${n} ÷ ${m} = ${a}`)} and ${M(`${d} ÷ ${m} = ${b}`)}.`,`Answer: <b>${F(a,b)}</b>`,`Dividing by a smaller number first is fine too. Just keep going until you can't simplify any more.`]}}},
+{id:'f6',title:'Which is bigger?',
+ learn:`<p>Give both fractions the <b>same bottom number</b>. Then the one with the bigger top is bigger.</p><span class="ex">2/3 or 3/4?
+2/3 = 8/12     3/4 = 9/12
+9 is more than 8, so 3/4 is bigger</span>`,
+ gen(){let a,b,c,d;const eq=Math.random()<.15;
+  if(eq){[a,b]=simpleFrac(6);const m=R(2,Math.floor(12/b)>=2?Math.floor(12/b):2);c=a*m;d=b*m}
+  else{do{[a,b]=simpleFrac(10);[c,d]=simpleFrac(10)}while(a*d===c*b||lcm(b,d)>40)}
+  const L=lcm(b,d),x=a*L/b,y=c*L/d,correct=x>y?0:x<y?1:2;
+  return{prompt:'Which is bigger?',word:1,say:`Which is bigger, ${sayF(a,b)} or ${sayF(c,d)}?`,type:'choice',choices:[F(a,b),F(c,d),'They are equal'],correct,
+  steps:[`Find a bottom number both ${b} and ${d} go into: <b>${L}</b>.`,`${F(a,b)} = ${F(x,L)} and ${F(c,d)} = ${F(y,L)}.`,
+   correct===2?`The tops match (${x} and ${y}), so they are <b>equal</b>.`:`Compare the tops: ${x} ${x>y?'>':'<'} ${y}. So <b>${correct===0?F(a,b):F(c,d)}</b> is bigger.${bar(b,a,F(a,b))}${bar(d,c,F(c,d))}`]}}},
+{id:'f7',title:'Mixed numbers',
+ learn:`<p>${M('1')}${F(3,4)} means 1 whole and ${F(3,4)} more. That is the same as ${F(7,4)}, because 1 whole is ${F(4,4)}.</p><span class="ex">mixed → fraction:  bottom × whole + top
+1 3/4 → 4 × 1 + 3 = 7 → 7/4
+
+fraction → mixed:  divide
+7/4 → 7 ÷ 4 = 1, 3 left over → 1 3/4</span>`,
+ gen(){const d=R(2,9),w=R(1,5),r=R(1,d-1),n=w*d+r;
+  if(Math.random()<.5)return{prompt:`Write ${F(n,d)} as a mixed number.`,say:`Write ${sayF(n,d)} as a mixed number.`,type:'mixed',aw:w,an:r,ad:d,proper:true,
+   steps:[`How many whole groups of ${d} fit into ${n}? ${M(`${n} ÷ ${d} = ${w}`)} with ${r} left over.`,`The ${w} becomes the whole number. The ${r} left over stays over ${d}.`,`Answer: <b>${M(w)}${F(r,d)}</b>`]};
+  return{prompt:`Write ${M(w)}${F(r,d)} as a fraction.`,say:`Write ${w} and ${sayF(r,d)} as a fraction.`,type:'frac',fn:n,fd:d,
+   steps:[`Each whole is ${F(d,d)}. So ${w} whole${w>1?'s':''} = ${M(`${w} × ${d} = ${w*d}`)} pieces.`,`Add the ${r} extra pieces: ${M(`${w*d} + ${r} = ${n}`)}.`,`Answer: <b>${F(n,d)}</b>`]}}},
+{id:'f8',title:'Add & subtract: same bottom',
+ learn:`<p>When the bottoms match, the pieces are the same size. Keep the bottom and add (or subtract) the tops.</p><span class="ex">2/7 + 3/7 = 5/7</span><p>Never add the bottoms. 2 sevenths plus 3 sevenths is 5 sevenths, just like 2 apples plus 3 apples is 5 apples.</p>`,
+ gen(){const d=R(3,12),add=Math.random()<.6;let a,b;if(add){a=R(1,d-2);b=R(1,d-1-a)}else{a=R(2,d-1);b=R(1,a-1)}const t=add?a+b:a-b,op=add?'+':'−';
+  return{prompt:`${F(a,d)} ${op} ${F(b,d)} = ?`,say:`${sayF(a,d)} ${add?'plus':'minus'} ${sayF(b,d)}`,type:'frac',fn:t,fd:d,
+  steps:[`The bottoms are both ${d}. Keep ${d} on the bottom.`,`${add?'Add':'Subtract'} the tops: ${M(`${a} ${op} ${b} = ${t}`)}.`,`Answer: <b>${F(t,d)}</b>${simpNote(t,d)}`]}}},
+{id:'f9',title:'Add & subtract: different bottoms',
+ learn:`<p>You can only add pieces of the same size. Find a bottom number both fractions can use, rename them, then add the tops.</p><span class="ex">1/2 + 1/3
+both go into 6
+1/2 = 3/6     1/3 = 2/6
+3/6 + 2/6 = 5/6</span>`,
+ gen(){const ds=[2,3,4,5,6,8,10,12];let a,b,c,d;const add=Math.random()<.6;
+  do{b=P(ds);d=P(ds);a=R(1,b-1);c=R(1,d-1)}while(b===d||lcm(b,d)>24||(!add&&a*d===c*b));
+  if(!add&&a*d<c*b){[a,b,c,d]=[c,d,a,b]}
+  const L=lcm(b,d),x=a*L/b,y=c*L/d,t=add?x+y:x-y,op=add?'+':'−';
+  return{prompt:`${F(a,b)} ${op} ${F(c,d)} = ?`,say:`${sayF(a,b)} ${add?'plus':'minus'} ${sayF(c,d)}`,type:'frac',fn:t,fd:L,
+  steps:[`Find a bottom number both ${b} and ${d} go into: <b>${L}</b>.`,`Rename: ${F(a,b)} = ${F(x,L)} (×${L/b} top and bottom), ${F(c,d)} = ${F(y,L)} (×${L/d}).`,`${add?'Add':'Subtract'} the tops: ${M(`${x} ${op} ${y} = ${t}`)}.`,`Answer: <b>${F(t,L)}</b>${simpNote(t,L)}`]}}},
+{id:'f10',title:'Multiply fractions',
+ learn:`<p>Multiplying is the easy one: top × top, bottom × bottom. Then simplify.</p><span class="ex">2/3 × 3/4 = 6/12 = 1/2</span><p>“Of” often means multiply: ${F(1,2)} of ${F(3,4)} is ${F(1,2)} × ${F(3,4)}.</p>`,
+ gen(){const [a,b]=simpleFrac(8),[c,d]=simpleFrac(8);
+  return{prompt:`${F(a,b)} × ${F(c,d)} = ?`,say:`${sayF(a,b)} times ${sayF(c,d)}`,type:'frac',fn:a*c,fd:b*d,
+  steps:[`Top × top: ${M(`${a} × ${c} = ${a*c}`)}.`,`Bottom × bottom: ${M(`${b} × ${d} = ${b*d}`)}.`,`Answer: <b>${F(a*c,b*d)}</b>${simpNote(a*c,b*d)}`]}}},
+{id:'f11',title:'Divide fractions',
+ learn:`<p>Keep, change, flip. <b>Keep</b> the first fraction, <b>change</b> ÷ to ×, <b>flip</b> the second fraction. Then multiply.</p><span class="ex">1/2 ÷ 1/4
+→ 1/2 × 4/1 = 4/2 = 2
+(there are 2 quarters in a half)</span>`,
+ gen(){const [a,b]=simpleFrac(8),[c,d]=simpleFrac(8);
+  return{prompt:`${F(a,b)} ÷ ${F(c,d)} = ?`,say:`${sayF(a,b)} divided by ${sayF(c,d)}`,type:'frac',fn:a*d,fd:b*c,
+  steps:[`Keep ${F(a,b)}. Change ÷ to ×. Flip ${F(c,d)} to ${F(d,c)}.`,`Multiply: ${F(a,b)} × ${F(d,c)}. Top: ${M(`${a} × ${d} = ${a*d}`)}. Bottom: ${M(`${b} × ${c} = ${b*c}`)}.`,`Answer: <b>${F(a*d,b*c)}</b>${simpNote(a*d,b*c)}`]}}},
+{id:'f12',title:'Fraction of a number',
+ learn:`<p>Divide by the bottom, then multiply by the top.</p><span class="ex">3/4 of 20
+20 ÷ 4 = 5   (one quarter)
+5 × 3 = 15   (three quarters)</span>`,
+ gen(){const [a,b]=simpleFrac(8),N=b*R(2,12),one=N/b,ans=one*a;
+  const ctx=P([
+   [`A class has ${N} students. ${F(a,b)} of them passed the test. How many passed?`,`A class has ${N} students. ${sayF(a,b)} of them passed. How many passed?`],
+   [`A road trip is ${N} miles. You have driven ${F(a,b)} of it. How many miles have you driven?`,`A trip is ${N} miles. You drove ${sayF(a,b)} of it. How many miles?`],
+   [`What is ${F(a,b)} of ${N}?`,`What is ${sayF(a,b)} of ${N}?`]]);
+  return{prompt:ctx[0],word:1,say:ctx[1],type:'num',ans,
+  steps:[`Divide by the bottom number to find one piece: ${M(`${N} ÷ ${b} = ${one}`)}.`,`Multiply by the top number: ${M(`${one} × ${a} = ${ans}`)}.`,`Answer: <b>${ans}</b>`]}}}
+]},
+{id:'conv',name:'Conversions',tag:'Stretch goal',intro:'Fractions, decimals and percents are three ways to write the same amount. Try these after fractions feel solid.',skills:[
+{id:'c1',title:'Fraction → decimal',
+ learn:`<p>The fraction bar means <b>divide</b>: top ÷ bottom.</p><span class="ex">3/4 = 3 ÷ 4 = 0.75</span><p>This is the same skill as “When it doesn’t come out even” on the Decimals tab.</p>`,
+ gen(){const d=P([2,4,5,8,10,20,25,4,5,8]),n=R(1,d-1);
+  return{prompt:`${F(n,d)} = ? (as a decimal)`,say:`Write ${sayF(n,d)} as a decimal.`,type:'num',ans:n/d,
+  steps:[`The fraction bar means divide: ${M(`${n} ÷ ${d}`)}.`,...longDiv(n,d),`Answer: <b>${M(fmt(n/d))}</b>`]}}},
+{id:'c2',title:'Decimal → percent',
+ learn:`<p>Percent means “out of 100.” Multiply by 100: move the point <b>2 places right</b>.</p><span class="ex">0.35 → 35%     0.6 → 60%     1.2 → 120%</span>`,
+ gen(){const v=Math.random()<.8?R(1,150)/100:R(1,999)/1000,ans=v*100;
+  return{prompt:`${fmt(v)} = ?%`,say:`Write ${fmt(v)} as a percent.`,type:'num',unit:'%',ans,
+  steps:[`Multiply by 100: move the decimal point 2 places to the right. Add a 0 if you run out of digits.`,`${M(fmt(v))} → <b>${M(fmt(ans)+'%')}</b>`]}}},
+{id:'c3',title:'Percent → decimal',
+ learn:`<p>Divide by 100: move the point <b>2 places left</b>. Fill empty spots with 0.</p><span class="ex">45% → 0.45     8% → 0.08     150% → 1.5</span>`,
+ gen(){const p=Math.random()<.8?R(1,150):R(1,99)+0.5,ans=p/100;
+  return{prompt:`${fmt(p)}% = ? (as a decimal)`,say:`Write ${fmt(p)} percent as a decimal.`,type:'num',ans,
+  steps:[`Percent means out of 100, so divide by 100: move the point 2 places left.`,`${M(fmt(p)+'%')} → <b>${M(fmt(ans))}</b>`]}}},
+{id:'c4',title:'Fraction → percent',
+ learn:`<p>Make the bottom number <b>100</b>. The top number is then the percent.</p><span class="ex">3/20 → ×5 top and bottom → 15/100 = 15%</span>`,
+ gen(){const d=P([2,4,5,10,20,25,50]),n=R(1,d-1),m=100/d,ans=n*m;
+  return{prompt:`${F(n,d)} = ?%`,say:`Write ${sayF(n,d)} as a percent.`,type:'num',unit:'%',ans,
+  steps:[`What times ${d} makes 100? ${M(`${d} × ${m} = 100`)}.`,`Do the same to the top: ${M(`${n} × ${m} = ${ans}`)}.`,`${F(ans,100)} = <b>${M(ans+'%')}</b>`]}}},
+{id:'c5',title:'Know the common ones',
+ learn:`<p>These show up again and again. Knowing them by heart saves a lot of time on the test.</p><div class="tw"><table class="btable"><tr><th>Fraction</th><th>Decimal</th><th>Percent</th></tr>
+ <tr><td>1/2</td><td>0.5</td><td>50%</td></tr><tr><td>1/4</td><td>0.25</td><td>25%</td></tr><tr><td>3/4</td><td>0.75</td><td>75%</td></tr><tr><td>1/5</td><td>0.2</td><td>20%</td></tr><tr><td>1/10</td><td>0.1</td><td>10%</td></tr><tr><td>1/8</td><td>0.125</td><td>12.5%</td></tr><tr><td>1/3</td><td>about 0.33</td><td>about 33%</td></tr></table></div>`,
+ gen(){const BM=[[1,2,'0.5','50%'],[1,4,'0.25','25%'],[3,4,'0.75','75%'],[1,5,'0.2','20%'],[2,5,'0.4','40%'],[1,10,'0.1','10%'],[1,8,'0.125','12.5%'],[1,3,'about 0.33','about 33%']];
+  const show=(r,f)=>f===0?F(r[0],r[1]):f===1?M(r[2]):M(r[3]);
+  const sayS=(r,f)=>f===0?sayF(r[0],r[1]):f===1?r[2]:r[3].replace('%',' percent');
+  const row=P(BM),g=R(0,2);let t;do{t=R(0,2)}while(t===g);
+  const others=BM.filter(r=>r!==row).sort(()=>Math.random()-.5).slice(0,3);
+  const opts=[row,...others].sort(()=>Math.random()-.5);
+  return{prompt:`Which is the same as ${show(row,g)}?`,say:`Which is the same as ${sayS(row,g)}?`,type:'choice',choices:opts.map(r=>show(r,t)),correct:opts.indexOf(row),
+  steps:[`${F(row[0],row[1])} = ${M(row[2])} = ${M(row[3])}`,`So the answer is <b>${show(row,t)}</b>.`]}}}
+]}
+];
+
+// ---------- state ----------
+const $=s=>document.querySelector(s);
+let PG={};try{PG=JSON.parse(localStorage.getItem('fdw-progress')||'{}')||{}}catch(e){PG={}}
+const saveP=()=>{try{localStorage.setItem('fdw-progress',JSON.stringify(PG))}catch(e){}};
+let S={track:'dec',skill:'d1',p:null,tries:0,done:false,shade:[],today:0};
+try{const l=JSON.parse(localStorage.getItem('fdw-last')||'null');if(l&&TRACKS.some(t=>t.id===l.track&&t.skills.some(s=>s.id===l.skill))){S.track=l.track;S.skill=l.skill}}catch(e){}
+const curTrack=()=>TRACKS.find(t=>t.id===S.track);
+const curSkill=()=>curTrack().skills.find(s=>s.id===S.skill);
+
+let VIEW='practice';
+function renderTabs(){
+  const sheet=VIEW==='sheet';
+  $('#tabs').innerHTML=TRACKS.map(t=>`<button class="tab" role="tab" id="tab-${t.id}" aria-selected="${!sheet&&t.id===S.track}" data-t="${t.id}"><b>${t.name}</b><small>${t.tag}</small></button>`).join('')
+    +`<button class="tab ref" role="tab" id="tab-sheet" aria-selected="${sheet}" data-t="sheet"><b>Fact Sheet</b><small>Quick reference</small></button>`;
+  $('#trackintro').textContent=sheet?'The rules, formulas and tables that come up most on TABE math. Tap a topic to jump to it.':curTrack().intro;
+  document.querySelector('main').hidden=sheet;document.querySelector('footer').hidden=sheet;$('#sheet').hidden=!sheet;
+}
+$('#jump').innerHTML=[...document.querySelectorAll('.fact')].map(a=>`<button type="button" data-j="${a.id}">${a.querySelector('h3').firstChild.textContent.trim()}</button>`).join('');
+$('#jump').addEventListener('click',e=>{const b=e.target.closest('button');if(b)document.getElementById(b.dataset.j).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+function renderRail(){
+  const t=curTrack();
+  $('#rail').innerHTML=`<h2>${t.name} skills</h2>`+t.skills.map((s,i)=>{const c=(PG[s.id]||0);return `<button class="skill" data-s="${s.id}" aria-current="${s.id===S.skill}"><span class="no">${String(i+1).padStart(2,'0')}</span><span>${s.title}</span><span class="ct">${c?'✓'+c:''}</span></button>`}).join('');
+}
+function renderLearn(){$('#learnbody').innerHTML=curSkill().learn;$('#skilltitle').textContent=curSkill().title}
+function remember(){try{localStorage.setItem('fdw-last',JSON.stringify({track:S.track,skill:S.skill}))}catch(e){}}
+
+function answerHTML(p){
+  if(p.type==='num')return `<div class="ans-num">${p.unit==='$'?'<span>$</span>':''}<input class="box" id="in-num" type="text" inputmode="decimal" autocomplete="off" aria-label="Your answer">${p.unit==='%'?'<span>%</span>':''}</div>`;
+  const frac=`<div class="ans-frac"><input class="box sm" id="in-n" type="text" inputmode="numeric" autocomplete="off" aria-label="Top number"><span class="fbar"></span><input class="box sm" id="in-d" type="text" inputmode="numeric" autocomplete="off" aria-label="Bottom number"></div>`;
+  if(p.type==='frac')return frac;
+  if(p.type==='mixed')return `<div class="mixedwrap"><input class="box whole" id="in-w" type="text" inputmode="numeric" autocomplete="off" aria-label="Whole number">${frac}</div><p class="hint-s">Leave the big box empty if there is no whole number.</p>`;
+  if(p.type==='choice')return `<div class="choices">${p.choices.map((c,i)=>`<button type="button" class="choice${/^They|^[a-z]/.test(c)?' txt':''}" data-i="${i}">${c}</button>`).join('')}</div>`;
+  if(p.type==='shade')return `<div class="bar tap" style="--n:${p.n}" id="shadebar">${Array.from({length:p.n},(_,i)=>`<button type="button" class="cell" data-c="${i}" aria-label="Piece ${i+1}" aria-pressed="false"></button>`).join('')}</div><p class="hint-s">Shaded: <b id="shcount">0</b> of ${p.n} pieces</p>`;
+}
+function newProblem(){S.p=curSkill().gen();S.tries=0;S.done=false;S.shade=new Array(S.p.n||0).fill(false);renderProblem()}
+function renderProblem(){
+  const p=S.p;
+  const pr=$('#prompt');pr.innerHTML=p.prompt;pr.className='prompt'+(p.word?' word':'');
+  $('#visual').innerHTML=p.visual||'';$('#visual').hidden=!p.visual;
+  $('#answer').innerHTML=answerHTML(p);
+  $('#steplist').innerHTML=p.steps.map(s=>`<li>${s}</li>`).join('');
+  $('#steps').hidden=true;$('#showsteps').textContent='Show steps';
+  setFb('','');
+  const ck=$('#check');ck.textContent='Check';ck.classList.remove('go');ck.hidden=p.type==='choice';
+  const first=$('#answer input');if(first&&matchMedia('(hover:hover)').matches)first.focus();
+}
+function setFb(msg,cls){const f=$('#feedback');f.innerHTML=msg;f.className='feedback'+(cls?' '+cls:'')}
+function showSteps(open=true){$('#steps').hidden=!open;$('#showsteps').textContent=open?'Hide steps':'Show steps'}
+
+function parseNum(s){s=(s||'').replace(/[$,%\s]/g,'');if(s==='')return NaN;if(/^-?\d*\.?\d+\/\d*\.?\d+$/.test(s)){const[a,b]=s.split('/');return Number(a)/Number(b)}return Number(s)}
+const intOr=(v,dflt)=>{v=(v||'').trim();if(v==='')return dflt;return /^\d+$/.test(v)?parseInt(v,10):NaN};
+
+function evaluate(choiceIdx){
+  const p=S.p;let ok=false,msg='',bad='';
+  if(p.type==='num'){
+    const v=parseNum($('#in-num').value);
+    if(isNaN(v))return setFb('Type a number first.','no');
+    ok=Math.abs(v-p.ans)<1e-6;
+    if(!ok&&v!==0&&p.ans!==0){const r=v/p.ans;if([10,100,1000,.1,.01,.001].some(k=>Math.abs(r-k)<1e-6))bad='Close. The digits are right, but the decimal point is in the wrong place.'}
+  }else if(p.type==='frac'){
+    const n=intOr($('#in-n').value,NaN),d=intOr($('#in-d').value,1);
+    if(isNaN(n))return setFb('Fill in the top number with a whole number.','no');
+    if(isNaN(d)||d===0)return setFb('The bottom number must be a whole number bigger than 0.','no');
+    ok=n*p.fd===p.fn*d;
+    if(ok&&p.simplest&&gcd(n,d)!==1){ok=false;bad='That is the same amount, but it can be simplified more.'}
+    else if(ok){const[x,y]=simp(n,d);if(x!==n)msg=` It can also be simplified to ${y===1?x:F(x,y)}.`}
+  }else if(p.type==='mixed'){
+    const w=intOr($('#in-w').value,0),n=intOr($('#in-n').value,0),d=intOr($('#in-d').value,1);
+    if([w,n,d].some(isNaN)||d===0)return setFb('Use whole numbers in the boxes, and the bottom can’t be 0.','no');
+    ok=(w*d+n)*p.ad===(p.aw*p.ad+p.an)*d;
+    if(ok&&p.proper&&n>=d){ok=false;bad='Right amount, but the top number should be smaller than the bottom. Move more into the whole number.'}
+    else if(ok){const[x,y]=simp(n,d);if(n&&x!==n)msg=` It can also be written as ${w?w:''}${F(x,y)}.`}
+  }else if(p.type==='choice'){
+    ok=choiceIdx===p.correct;
+    const b=document.querySelector(`.choice[data-i="${choiceIdx}"]`);
+    b.classList.add(ok?'right':'wrong');if(!ok)b.disabled=true;
+  }else if(p.type==='shade'){
+    const c=S.shade.filter(Boolean).length;ok=c===p.k;
+    if(!ok)bad=c<p.k?`You shaded ${c}. That's not enough yet.`:`You shaded ${c}. That's too many.`;
+  }
+  if(ok){
+    S.done=true;S.today++;$('#tally').textContent=S.today;PG[p===S.p?S.skill:S.skill]=(PG[S.skill]||0)+1;saveP();renderRail();
+    setFb(P(['Correct.','That’s it.','Right.','Nice work.'])+msg,'ok');
+    document.querySelectorAll('#answer input,#answer button').forEach(e=>e.disabled=true);
+    const ck=$('#check');ck.hidden=false;ck.textContent='Next problem →';ck.classList.add('go');ck.focus();
+  }else{
+    S.tries++;
+    if(S.tries>=2){setFb((bad||'Not quite.')+' Here are the steps.','no');showSteps(true)}
+    else setFb((bad||'Not quite.')+' Try again, or tap Show steps.','no');
+  }
+}
+
+// ---------- events ----------
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;if(b.dataset.t==='sheet'){VIEW='sheet';renderTabs();return}VIEW='practice';S.track=b.dataset.t;S.skill=curTrack().skills[0].id;remember();renderTabs();renderRail();renderLearn();newProblem()});
+$('#rail').addEventListener('click',e=>{const b=e.target.closest('.skill');if(!b)return;S.skill=b.dataset.s;remember();renderRail();renderLearn();newProblem();if(innerWidth<=820)$('#learn').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+$('#check').addEventListener('click',()=>{if(S.done)newProblem();else evaluate()});
+$('#newp').addEventListener('click',newProblem);
+$('#showsteps').addEventListener('click',()=>showSteps($('#steps').hidden));
+$('#answer').addEventListener('click',e=>{
+  if(S.done)return;
+  const ch=e.target.closest('.choice');if(ch){evaluate(+ch.dataset.i);return}
+  const c=e.target.closest('.cell');if(c){const i=+c.dataset.c;S.shade[i]=!S.shade[i];c.classList.toggle('on',S.shade[i]);c.setAttribute('aria-pressed',S.shade[i]);$('#shcount').textContent=S.shade.filter(Boolean).length;setFb('','')}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'||VIEW==='sheet')return;
+  if(e.target.closest&&e.target.closest('.tab,.skill,.choice,.cell,#showsteps,#newp,#speak,summary'))return;
+  if(e.target.id==='check')return;
+  e.preventDefault();if(S.done)newProblem();else if(S.p.type!=='choice')evaluate();
+});
+if('speechSynthesis' in window){const sp=$('#speak');sp.hidden=false;sp.addEventListener('click',()=>{try{speechSynthesis.cancel();const t=S.p.say||$('#prompt').textContent;const u=new SpeechSynthesisUtterance(t.replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/×/g,' times '));u.rate=.9;speechSynthesis.speak(u)}catch(e){}})}
+
+renderTabs();renderRail();renderLearn();newProblem();
+</script>
+
+</body>
+</html>

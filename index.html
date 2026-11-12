@@ -52,6 +52,15 @@ h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,42px);l
 .tab small{font-size:13px;color:var(--muted)}
 .tab[aria-selected="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
 .tab[aria-selected="true"] small{color:inherit;opacity:.8}
+.tabs{flex-direction:column;align-items:flex-start;gap:10px}
+.nav1{display:flex;flex-wrap:wrap;gap:8px}
+.nav1 .tab{min-width:180px}
+.nav2{display:flex;flex-wrap:wrap;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px}
+.navlbl{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:0 8px 0 6px}
+.chip2{border:0;background:transparent;border-radius:8px;padding:7px 14px;cursor:pointer;font-size:16px;font-weight:700;color:var(--muted)}
+.chip2:hover{background:var(--bg);color:var(--ink)}
+.chip2[aria-selected="true"]{background:var(--tape);color:var(--tape-ink)}
+@media (max-width:600px){.nav1{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}.nav1 .tab{min-width:0;padding:10px 4px;align-items:center;justify-content:center;text-align:center}.nav1 .tab b{font-size:15px;white-space:nowrap}.nav1 .tab small{display:none}.navlbl{flex-basis:100%;padding:4px 6px 2px}}
 .trackintro{margin:0;color:var(--muted);max-width:62ch}
 
 main .wrap{display:grid;grid-template-columns:270px minmax(0,1fr);gap:28px;padding-block:18px 40px;align-items:start}
@@ -133,8 +142,6 @@ input.box.whole{width:2.6em;font-size:40px;padding:6px}
 .btable th,.btable td{padding:6px 16px;border-bottom:1px solid var(--line);text-align:center}
 .btable th{font-family:var(--f-body);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .tw{overflow-x:auto}
-.tab.ref{border-style:dashed}
-.tab.ref[aria-selected="true"]{border-style:solid;background:var(--tape);border-color:var(--tape);color:var(--tape-ink)}
 .sheet .wrap{padding-block:18px 40px;display:flex;flex-direction:column;gap:18px}
 .jump{display:flex;flex-wrap:wrap;gap:6px}
 .jump button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:14px;cursor:pointer}
@@ -152,8 +159,6 @@ input.box.whole{width:2.6em;font-size:40px;padding:6px}
 .fact .btable{font-size:15px;width:100%}
 .fact .btable td,.fact .btable th{padding:5px 8px;background:var(--surface)}
 .note{color:var(--muted);font-size:15px;max-width:70ch;margin:0}
-.tab.testtab{border-color:var(--accent)}
-.tab.testtab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
 .ans-num .post{font-family:var(--f-body);font-size:19px;color:var(--muted)}
 svg.svgx{max-width:100%;height:auto;display:block}
 .svgx text{fill:var(--ink);font-family:var(--f-math)}
@@ -216,6 +221,37 @@ svg.svgx{max-width:100%;height:auto;display:block}
 .rev .why{color:var(--muted);font-size:16px}
 .copyfb{width:100%;min-height:160px;font-family:var(--f-math);font-size:14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:8px}
 @media (max-width:600px){.urow{grid-template-columns:minmax(0,1fr) 44px 92px}.urow .meter{grid-column:1/-1;order:3}.rec{grid-template-columns:minmax(0,1fr)}.rec>.btn,.rec>.meta{justify-self:start}}
+.mtview .wrap{padding-block:18px 40px}
+.mtv{display:flex;flex-direction:column;gap:16px;max-width:900px}
+.mtctl{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld>span{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:2px solid var(--line);background:var(--bg);border-radius:10px;padding:7px 14px;cursor:pointer;font-size:16px}
+.seg button:hover{border-color:var(--ink)}
+.seg button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.mtctl select{font:inherit;font-size:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:7px 10px}
+.gridwrap{overflow-x:auto;padding-bottom:4px}
+table.mt{border-collapse:collapse;font-family:var(--f-math);font-variant-numeric:tabular-nums;margin:0}
+table.mt th,table.mt td{width:clamp(30px,6.4vw,52px);height:clamp(30px,6.4vw,46px);border:1px solid var(--line);text-align:center;padding:0;font-size:clamp(14px,2.2vw,18px)}
+table.mt th{background:var(--good-soft);color:var(--ink);font-weight:600}
+table.mt th.corner{background:var(--ink);color:var(--bg);font-size:clamp(14px,2.4vw,20px)}
+table.mt td.given{background:var(--surface);color:var(--muted)}
+table.mt td.blank{background:var(--bg)}
+table.mt input{width:100%;height:100%;border:0;background:transparent;text-align:center;font:inherit;font-size:16px;color:var(--ink);padding:0;border-radius:0}
+table.mt input:focus{outline:3px solid var(--accent);outline-offset:-3px;background:var(--surface)}
+table.mt .hl{background:var(--accent-soft)!important}
+table.mt th.hl{color:var(--accent)}
+table.mt td.right{background:var(--good-soft)!important}
+table.mt td.right input{color:var(--good);font-weight:700}
+table.mt td.wrong{background:var(--bad-soft)!important}
+table.mt td.wrong input{color:var(--bad);font-weight:700;text-decoration:line-through}
+table.mt td.shown input{color:var(--accent);font-style:italic}
+.mtstat{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mtstat .chip{border-radius:999px;padding:3px 12px;font-size:15px;font-weight:700;background:var(--bg);border:1px solid var(--line)}
+.mtstat .chip.r{background:var(--good-soft);color:var(--good);border-color:transparent}
+.mtstat .chip.w{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.mttip{font-size:15px;color:var(--muted);margin:0;max-width:66ch}
 footer .wrap{padding-block:0 32px;color:var(--muted);font-size:14px}
 footer p{margin:0;max-width:70ch}
 
@@ -412,6 +448,19 @@ mean 40 ÷ 5 = 8 · median 7 · mode 7 · range 8</span></article>
     <p class="note">Some tests, and some sections of a test, give you a formula sheet. Check what your test allows. Knowing these by heart still saves time.</p>
   </div>
 </section>
+<section class="mtview" id="mtview" hidden><div class="wrap"><div class="mtv">
+  <div class="card">
+    <div class="mtctl">
+      <div class="fld"><span>Blank boxes</span><div class="seg" id="mtpat"><button type="button" data-p="random" aria-pressed="false">Random boxes</button><button type="button" data-p="self" aria-pressed="false">×1 and squares</button><button type="button" data-p="mult" aria-pressed="false">Multiples of…</button><button type="button" data-p="all" aria-pressed="false">Every box</button></div></div>
+      <label class="fld" id="mtnwrap"><span>Number</span><select id="mtn"><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></label>
+      <label class="fld"><span>Size</span><select id="mtsize"><option value="10">10 × 10</option><option value="12">12 × 12</option></select></label>
+    </div>
+    <p class="mttip">Find where a row and a column meet, and multiply. Click a box to light up its row and column. Press Enter to move to the next blank box.</p>
+    <div class="gridwrap"><table class="mt" id="mtgrid" aria-label="Multiplication table"></table></div>
+    <div class="mtstat" id="mtstat" role="status" aria-live="polite"></div>
+    <div class="actions"><button class="btn primary" id="mtcheck" type="button">Check answers</button><button class="btn" id="mtshow" type="button">Show answers</button><button class="btn" id="mtclear" type="button">Clear my answers</button><button class="btn" id="mtnew" type="button">New table</button></div>
+  </div>
+</div></div></section>
 <section class="testview" id="testview" hidden><div class="wrap"><div class="tv" id="tv"></div></div></section>
 <footer><div class="wrap"><p>Every problem is new each time, so there is always more practice. Press Enter to check an answer, and Enter again for the next one. Progress counts are kept in this browser only.</p></div></footer>
 
@@ -785,13 +834,15 @@ const curTrack=()=>TRACKS.find(t=>t.id===S.track);
 const curSkill=()=>curTrack().skills.find(s=>s.id===S.skill);
 
 let VIEW='practice';
+const isPrac=v=>v==='practice'||v==='mt';
 function renderTabs(){
-  const v=VIEW;
-  $('#tabs').innerHTML=TRACKS.map(t=>`<button class="tab" role="tab" id="tab-${t.id}" aria-selected="${v==='practice'&&t.id===S.track}" data-t="${t.id}"><b>${t.name}</b><small>${t.tag}</small></button>`).join('')
-    +`<button class="tab testtab" role="tab" id="tab-test" aria-selected="${v==='test'}" data-t="test"><b>Practice Test</b><small>Am I ready for Level M?</small></button>`
-    +`<button class="tab ref" role="tab" id="tab-sheet" aria-selected="${v==='sheet'}" data-t="sheet"><b>Fact Sheet</b><small>Quick reference</small></button>`;
-  $('#trackintro').textContent=v==='sheet'?'The rules, formulas and tables that come up most on TABE math. Tap a topic to jump to it.':v==='test'?'A 25-question check of every Level M unit. It shows strengths, weak spots, and what to practice next.':curTrack().intro;
-  document.querySelector('main').hidden=v!=='practice';document.querySelector('footer').hidden=v!=='practice';$('#sheet').hidden=v!=='sheet';$('#testview').hidden=v!=='test';
+  const v=VIEW,P1=[['practice','Practice','Skills, step by step'],['test','Practice Test','Am I ready for Level M?'],['sheet','Fact Sheet','Quick reference']];
+  const cur=isPrac(v)?'practice':v;
+  const subs=[...TRACKS.map(t=>[t.id,t.name,t.tag]),['mt','Times Table','Fill in the grid']];
+  $('#tabs').innerHTML=`<div class="nav1" role="tablist" aria-label="Sections">${P1.map(([id,n,d])=>`<button class="tab" role="tab" id="tab-${id}" aria-selected="${cur===id}" data-t="${id}"><b>${n}</b><small>${d}</small></button>`).join('')}</div>`
+   +(isPrac(v)?`<div class="nav2" role="tablist" aria-label="Practice topics"><span class="navlbl">Topic</span>${subs.map(([id,n,d])=>`<button class="chip2" role="tab" id="tab-${id}" title="${d}" aria-selected="${v==='mt'?id==='mt':id===S.track&&v==='practice'}" data-t="${id}">${n}</button>`).join('')}</div>`:'');
+  $('#trackintro').textContent=v==='sheet'?'The rules, formulas and tables that come up most on TABE math. Tap a topic to jump to it.':v==='mt'?'Fill in the missing boxes of the multiplication table, then check your answers. Choose which boxes are blank.':v==='test'?'A 25-question check of every Level M unit. It shows strengths, weak spots, and what to practice next.':curTrack().intro;
+  document.querySelector('main').hidden=v!=='practice';document.querySelector('footer').hidden=v!=='practice';$('#sheet').hidden=v!=='sheet';$('#testview').hidden=v!=='test';$('#mtview').hidden=v!=='mt';
 }
 $('#jump').innerHTML=[...document.querySelectorAll('.fact')].map(a=>`<button type="button" data-j="${a.id}">${a.querySelector('h3').firstChild.textContent.trim()}</button>`).join('');
 $('#jump').addEventListener('click',e=>{const b=e.target.closest('button');if(b)document.getElementById(b.dataset.j).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
@@ -869,7 +920,13 @@ function evaluate(choiceIdx){
 }
 
 // ---------- events ----------
-$('#tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;if(b.dataset.t==='sheet'){VIEW='sheet';stopTick();renderTabs();return}if(b.dataset.t==='test'){VIEW='test';renderTabs();renderTest();return}VIEW='practice';S.track=b.dataset.t;S.skill=curTrack().skills[0].id;remember();renderTabs();renderRail();renderLearn();newProblem()});
+let LASTP='practice';
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;
+ if(t==='sheet'){if(isPrac(VIEW))LASTP=VIEW;VIEW='sheet';stopTick();renderTabs();return}
+ if(t==='test'){if(isPrac(VIEW))LASTP=VIEW;VIEW='test';renderTabs();renderTest();return}
+ if(t==='practice'){if(isPrac(VIEW))return;VIEW=LASTP;stopTick();renderTabs();return}
+ if(t==='mt'){VIEW='mt';stopTick();renderTabs();return}
+ VIEW='practice';S.track=t;S.skill=curTrack().skills[0].id;remember();renderTabs();renderRail();renderLearn();newProblem()});
 $('#rail').addEventListener('click',e=>{const b=e.target.closest('.skill');if(!b)return;S.skill=b.dataset.s;remember();renderRail();renderLearn();newProblem();if(innerWidth<=820)$('#learn').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
 $('#check').addEventListener('click',()=>{if(S.done)newProblem();else evaluate()});
 $('#newp').addEventListener('click',newProblem);
@@ -1044,6 +1101,67 @@ $('#tv').addEventListener('click',e=>{
    return}
  renderTest();
 });
+
+// ---------- times table ----------
+const MT={pat:'random',n:2,size:12,blanks:new Set(),shown:false};
+try{const v=JSON.parse(localStorage.getItem('fdw-mt')||'null');if(v){MT.pat=v.pat||MT.pat;MT.n=v.n||MT.n;MT.size=v.size||MT.size}}catch(e){}
+const MTPATS=[['random','Random boxes'],['self','×1 and squares'],['mult','Multiples of…'],['all','Every box']];
+function mtBlankSet(){const z=MT.size,s=new Set();
+ for(let r=1;r<=z;r++)for(let c=1;c<=z;c++){
+  const k=r+'-'+c;
+  if(MT.pat==='all')s.add(k);
+  else if(MT.pat==='self'){if(r===1||c===1||r===c)s.add(k)}
+  else if(MT.pat==='mult'){if(r%MT.n===0||c%MT.n===0)s.add(k)}
+  else if(Math.random()<.4)s.add(k);}
+ if(!s.size)s.add('1-1');return s}
+function mtSave(){try{localStorage.setItem('fdw-mt',JSON.stringify({pat:MT.pat,n:MT.n,size:MT.size}))}catch(e){}}
+function mtNew(){MT.blanks=mtBlankSet();MT.shown=false;mtRender()}
+function mtRender(){
+ const z=MT.size;let h='<tr><th class="corner" scope="col">×</th>';for(let c=1;c<=z;c++)h+=`<th scope="col" data-c="${c}">${c}</th>`;h+='</tr>';
+ for(let r=1;r<=z;r++){h+=`<tr><th scope="row" data-r="${r}">${r}</th>`;
+  for(let c=1;c<=z;c++){const k=r+'-'+c;h+=MT.blanks.has(k)?`<td class="blank" data-r="${r}" data-c="${c}"><input id="mt-${k}" type="text" inputmode="numeric" maxlength="3" autocomplete="off" aria-label="${r} times ${c}"></td>`:`<td class="given" data-r="${r}" data-c="${c}">${r*c}</td>`}
+  h+='</tr>'}
+ $('#mtgrid').innerHTML=h;
+ document.querySelectorAll('#mtpat button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===MT.pat));
+ $('#mtn').value=MT.n;$('#mtnwrap').hidden=MT.pat!=='mult';$('#mtsize').value=MT.size;
+ $('#mtstat').innerHTML=`<span class="chip">${MT.blanks.size} boxes to fill</span>`;$('#mtshow').textContent='Show answers';
+}
+function mtCheck(){let right=0,wrong=0,empty=0;
+ document.querySelectorAll('#mtgrid td.blank').forEach(td=>{const i=td.querySelector('input'),v=i.value.trim(),ans=td.dataset.r*td.dataset.c;
+  td.classList.remove('right','wrong');if(td.classList.contains('shown'))return;
+  if(v===''){empty++;return}if(+v===ans){right++;td.classList.add('right')}else{wrong++;td.classList.add('wrong')}});
+ const total=MT.blanks.size;
+ $('#mtstat').innerHTML=`<span class="chip r">${right} correct</span>${wrong?`<span class="chip w">${wrong} to fix</span>`:''}${empty?`<span class="chip">${empty} still blank</span>`:''}`
+  +(right===total?'<b style="color:var(--good)">Every box is right. Nice work.</b>':wrong?'<span class="mttip">Red boxes are wrong. Click one and type a new answer.</span>':'');
+}
+function mtShow(){const on=!MT.shown;MT.shown=on;
+ document.querySelectorAll('#mtgrid td.blank').forEach(td=>{const i=td.querySelector('input'),ans=String(td.dataset.r*td.dataset.c);
+  if(on){if(!td.classList.contains('right')){td.dataset.was=i.value;i.value=ans;td.classList.remove('wrong');td.classList.add('shown');i.readOnly=true}}
+  else if(td.classList.contains('shown')){i.value=td.dataset.was||'';td.classList.remove('shown');i.readOnly=false}});
+ $('#mtshow').textContent=on?'Hide answers':'Show answers';
+}
+function mtHL(td){document.querySelectorAll('#mtgrid .hl').forEach(e=>e.classList.remove('hl'));if(!td)return;const r=td.dataset.r,c=td.dataset.c;
+ document.querySelectorAll(`#mtgrid [data-r="${r}"]:not(td), #mtgrid [data-c="${c}"]:not(td)`).forEach(e=>e.classList.add('hl'));
+ for(let k=1;k<=+c;k++){const e=document.querySelector(`#mtgrid td[data-r="${r}"][data-c="${k}"]`);if(e)e.classList.add('hl')}
+ for(let k=1;k<=+r;k++){const e=document.querySelector(`#mtgrid td[data-r="${k}"][data-c="${c}"]`);if(e)e.classList.add('hl')}}
+$('#mtpat').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;MT.pat=b.dataset.p;mtSave();mtNew()});
+$('#mtn').addEventListener('change',e=>{MT.n=+e.target.value;mtSave();mtNew()});
+$('#mtsize').addEventListener('change',e=>{MT.size=+e.target.value;mtSave();mtNew()});
+$('#mtcheck').addEventListener('click',mtCheck);
+$('#mtshow').addEventListener('click',mtShow);
+$('#mtnew').addEventListener('click',mtNew);
+$('#mtclear').addEventListener('click',()=>{MT.shown=false;$('#mtshow').textContent='Show answers';document.querySelectorAll('#mtgrid td.blank').forEach(td=>{td.classList.remove('right','wrong','shown');const i=td.querySelector('input');i.value='';i.readOnly=false});$('#mtstat').innerHTML=`<span class="chip">${MT.blanks.size} boxes to fill</span>`});
+const mtGrid=$('#mtgrid');
+mtGrid.addEventListener('focusin',e=>mtHL(e.target.closest('td')));
+mtGrid.addEventListener('focusout',e=>{if(!mtGrid.contains(e.relatedTarget))mtHL(null)});
+mtGrid.addEventListener('input',e=>{const td=e.target.closest('td');e.target.value=e.target.value.replace(/\D/g,'');td.classList.remove('right','wrong')});
+mtGrid.addEventListener('keydown',e=>{const td=e.target.closest('td');if(!td)return;let r=+td.dataset.r,c=+td.dataset.c;
+ const mv={ArrowRight:[0,1],ArrowLeft:[0,-1],ArrowDown:[1,0],ArrowUp:[-1,0],Enter:[0,1]}[e.key];if(!mv)return;
+ const ins=[...document.querySelectorAll('#mtgrid input')];
+ if(e.key==='Enter'){e.preventDefault();const k=ins.indexOf(e.target);if(k<ins.length-1)ins[k+1].focus();else mtCheck();return}
+ if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&e.target.value&&e.target.selectionStart!==(e.key==='ArrowLeft'?0:e.target.value.length))return;
+ e.preventDefault();for(let s=0;s<MT.size;s++){r+=mv[0];c+=mv[1];if(r<1||c<1||r>MT.size||c>MT.size)return;const n=document.getElementById(`mt-${r}-${c}`);if(n){n.focus();return}}});
+mtNew();
 
 renderTabs();renderRail();renderLearn();newProblem();
 </script>

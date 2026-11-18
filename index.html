@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Interactive HSE math practice: decimal division, fractions, conversions, Level M topics, a TABE Level M practice test, and a math fact sheet.">
+<meta name="description" content="TABE Math Workbench: free practice for adults preparing for the TABE and high school equivalency math test, with step-by-step hints, practice tests, a fact sheet and tutor progress tracking.">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Fractions &amp; Decimals Workbench</title>
+<title>TABE Math Workbench</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
@@ -374,6 +374,20 @@ dialog.acctdlg::backdrop{background:rgba(10,15,25,.55)}
 .rmore .tw{margin-top:10px}
 .rmore .btable{font-size:14px;width:100%}
 @media (max-width:700px){.rgrid{grid-template-columns:minmax(0,1fr)}.rrow{grid-template-columns:minmax(0,1fr) auto}.rrow .hide-s{display:none}}
+.rolepick{border:0;margin:0;padding:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rolepick legend{font-weight:700;font-size:15px;padding:0;margin-bottom:6px;width:100%}
+.rolepick label{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:16px;background:var(--bg)}
+.rolepick label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.rolepick input{accent-color:var(--accent);width:18px;height:18px;margin:0}
+.claimrow{display:flex;gap:8px;margin-top:8px}
+.claimrow input{flex:1;min-width:0;font:inherit;font-size:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:8px 10px}
+.okmsg{color:var(--good);font-weight:700;font-size:15px}
+.rolechip{font-size:13px;font-weight:700;background:var(--good-soft);color:var(--good);border-radius:999px;padding:2px 10px}
+.studview .wrap{padding-block:18px 40px}
+.studbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3vw,28px);display:flex;flex-direction:column;gap:16px;max-width:1000px}
+.studbox .dlghead h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:28px}
+.studbox p{margin:0}
+@media (max-width:600px){.nav1.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
 footer .wrap{padding-block:0 32px;color:var(--muted);font-size:14px}
 footer p{margin:0;max-width:70ch}
 
@@ -395,7 +409,7 @@ footer p{margin:0;max-width:70ch}
     <div class="headtop">
       <div>
         <p class="eyebrow">HSE math practice</p>
-        <h1>Fractions &amp; Decimals Workbench</h1>
+        <h1>TABE Math Workbench</h1>
       </div>
       <div class="acct" id="acct" hidden></div>
     </div>
@@ -586,6 +600,7 @@ mean 40 ÷ 5 = 8 · median 7 · mode 7 · range 8</span></article>
     <div class="actions"><button class="btn primary" id="mtcheck" type="button">Check answers</button><button class="btn" id="mtshow" type="button">Show answers</button><button class="btn" id="mtclear" type="button">Clear my answers</button><button class="btn" id="mtnew" type="button">New table</button></div>
   </div>
 </div></div></section>
+<section class="studview" id="studview" hidden><div class="wrap"><div class="studbox" id="studbox"></div></div></section>
 <section class="testview" id="testview" hidden><div class="wrap"><div class="tv" id="tv"></div></div></section>
 <footer><div class="wrap"><p>Every problem is new each time, so there is always more practice. Press Enter to check an answer, and Enter again for the next one. Progress counts are kept in this browser only.</p></div></footer>
 
@@ -1013,16 +1028,17 @@ try{const l=JSON.parse(localStorage.getItem('fdw-last')||'null');if(l&&TRACKS.so
 const curTrack=()=>TRACKS.find(t=>t.id===S.track);
 const curSkill=()=>curTrack().skills.find(s=>s.id===S.skill);
 
-let VIEW='practice';
+let VIEW='practice',LASTP='practice';
 const isPrac=v=>v==='practice'||v==='mt';
 function renderTabs(){
-  const v=VIEW,P1=[['practice','Practice','Skills, step by step'],['test','Practice Test','Am I ready for Level M?'],['sheet','Fact Sheet','Quick reference']];
+  const tut=!!(window.FDW&&window.FDW.tutor);if(VIEW==='students'&&!tut)VIEW=LASTP;
+  const v=VIEW,P1=[['practice','Practice','Skills, step by step'],['test','Practice Test','Am I ready for Level M?'],['sheet','Fact Sheet','Quick reference'],...(tut?[['students','Student progress','Tutors only']]:[])];
   const cur=isPrac(v)?'practice':v;
   const subs=[...TRACKS.map(t=>[t.id,t.name,t.tag]),['mt','Times Table','Fill in the grid']];
-  $('#tabs').innerHTML=`<div class="nav1" role="tablist" aria-label="Sections">${P1.map(([id,n,d])=>`<button class="tab" role="tab" id="tab-${id}" aria-selected="${cur===id}" data-t="${id}"><b>${n}</b><small>${d}</small></button>`).join('')}</div>`
+  $('#tabs').innerHTML=`<div class="nav1${tut?' four':''}" role="tablist" aria-label="Sections">${P1.map(([id,n,d])=>`<button class="tab" role="tab" id="tab-${id}" aria-selected="${cur===id}" data-t="${id}"><b>${n}</b><small>${d}</small></button>`).join('')}</div>`
    +(isPrac(v)?`<div class="nav2" role="tablist" aria-label="Practice topics"><span class="navlbl">Topic</span>${subs.map(([id,n,d])=>`<button class="chip2" role="tab" id="tab-${id}" title="${d}" aria-selected="${v==='mt'?id==='mt':id===S.track&&v==='practice'}" data-t="${id}">${n}</button>`).join('')}</div>`:'');
-  $('#trackintro').textContent=v==='sheet'?'The rules, formulas and tables that come up most on TABE math. Tap a topic to jump to it.':v==='mt'?'Fill in the missing boxes of the multiplication table, then check your answers. Choose which boxes are blank.':v==='test'?'A 25-question check of every Level M unit. It shows strengths, weak spots, and what to practice next.':curTrack().intro;
-  document.querySelector('main').hidden=v!=='practice';document.querySelector('footer').hidden=v!=='practice';$('#sheet').hidden=v!=='sheet';$('#testview').hidden=v!=='test';$('#mtview').hidden=v!=='mt';
+  $('#trackintro').textContent=v==='students'?'Your students’ progress, grouped by who needs attention. Tap a name for the full report. Only tutors can see this tab.':v==='sheet'?'The rules, formulas and tables that come up most on TABE math. Tap a topic to jump to it.':v==='mt'?'Fill in the missing boxes of the multiplication table, then check your answers. Choose which boxes are blank.':v==='test'?'A 25-question check of every Level M unit. It shows strengths, weak spots, and what to practice next.':curTrack().intro;
+  document.querySelector('main').hidden=v!=='practice';document.querySelector('footer').hidden=v!=='practice';$('#sheet').hidden=v!=='sheet';$('#testview').hidden=v!=='test';$('#mtview').hidden=v!=='mt';$('#studview').hidden=v!=='students';
 }
 $('#jump').innerHTML=[...document.querySelectorAll('.fact')].map(a=>`<button type="button" data-j="${a.id}">${a.querySelector('h3').firstChild.textContent.trim()}</button>`).join('');
 $('#jump').addEventListener('click',e=>{const b=e.target.closest('button');if(b)document.getElementById(b.dataset.j).scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
@@ -1119,10 +1135,10 @@ function evaluate(choiceIdx){
 }
 
 // ---------- events ----------
-let LASTP='practice';
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;
  if(t==='sheet'){if(isPrac(VIEW))LASTP=VIEW;VIEW='sheet';stopTick();renderTabs();return}
  if(t==='test'){if(isPrac(VIEW))LASTP=VIEW;VIEW='test';renderTabs();renderTest();return}
+ if(t==='students'){showStudents();return}
  if(t==='practice'){if(isPrac(VIEW))return;VIEW=LASTP;stopTick();renderTabs();return}
  if(t==='mt'){VIEW='mt';stopTick();renderTabs();return}
  VIEW='practice';S.track=t;S.skill=curTrack().skills[0].id;remember();renderTabs();renderRail();renderLearn();newProblem()});
@@ -1335,6 +1351,7 @@ $('#tv').addEventListener('click',e=>{
  renderTest();
 });
 
+function showStudents(){if(isPrac(VIEW))LASTP=VIEW;VIEW='students';stopTick();renderTabs();window.scrollTo(0,0);if(window.FDW.openStudents)window.FDW.openStudents()}
 // ---------- sync hooks (used by the sign-in module on the GitHub version) ----------
 window.FDW={
  get(){return{skills:{...PG},tests:HIST.slice(),stats:JSON.parse(JSON.stringify(ST)),days:JSON.parse(JSON.stringify(DAYS))}},
@@ -1344,7 +1361,8 @@ window.FDW={
   renderRail();if(VIEW==='test'&&TMODE==='intro')renderTest()},
  skillName(id){for(const t of TRACKS)for(const k of t.skills)if(k.id===id)return[t.name,k.title];return[null,id]},
  testSummary(r){const A=analyze(r);return{score:A.score,n:NQ,pct:A.pct,band:band(A.pct)[1],bandKey:band(A.pct)[0],form:r.form||'A',units:A.units,recs:A.recs,weak:A.recs.slice(0,3).map(m=>TOPICS[m.t].name)}},
- onChange:null
+ onChange:null,tutor:false,
+ refreshNav(){renderTabs()},showStudents(){showStudents()}
 };
 
 // ---------- tutor dashboard views (data comes from the sign-in module) ----------
@@ -1401,7 +1419,7 @@ function roster(list){
     <span class="rwhy">${x.status==='attn'?x.reasons.map(escH).join(' · '):x.status==='new'?'Has not practiced or taken the test yet':'Next: '+escH(x.plan[0].title)}</span>
   </button>`;
   const grp=(k,title,desc)=>G[k].length?`<section class="rgroup ${k}"><h3>${title} <span>${G[k].length}</span></h3><p class="note">${desc}</p><div class="rlist">${G[k].map(row).join('')}</div></section>`:'';
-  return `<div class="dlghead"><div><h2>Your students</h2><p class="note">${S.length} ${S.length===1?'student':'students'}${G.attn.length?` · <b>${G.attn.length} ${G.attn.length===1?'needs':'need'} attention</b>`:''}</p></div><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
+  return `<div class="dlghead"><div><h2>Your students</h2><p class="note">${S.length} ${S.length===1?'student':'students'}${G.attn.length?` · <b>${G.attn.length} ${G.attn.length===1?'needs':'need'} attention</b>`:''}</p></div><button type="button" class="btn" data-refresh>Refresh</button></div>
   ${S.length?grp('attn','Needs attention','Hasn’t practiced in a week, is stuck on a skill, or dropped on the test.')+grp('ok','On track','Practicing and making progress. Tap a name for the full report.')+grp('new','Not started yet','Signed up but hasn’t practiced or taken the practice test.'):'<p>No students have signed in yet. Once a student creates an account and practices, they show up here.</p>'}`;
 }
 
@@ -1422,7 +1440,7 @@ function report(raw){
   const trendTxt=!L?'':x.sinceFirst!==null?(x.sinceFirst>0?`Up ${x.sinceFirst} since the first test (${shortDate(x.firstDate)})`:x.sinceFirst<0?`Down ${-x.sinceFirst} since the first test (${shortDate(x.firstDate)})`:`Same score as the first test (${shortDate(x.firstDate)})`):'First practice test';
   const sk=k=>`<li><span class="skn">${escH(k.title)} <small>${escH(k.track)}</small></span><span class="meter ${k.rate<.5?'lo':k.rate>=.8?'hi':''}"><i style="width:${Math.round(k.rate*100)}%"></i></span><span class="n">${k.f}/${k.n}</span></li>`;
   const weak=x.skills.filter(k=>k.n>=3&&k.rate<.7).sort((a,b)=>a.rate-b.rate).slice(0,5);
-  return `<div class="dlghead"><button type="button" class="linkbtn" data-back>← All students</button><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
+  return `<div class="dlghead"><button type="button" class="linkbtn" data-back>← All students</button></div>
   <div class="rhead"><div><h2>${escH(x.name||'(no name)')}</h2><p class="note">${escH(x.login||'')} · last active ${agoText(x.last).toLowerCase()}</p></div><span class="stchip ${x.status}">${x.status==='attn'?'Needs attention':x.status==='new'?'Not started':'On track'}</span></div>
   ${x.status==='attn'?`<p class="attnline">${x.reasons.map(escH).join(' · ')}</p>`:''}
   <div class="rgrid">
@@ -1531,8 +1549,7 @@ let user=null,profileName='',pendingName='',isTutor=false,saveTimer=null,saveSta
 
 const acct=$$('#acct');acct.hidden=false;
 const dlg=document.createElement('dialog');dlg.className='acctdlg';document.body.appendChild(dlg);
-const dash=document.createElement('dialog');dash.className='acctdlg dash';document.body.appendChild(dash);
-for(const d of [dlg,dash])d.addEventListener('click',e=>{if(e.target===d||e.target.closest('[data-close]'))d.close()});
+for(const d of [dlg])d.addEventListener('click',e=>{if(e.target===d||e.target.closest('[data-close]'))d.close()});
 
 function firstName(){return(profileName||loginLabel(user)).split(' ')[0]}
 function renderAcct(){
@@ -1570,7 +1587,9 @@ function openAuth(mode){
   dlg.innerHTML=`<form class="dlgin" id="authform" novalidate>
     <div class="dlghead"><h2>${create?'Create an account':'Sign in'}</h2><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
     <p class="note">${create?'An account saves your practice and test results, so you can pick up on any phone or computer.':'Sign in to save your practice and see it on any device.'}</p>
-    ${create?`<label class="fld2">First name<input id="au-name" autocomplete="given-name" required></label>`:''}
+    ${create?`<fieldset class="rolepick"><legend>I am a</legend><label><input type="radio" name="au-role" value="student" checked> Student</label><label><input type="radio" name="au-role" value="tutor"> Tutor</label></fieldset>
+    <label class="fld2" id="au-codewrap" hidden>Tutor code<input id="au-code" autocomplete="off" autocapitalize="off" spellcheck="false"><small>Ask your program coordinator for the tutor code.</small></label>
+    <label class="fld2">First name<input id="au-name" autocomplete="given-name" required></label>`:''}
     <label class="fld2">Email or username<input id="au-login" autocomplete="username" autocapitalize="off" spellcheck="false" required>
       ${create?'<small>No email? Make up a username, like <b>maria.g</b> or <b>jkim22</b>. Write it down with your password.</small>':''}</label>
     <label class="fld2">Password<input id="au-pass" type="password" autocomplete="${create?'new-password':'current-password'}" minlength="6" required>
@@ -1585,7 +1604,12 @@ function openAuth(mode){
   if(!dlg.open)dlg.showModal();
   const err=$$('#autherr'),go=$$('#au-go');
   $$('#au-switch').onclick=()=>openAuth(create?'in':'up');
-  $$('#au-google').onclick=async()=>{err.textContent='';try{await signInWithPopup(auth,new GoogleAuthProvider());dlg.close()}catch(e){if(!String(e.code).includes('popup-closed'))err.textContent=errText(e)}};
+  const role=()=>create&&(dlg.querySelector('input[name=au-role]:checked')||{}).value==='tutor'?'tutor':'student';
+  const code=()=>(($$('#au-code')||{}).value||'').trim();
+  if(create)dlg.querySelectorAll('input[name=au-role]').forEach(r=>r.onchange=()=>{$$('#au-codewrap').hidden=role()!=='tutor';if(role()==='tutor')$$('#au-code').focus()});
+  const needCode=()=>{if(role()==='tutor'&&!code()){err.textContent='Type the tutor code, or choose Student.';return true}return false};
+  $$('#au-google').onclick=async()=>{err.textContent='';if(needCode())return;const want=role()==='tutor'?code():'';
+    try{await signInWithPopup(auth,new GoogleAuthProvider());if(want&&!(await claimTutor(want))){openMenu(BADCODE);return}dlg.close()}catch(e){if(!String(e.code).includes('popup-closed'))err.textContent=errText(e)}};
   const fg=$$('#au-forgot');
   if(fg)fg.onclick=async()=>{
     const v=$$('#au-login').value.trim();
@@ -1597,10 +1621,12 @@ function openAuth(mode){
     if(create&&!name){err.textContent='Type your first name.';return}
     if(!login.trim()){err.textContent='Type your email or username.';return}
     if(pass.length<6){err.textContent=create?'Use at least 6 characters for the password.':'Type your password.';return}
+    if(needCode())return;const want=role()==='tutor'?code():'';
     go.disabled=true;go.textContent=create?'Creating…':'Signing in…';
     try{
       const email=loginToEmail(login);
-      if(create){pendingName=name;const cred=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(cred.user,{displayName:name});profileName=name;renderAcct();scheduleSave(0)}
+      if(create){pendingName=name;const cred=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(cred.user,{displayName:name});profileName=name;renderAcct();scheduleSave(0);
+        if(want&&!(await claimTutor(want))){openMenu(BADCODE);return}}
       else await signInWithEmailAndPassword(auth,email,pass);
       dlg.close();
     }catch(ex){err.textContent=errText(ex);go.disabled=false;go.textContent=create?'Create account':'Sign in'}
@@ -1609,17 +1635,36 @@ function openAuth(mode){
 }
 
 // ---------- signed-in menu ----------
-function openMenu(){
+function setTutor(on){FDW.tutor=on;FDW.refreshNav()}
+const BADCODE='That tutor code didn’t work, so your account was set up as a student. Check the code and try again below.';
+async function claimTutor(c){
+  const u=auth.currentUser;if(!u)return false;
+  try{await setDoc(doc(db,'tutors',u.uid),{code:c,name:profileName||u.displayName||loginLabel(u)});isTutor=true;setTutor(true);renderAcct();scheduleSave(300);return true}
+  catch(e){console.warn(e);return false}
+}
+function openMenu(msg=''){
+  const u=user||auth.currentUser;
   dlg.innerHTML=`<div class="dlgin">
     <div class="dlghead"><h2>Hi, ${esc(firstName())}</h2><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
-    <p>Signed in as <b>${esc(loginLabel(user))}</b>.</p>
+    ${msg?`<p class="${msg===BADCODE?'autherr':'okmsg'}">${esc(msg)}</p>`:''}
+    <p>Signed in as <b>${esc(loginLabel(u))}</b>${isTutor?' · <span class="rolechip">Tutor</span>':''}.</p>
     <p class="note">Your practice counts and practice test results save to your account automatically, so they show up on any device you sign in on.</p>
-    ${isTutor?'<button class="btn primary wide" type="button" id="mn-dash">Open tutor dashboard</button>':''}
+    ${isTutor?'<button class="btn primary wide" type="button" id="mn-dash">See student progress</button>':''}
     <button class="btn wide" type="button" id="mn-out">Sign out</button>
-    <details><summary class="note" style="cursor:pointer">Account ID (for tutors setting up access)</summary><p class="uid" style="margin-top:8px">${esc(user.uid)}</p></details>
+    ${isTutor?'':`<details class="tutorclaim"${msg===BADCODE?' open':''}><summary class="note" style="cursor:pointer">Are you a tutor? Enter the tutor code</summary>
+      <form id="mn-claim" class="claimrow" novalidate><input id="mn-code" aria-label="Tutor code" placeholder="Tutor code" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="btn" type="submit">Confirm</button></form>
+      <p class="autherr" id="mn-err" role="alert"></p></details>`}
+    <details><summary class="note" style="cursor:pointer">Account ID</summary><p class="uid" style="margin-top:8px">${esc(u.uid)}</p></details>
   </div>`;
   if(!dlg.open)dlg.showModal();
-  const d=$$('#mn-dash');if(d)d.onclick=()=>{dlg.close();openDash()};
+  const cf=$$('#mn-claim');
+  if(cf){if(msg===BADCODE)setTimeout(()=>$$('#mn-code').focus(),50);
+    cf.onsubmit=async e=>{e.preventDefault();const c=$$('#mn-code').value.trim(),er=$$('#mn-err');
+      if(!c){er.textContent='Type the tutor code.';return}
+      er.textContent='Checking…';
+      if(await claimTutor(c))openMenu('You’re set up as a tutor. The Student progress tab now shows your students.');
+      else er.textContent='That code didn’t work. Check it with your program coordinator and try again.'}}
+  const d=$$('#mn-dash');if(d)d.onclick=()=>{dlg.close();FDW.showStudents()};
   $$('#mn-out').onclick=async()=>{
     await flushSave();signingOut=true;
     try{await signOut(auth)}catch(e){}
@@ -1657,7 +1702,7 @@ async function flushSave(){if(saveTimer){clearTimeout(saveTimer);await save()}}
 onAuthStateChanged(auth,async u=>{
   user=u;isTutor=false;
   if(!u){
-    FDW.onChange=null;profileName='';setSave('');
+    FDW.onChange=null;profileName='';setSave('');setTutor(false);
     // Clear this device after an explicit sign-out, so the next person starts fresh.
     if(signingOut){FDW.set({skills:{},tests:[]});signingOut=false}
     renderAcct();return;
@@ -1673,27 +1718,27 @@ onAuthStateChanged(auth,async u=>{
     await save();
   }catch(e){console.error(e);setSave('Couldn’t load saved progress.')}
   FDW.onChange=()=>scheduleSave();
-  try{isTutor=(await getDoc(doc(db,'tutors',u.uid))).exists()}catch(e){isTutor=false}
+  try{isTutor=isTutor||(await getDoc(doc(db,'tutors',u.uid))).exists()}catch(e){}
+  setTutor(isTutor);
   if(isTutor)scheduleSave(500);
 });
 window.addEventListener('pagehide',()=>{if(saveTimer)save()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&saveTimer)save()});
 
-// ---------- tutor dashboard ----------
+// ---------- student progress tab (tutors only) ----------
 let STUDENTS=[];
-async function openDash(){
-  dash.innerHTML=`<div class="dlgin"><div class="dlghead"><h2>Your students</h2><button type="button" class="xbtn" data-close aria-label="Close">×</button></div><p class="note">Loading students…</p></div>`;
-  if(!dash.open)dash.showModal();
-  const box=dash.querySelector('.dlgin');
-  try{STUDENTS=(await getDocs(collection(db,'progress'))).docs.map(d=>({id:d.id,...d.data()})).filter(s=>!s.tutor&&s.id!==user.uid)}
-  catch(e){box.querySelector('.note').textContent=String(e.code).includes('permission')?'Your account isn’t on the tutors list yet, so you can’t see student progress.':'Couldn’t load students. Check your connection and try again.';return}
-  box.innerHTML=FDW.dash.roster(STUDENTS);
-}
-dash.addEventListener('click',e=>{
-  const box=dash.querySelector('.dlgin');if(!box)return;
+const sbox=$$('#studbox');
+FDW.openStudents=async()=>{
+  sbox.innerHTML='<div class="dlghead"><h2>Your students</h2></div><p class="note">Loading students…</p>';
+  try{STUDENTS=(await getDocs(collection(db,'progress'))).docs.map(d=>({id:d.id,...d.data()})).filter(s=>!s.tutor&&(!user||s.id!==user.uid))}
+  catch(e){sbox.querySelector('.note').textContent=String(e.code).includes('permission')?'Your account isn’t set up as a tutor, so you can’t see student progress.':'Couldn’t load students. Check your connection and try again.';return}
+  sbox.innerHTML=FDW.dash.roster(STUDENTS);
+};
+sbox.addEventListener('click',e=>{
   const r=e.target.closest('[data-sid]');
-  if(r){const st=STUDENTS.find(x=>x.id===r.dataset.sid);if(st){box.innerHTML=FDW.dash.report(st);dash.scrollTop=0;box.scrollIntoView({block:'start'})}return}
-  if(e.target.closest('[data-back]')){box.innerHTML=FDW.dash.roster(STUDENTS);dash.scrollTop=0}
+  if(r){const st=STUDENTS.find(x=>x.id===r.dataset.sid);if(st){sbox.innerHTML=FDW.dash.report(st);sbox.scrollIntoView({block:'start'})}return}
+  if(e.target.closest('[data-back]')){sbox.innerHTML=FDW.dash.roster(STUDENTS);sbox.scrollIntoView({block:'start'});return}
+  if(e.target.closest('[data-refresh]'))FDW.openStudents();
 });
 
 renderAcct();

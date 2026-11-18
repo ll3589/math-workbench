@@ -252,6 +252,128 @@ table.mt td.shown input{color:var(--accent);font-style:italic}
 .mtstat .chip.r{background:var(--good-soft);color:var(--good);border-color:transparent}
 .mtstat .chip.w{background:var(--bad-soft);color:var(--bad);border-color:transparent}
 .mttip{font-size:15px;color:var(--muted);margin:0;max-width:66ch}
+.dev .wrap{padding-block:8px 48px}
+.devcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,40px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,44px);align-items:center;max-width:1000px;position:relative;overflow:hidden}
+.devcard::after{content:"";position:absolute;top:-80px;right:-80px;width:200px;height:200px;border-radius:50%;background:var(--tape);opacity:.18;pointer-events:none}
+.avatar{width:clamp(140px,22vw,200px);aspect-ratio:1;max-width:100%;border-radius:50%;padding:7px;background:conic-gradient(from 200deg,var(--tape),var(--good),var(--accent),var(--tape))}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:5px solid var(--surface)}
+.devtext{display:flex;flex-direction:column;gap:12px;min-width:0;position:relative;z-index:1}
+.devtext h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(26px,4vw,36px);line-height:1.1;text-wrap:balance}
+.devrole{margin:0;color:var(--good);font-weight:700;font-size:19px}
+.devtext p{margin:0;max-width:66ch}
+.why{background:var(--bg);border-left:5px solid var(--tape);border-radius:0 10px 10px 0;padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+.why p{max-width:64ch}
+.built{display:flex;gap:10px;align-items:flex-start;font-size:16px;color:var(--muted)}
+.built svg{flex:none;margin-top:3px}
+.devlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.devlinks a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:2px solid var(--ink);border-radius:12px;padding:10px 18px;font-weight:700;color:var(--ink)}
+.devlinks a.pri{background:var(--ink);color:var(--bg)}
+.devlinks a:hover{filter:brightness(1.1)}
+@media (max-width:640px){.devcard{grid-template-columns:minmax(0,1fr);justify-items:start}}
+.headtop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px 20px;flex-wrap:wrap}
+.acct{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.acctbtn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 16px 7px 12px;cursor:pointer;font-weight:700;font-size:15px}
+.acctbtn:hover{border-color:var(--ink)}
+.acctbtn.in{border-color:var(--good);color:var(--good)}
+.savest{font-size:13px;color:var(--muted)}
+dialog.acctdlg{border:1px solid var(--line);border-radius:16px;padding:0;background:var(--surface);color:var(--ink);width:min(440px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+dialog.acctdlg.dash{width:min(920px,calc(100vw - 32px))}
+dialog.acctdlg::backdrop{background:rgba(10,15,25,.55)}
+.dlgin{padding:clamp(18px,4vw,28px);display:flex;flex-direction:column;gap:14px}
+.dlghead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.dlghead h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:26px;line-height:1.15}
+.xbtn{border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:2px 6px;border-radius:8px}
+.xbtn:hover{color:var(--ink);background:var(--bg)}
+.dlgin p{margin:0}
+.dlgin .note{font-size:15px}
+.fld2{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:15px}
+.fld2 input{font:inherit;font-weight:400;font-size:17px;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px}
+.fld2 input:focus{border-color:var(--accent);outline:none}
+.fld2 small{font-weight:400;color:var(--muted);font-size:14px}
+.autherr{color:var(--bad);font-weight:700;font-size:15px;min-height:1.2em}
+.or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+.or::before,.or::after{content:"";flex:1;border-top:1px solid var(--line)}
+.btn.wide{width:100%;display:inline-flex;justify-content:center;align-items:center;gap:10px}
+.linkbtn{border:0;background:none;color:var(--accent);font-weight:700;cursor:pointer;padding:0;font-size:15px;text-decoration:underline}
+.uid{font-family:var(--f-math);font-size:13px;background:var(--bg);border-radius:8px;padding:8px 10px;overflow-wrap:anywhere;user-select:all}
+.stu{border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.stu summary{cursor:pointer;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) auto;gap:6px 14px;align-items:center;list-style:none}
+.stu summary::-webkit-details-marker{display:none}
+.stu summary .nm{font-weight:700}
+.stu summary .sub{font-size:13px;color:var(--muted);font-weight:400;display:block}
+.stu .dc{font-size:15px}
+.stu .dc .sub{font-size:13px;color:var(--muted);display:block}
+.stu[open] summary{border-bottom:1px solid var(--line)}
+.stubody{padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.stubody h4{margin:0 0 6px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stubody ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.dashlist{display:flex;flex-direction:column;gap:10px}
+.dashhead{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) auto;gap:14px;padding:0 14px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+@media (max-width:640px){.stu summary,.dashhead{grid-template-columns:minmax(0,1fr) auto}.stu summary .hide-s,.dashhead .hide-s{display:none}}
+.srcskill{display:block;font-weight:400;color:var(--muted);font-size:15px;margin-top:4px}
+.srcskill b{color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:default}
+.rgroup{display:flex;flex-direction:column;gap:8px}
+.rgroup h3{margin:0;font-family:var(--f-display);font-weight:600;font-size:19px;display:flex;align-items:center;gap:8px}
+.rgroup h3 span{font-family:var(--f-body);font-size:13px;font-weight:700;border-radius:999px;padding:1px 9px;background:var(--bg);border:1px solid var(--line)}
+.rgroup.attn h3 span{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.rlist{display:flex;flex-direction:column;gap:8px}
+.rrow{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr) minmax(0,1.2fr) minmax(0,.9fr);gap:4px 14px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:15px}
+.rrow:hover{border-color:var(--ink)}
+.rrow.attn{border-left:5px solid var(--warn)}
+.rrow.ok{border-left:5px solid var(--good)}
+.rrow.new{border-left:5px solid var(--line)}
+.rrow small{display:block;color:var(--muted);font-size:13px}
+.rn b{font-size:17px}
+.rwhy{grid-column:1/-1;font-size:14px;color:var(--muted)}
+.rrow.attn .rwhy{color:var(--warn);font-weight:700}
+.tr{font-size:12px;font-weight:700;color:var(--muted);margin-left:4px}
+.tr.up{color:var(--good)}.tr.down{color:var(--bad)}
+.rhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.rhead h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:28px}
+.stchip{font-weight:700;font-size:14px;padding:4px 12px;border-radius:999px}
+.stchip.attn{background:var(--warn-soft);color:var(--warn)}.stchip.ok{background:var(--good-soft);color:var(--good)}.stchip.new{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.attnline{background:var(--warn-soft);color:var(--warn);font-weight:700;border-radius:10px;padding:8px 12px;font-size:15px}
+.rgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg);display:flex;flex-direction:column;gap:8px;min-width:0}
+.rcard h4{margin:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rcard h5{margin:6px 0 0;font-size:14px}
+.rcard.plan{background:var(--accent-soft);border-color:transparent}
+.rscore{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.big2{font-family:var(--f-display);font-weight:800;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.big2 small{font-size:.45em;color:var(--muted)}
+.spark{width:100%;max-width:300px;height:auto}
+.spark .sp{fill:none;stroke:var(--accent);stroke-width:2.5}
+.spark .sd{fill:var(--surface);stroke:var(--accent);stroke-width:2}.spark .sd.last{fill:var(--accent)}
+.spark .sg{stroke:var(--good);stroke-dasharray:4 4;stroke-width:1.5}
+.spark .sl{fill:var(--good);font-size:10px;font-family:var(--f-body)}
+.spark .sv{fill:var(--ink);font-size:12px;font-weight:700;font-family:var(--f-math)}
+.minis{display:flex;flex-direction:column;gap:4px}
+.mini{display:grid;grid-template-columns:minmax(0,1fr) 80px 34px;gap:8px;align-items:center;font-size:13px}
+.mini .n,.sklist .n{font-family:var(--f-math);text-align:right;font-variant-numeric:tabular-nums}
+.mini .meter,.sklist .meter{height:7px}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kpis b{font-family:var(--f-display);font-size:26px;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpis b span{font-size:.55em;color:var(--muted)}
+.kpis small{color:var(--muted);font-size:13px}
+.bars{width:100%;height:auto}
+.bars .b1{fill:var(--accent-soft)}.bars .b2{fill:var(--accent)}.bars .b0{fill:var(--line)}
+.bars .bl{fill:var(--muted);font-size:10px;font-family:var(--f-body)}
+.legend{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px}
+.legend .k2{background:var(--accent)}.legend .k1{background:var(--accent-soft);border:1px solid var(--line);margin-left:8px}
+.sklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.sklist li{display:grid;grid-template-columns:minmax(0,1fr) 70px 44px;gap:8px;align-items:center;font-size:14px}
+.skn small{color:var(--muted);font-size:12px}
+.meter.lo i{background:var(--bad)}.meter.hi i{background:var(--good)}
+.planlist{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:10px}
+.planlist li small{display:block;color:var(--muted);font-size:13px}
+.planlist li small.bk{color:var(--ink)}
+.rmore{border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.rmore summary{cursor:pointer;font-weight:700;font-size:15px}
+.rmore .tw{margin-top:10px}
+.rmore .btable{font-size:14px;width:100%}
+@media (max-width:700px){.rgrid{grid-template-columns:minmax(0,1fr)}.rrow{grid-template-columns:minmax(0,1fr) auto}.rrow .hide-s{display:none}}
 footer .wrap{padding-block:0 32px;color:var(--muted);font-size:14px}
 footer p{margin:0;max-width:70ch}
 
@@ -270,9 +392,12 @@ footer p{margin:0;max-width:70ch}
 <div class="tape" aria-hidden="true"></div>
 <header>
   <div class="wrap">
-    <div>
-      <p class="eyebrow">HSE math practice</p>
-      <h1>Fractions &amp; Decimals Workbench</h1>
+    <div class="headtop">
+      <div>
+        <p class="eyebrow">HSE math practice</p>
+        <h1>Fractions &amp; Decimals Workbench</h1>
+      </div>
+      <div class="acct" id="acct" hidden></div>
     </div>
     <div class="tabs" role="tablist" id="tabs"></div>
     <p class="trackintro" id="trackintro"></p>
@@ -464,6 +589,27 @@ mean 40 ÷ 5 = 8 · median 7 · mode 7 · range 8</span></article>
 <section class="testview" id="testview" hidden><div class="wrap"><div class="tv" id="tv"></div></div></section>
 <footer><div class="wrap"><p>Every problem is new each time, so there is always more practice. Press Enter to check an answer, and Enter again for the next one. Progress counts are kept in this browser only.</p></div></footer>
 
+<section class="dev" aria-labelledby="devname"><div class="wrap">
+  <div class="devcard">
+    <div class="avatar"><img src="data:image/jpeg;base64,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" alt="Lisa (Yuruo) Lei smiling in a park"></div>
+    <div class="devtext">
+      <p class="eyebrow">Meet the developer</p>
+      <h2 id="devname">Hi, I'm Lisa (Yuruo) Lei 👋</h2>
+      <p class="devrole">Instructional designer &amp; developer</p>
+      <p>I design online courses and interactive learning tools for universities, with a focus on human-centered design, AI-empowered learning, and education equity. I earned my Ed.M. in Instructional Technology &amp; Media at Teachers College, Columbia University.</p>
+      <div class="why">
+        <p><b>Why I built this:</b> I volunteer as a tutor with <a href="https://www.beginanew.org/" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">Begin Anew</a>, and I made this for an adult student of mine who is preparing for his high school equivalency test. He is strong with whole numbers, but fractions and decimal division needed lots of extra practice. So I built a place where he can practice as much as he wants and see every step. Another math tutor now uses it with students too.</p>
+        <p>Begin Anew works to empower individuals in Middle Tennessee to overcome obstacles caused by poverty, with free education, mentoring and resources. If you'd like to help, you can volunteer with them too.</p>
+        <p class="built"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:var(--accent)" aria-hidden="true"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/></svg><span>I vibe-coded this site with Claude, Anthropic's AI assistant. I decided what the site should teach and how each part should work, and Claude wrote the code.</span></p>
+      </div>
+      <div class="devlinks">
+        <a class="pri" href="https://ll3589.github.io/lisaleiportfolio.github.io/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5S14.6 18.7 12 21.5M12 2.5C9.4 5.3 8.1 8.5 8.1 12s1.3 6.7 3.9 9.5"/></svg>See my portfolio</a>
+        <a href="https://www.beginanew.org/volunteer" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Volunteer with Begin Anew</a>
+        <a href="https://www.linkedin.com/in/yuruolei9969" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Connect on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div></section>
 <script>
 // ---------- helpers ----------
 const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
@@ -538,7 +684,7 @@ const TRACKS=[
 → 0.456</span>`,
  gen(){const k=R(1,3),dv=10**k,p=R(0,1),xi=p?R(12,9999):R(2,999);if(xi%10===0)return this.gen();
   const x=fmt(xi/10**p),ans=xi/10**(p+k);
-  return{prompt:M(`${x} ÷ ${dv} = ?`),say:`${x} divided by ${dv}`,type:'num',ans,
+  return{prompt:M(`${x} ÷ ${dv} = ?`),say:`${x} divided by ${dv}`,type:'num',ans,mis:[[(xi/10**p)*dv,`You moved the point to the right. Dividing by ${dv} makes the number smaller, so move the point left.`]],
   steps:[`${dv} has ${pl(k,'zero')}, so the point moves ${pl(k,'place')} to the left.`,
    p?`Start at ${M(x)}.`:`${M(x)} is a whole number. Its decimal point is hiding at the end: ${M(x+'.')}`,
    `Move the point ${pl(k,'place')} left, adding 0s in front if you need them: <b>${M(fmt(ans))}</b>.`]}}},
@@ -550,7 +696,7 @@ const TRACKS=[
  gen(){const dv=P([0.2,0.4,0.5,0.25,1.5,0.3,0.6,0.8,1.2,2.5,0.05,0.75]),k=decs(dv),dvi=Math.round(dv*10**k);
   const ap=Math.random()<.3?1:0;let ai=ap?R(11,99):R(2,40);if(ap&&ai%10===0)ai++;
   const ans=ai/10**ap,big=ai*dvi/10**ap,dividend=big/10**k;
-  return{prompt:M(`${fmt(dividend)} ÷ ${fmt(dv)} = ?`),say:`${fmt(dividend)} divided by ${fmt(dv)}`,type:'num',ans,
+  return{prompt:M(`${fmt(dividend)} ÷ ${fmt(dv)} = ?`),say:`${fmt(dividend)} divided by ${fmt(dv)}`,type:'num',ans,mis:[[dividend/dvi,`You moved the point in ${fmt(dv)} but not in ${fmt(dividend)}. Move both points the same number of places.`],[dividend*dv,'Dividing by a number less than 1 makes the answer bigger, but you multiplied. Move both points, then divide.']],
   steps:[`You are dividing by ${M(fmt(dv))}. Move its point ${pl(k,'place')} right to make a whole number: ${M(fmt(dv))} → ${M(dvi)}.`,
    `Move the point in ${M(fmt(dividend))} the same ${pl(k,'place')} right (add 0s if needed): ${M(fmt(dividend))} → ${M(fmt(big))}.`,
    `Now divide: ${M(`${fmt(big)} ÷ ${dvi}`)} = <b>${M(fmt(ans))}</b>.`,
@@ -562,7 +708,7 @@ const TRACKS=[
 20 ÷ 4 = 5, nothing left
 answer: 1.75</span>`,
  gen(){const d=P([2,4,5,8,20,25,4,8]);let n;do{n=R(1,d<10?30:60)}while(n%d===0);
-  return{prompt:M(`${n} ÷ ${d} = ?`),say:`${n} divided by ${d}`,type:'num',ans:n/d,
+  return{prompt:M(`${n} ÷ ${d} = ?`),say:`${n} divided by ${d}`,type:'num',ans:n/d,mis:[[d/n,`You divided the other way around. ${n} ÷ ${d} means ${n} split into ${d} equal parts.`],[Math.floor(n/d)+(n%d)/10,`The leftover ${n%d} isn't the decimal part. Add a 0 to it and keep dividing.`]],
   steps:[`Think of ${M(n)} as ${M(n+'.000')}. The zeros don't change its value.`,...longDiv(n,d),`Answer: <b>${M(fmt(n/d))}</b>`]}}},
 {id:'d5',title:'Money word problems',
  learn:`<p>Words like <b>each</b>, <b>per</b>, <b>split</b> and <b>how many</b> usually mean divide. Estimate first so you know if your answer makes sense.</p><span class="ex">$26.00 at $3.25 a gallon
@@ -584,7 +730,7 @@ exact: 2600 ÷ 325 = 8 gallons</span>`,
 {id:'frac',name:'Fractions',tag:'Start from the ground up',intro:'Go in order. Each skill builds on the one before it, and the pictures matter more than the rules at first.',skills:[
 {id:'f1',title:'Name the fraction',
  learn:`<p>The <b>bottom</b> number tells how many equal pieces the whole is cut into. The <b>top</b> number tells how many pieces you have.</p>${bar(5,3)}<p>5 equal pieces, 3 shaded: ${F(3,5)}</p>`,
- gen(){const n=R(2,10),k=R(1,n-1);return{prompt:'What fraction of the bar is shaded?',word:1,say:'What fraction of the bar is shaded?',visual:bigBar(n,k),type:'frac',fn:k,fd:n,
+ gen(){const n=R(2,10),k=R(1,n-1);return{prompt:'What fraction of the bar is shaded?',word:1,say:'What fraction of the bar is shaded?',visual:bigBar(n,k),type:'frac',fn:k,fd:n,mis:[[[k,n-k],'The bottom number counts all the pieces, shaded and unshaded.'],[[n,k],'Top and bottom are switched. Shaded pieces go on top; all pieces go on the bottom.']],
   steps:[`Count all the equal pieces: <b>${n}</b>. That is the bottom number.`,`Count the shaded pieces: <b>${k}</b>. That is the top number.`,`So ${F(k,n)} of the bar is shaded.`]}}},
 {id:'f2',title:'Shade a fraction',
  learn:`<p>Read the bottom number first: it tells you how many pieces the bar is cut into. Then shade as many pieces as the top number says.</p><p>Sometimes the bar has more pieces than the bottom number. Then you need a little more thinking: ${F(1,2)} of 8 pieces is 4 pieces.</p>`,
@@ -604,7 +750,7 @@ exact: 2600 ÷ 325 = 8 gallons</span>`,
 {id:'f4',title:'Same amount, different names',
  learn:`<p>Multiply the top and bottom by the <b>same</b> number. The pieces get smaller, but you get more of them, so the amount stays the same.</p>${bar(2,1,F(1,2))}${bar(4,2,F(2,4)+' (each half cut in 2)')}`,
  gen(){const [a,b]=simpleFrac(6),m=R(2,5),top=Math.random()<.7;
-  return{prompt:top?`${F(a,b)} = ${F('?',b*m)}`:`${F(a,b)} = ${F(a*m,'?')}`,say:top?`${sayF(a,b)} equals what over ${b*m}?`:`${sayF(a,b)} equals ${a*m} over what?`,visual:bar(b,a,F(a,b)),type:'num',ans:top?a*m:b*m,
+  return{prompt:top?`${F(a,b)} = ${F('?',b*m)}`:`${F(a,b)} = ${F(a*m,'?')}`,say:top?`${sayF(a,b)} equals what over ${b*m}?`:`${sayF(a,b)} equals ${a*m} over what?`,visual:bar(b,a,F(a,b)),type:'num',ans:top?a*m:b*m,mis:top?[[a+(b*m-b),`You added ${b*m-b}. Multiply instead: the bottom was multiplied by ${m}, so multiply the top by ${m} too.`]]:[[b+(a*m-a),`You added ${a*m-a}. Multiply instead: the top was multiplied by ${m}, so multiply the bottom by ${m} too.`]],
   steps:[top?`Bottom: ${b} became ${b*m}. That is ${M(`${b} × ${m}`)}.`:`Top: ${a} became ${a*m}. That is ${M(`${a} × ${m}`)}.`,
    top?`Do the same to the top: ${M(`${a} × ${m} = ${a*m}`)}.`:`Do the same to the bottom: ${M(`${b} × ${m} = ${b*m}`)}.`,
    `${F(a,b)} = <b>${F(a*m,b*m)}</b>. Same amount, smaller pieces:${bar(b,a)}${bar(b*m,a*m)}`]}}},
@@ -621,7 +767,7 @@ exact: 2600 ÷ 325 = 8 gallons</span>`,
   if(eq){[a,b]=simpleFrac(6);const m=R(2,Math.floor(12/b)>=2?Math.floor(12/b):2);c=a*m;d=b*m}
   else{do{[a,b]=simpleFrac(10);[c,d]=simpleFrac(10)}while(a*d===c*b||lcm(b,d)>40)}
   const L=lcm(b,d),x=a*L/b,y=c*L/d,correct=x>y?0:x<y?1:2;
-  return{prompt:'Which is bigger?',word:1,say:`Which is bigger, ${sayF(a,b)} or ${sayF(c,d)}?`,type:'choice',choices:[F(a,b),F(c,d),'They are equal'],correct,
+  return{prompt:'Which is bigger?',word:1,say:`Which is bigger, ${sayF(a,b)} or ${sayF(c,d)}?`,type:'choice',choices:[F(a,b),F(c,d),'They are equal'],correct,why:{0:`Bigger numbers don’t always mean a bigger fraction. Rename both with the same bottom (${L}) and compare the tops.`,1:`Bigger numbers don’t always mean a bigger fraction. Rename both with the same bottom (${L}) and compare the tops.`,2:`They may look close. Rename both with the same bottom (${L}) and compare the tops.`},
   steps:[`Find a bottom number both ${b} and ${d} go into: <b>${L}</b>.`,`${F(a,b)} = ${F(x,L)} and ${F(c,d)} = ${F(y,L)}.`,
    correct===2?`The tops match (${x} and ${y}), so they are <b>equal</b>.`:`Compare the tops: ${x} ${x>y?'>':'<'} ${y}. So <b>${correct===0?F(a,b):F(c,d)}</b> is bigger.${bar(b,a,F(a,b))}${bar(d,c,F(c,d))}`]}}},
 {id:'f7',title:'Mixed numbers',
@@ -633,12 +779,12 @@ fraction → mixed:  divide
  gen(){const d=R(2,9),w=R(1,5),r=R(1,d-1),n=w*d+r;
   if(Math.random()<.5)return{prompt:`Write ${F(n,d)} as a mixed number.`,say:`Write ${sayF(n,d)} as a mixed number.`,type:'mixed',aw:w,an:r,ad:d,proper:true,
    steps:[`How many whole groups of ${d} fit into ${n}? ${M(`${n} ÷ ${d} = ${w}`)} with ${r} left over.`,`The ${w} becomes the whole number. The ${r} left over stays over ${d}.`,`Answer: <b>${M(w)}${F(r,d)}</b>`]};
-  return{prompt:`Write ${M(w)}${F(r,d)} as a fraction.`,say:`Write ${w} and ${sayF(r,d)} as a fraction.`,type:'frac',fn:n,fd:d,
+  return{prompt:`Write ${M(w)}${F(r,d)} as a fraction.`,say:`Write ${w} and ${sayF(r,d)} as a fraction.`,type:'frac',fn:n,fd:d,mis:[[[w*d,d],`Don't forget the extra ${r} pieces. Add them: ${w*d} + ${r}.`],[[w+r,d],`Multiply the whole number by the bottom first (${w} × ${d}), then add ${r}.`],[[w*r,d],`Multiply the whole number by the bottom (${w} × ${d}), not by the top.`]],
    steps:[`Each whole is ${F(d,d)}. So ${w} whole${w>1?'s':''} = ${M(`${w} × ${d} = ${w*d}`)} pieces.`,`Add the ${r} extra pieces: ${M(`${w*d} + ${r} = ${n}`)}.`,`Answer: <b>${F(n,d)}</b>`]}}},
 {id:'f8',title:'Add & subtract: same bottom',
  learn:`<p>When the bottoms match, the pieces are the same size. Keep the bottom and add (or subtract) the tops.</p><span class="ex">2/7 + 3/7 = 5/7</span><p>Never add the bottoms. 2 sevenths plus 3 sevenths is 5 sevenths, just like 2 apples plus 3 apples is 5 apples.</p>`,
  gen(){const d=R(3,12),add=Math.random()<.6;let a,b;if(add){a=R(1,d-2);b=R(1,d-1-a)}else{a=R(2,d-1);b=R(1,a-1)}const t=add?a+b:a-b,op=add?'+':'−';
-  return{prompt:`${F(a,d)} ${op} ${F(b,d)} = ?`,say:`${sayF(a,d)} ${add?'plus':'minus'} ${sayF(b,d)}`,type:'frac',fn:t,fd:d,
+  return{prompt:`${F(a,d)} ${op} ${F(b,d)} = ?`,say:`${sayF(a,d)} ${add?'plus':'minus'} ${sayF(b,d)}`,type:'frac',fn:t,fd:d,mis:add?[[[t,2*d],`You added the bottoms too. When the bottoms match, keep the bottom (${d}) and add only the tops.`]]:[],
   steps:[`The bottoms are both ${d}. Keep ${d} on the bottom.`,`${add?'Add':'Subtract'} the tops: ${M(`${a} ${op} ${b} = ${t}`)}.`,`Answer: <b>${F(t,d)}</b>${simpNote(t,d)}`]}}},
 {id:'f9',title:'Add & subtract: different bottoms',
  learn:`<p>You can only add pieces of the same size. Find a bottom number both fractions can use, rename them, then add the tops.</p><span class="ex">1/2 + 1/3
@@ -649,19 +795,19 @@ both go into 6
   do{b=P(ds);d=P(ds);a=R(1,b-1);c=R(1,d-1)}while(b===d||lcm(b,d)>24||(!add&&a*d===c*b));
   if(!add&&a*d<c*b){[a,b,c,d]=[c,d,a,b]}
   const L=lcm(b,d),x=a*L/b,y=c*L/d,t=add?x+y:x-y,op=add?'+':'−';
-  return{prompt:`${F(a,b)} ${op} ${F(c,d)} = ?`,say:`${sayF(a,b)} ${add?'plus':'minus'} ${sayF(c,d)}`,type:'frac',fn:t,fd:L,
+  return{prompt:`${F(a,b)} ${op} ${F(c,d)} = ?`,say:`${sayF(a,b)} ${add?'plus':'minus'} ${sayF(c,d)}`,type:'frac',fn:t,fd:L,mis:add?[[[a+c,b+d],`You added straight across. First rename both fractions with the same bottom (${L}), then add the tops.`],[[a+c,L],`You found the common bottom, ${L}, but the tops must change too: ${a} becomes ${x} and ${c} becomes ${y}.`],[[a+c,b*d],`The bottom ${b*d} works, but the tops must change too: multiply each top by the same number as its bottom.`]]:[[[a-c,b-d],`You subtracted straight across. First rename both fractions with the same bottom (${L}), then subtract the tops.`],[[a-c,L],`You found the common bottom, ${L}, but the tops must change too: ${a} becomes ${x} and ${c} becomes ${y}.`]],
   steps:[`Find a bottom number both ${b} and ${d} go into: <b>${L}</b>.`,`Rename: ${F(a,b)} = ${F(x,L)} (×${L/b} top and bottom), ${F(c,d)} = ${F(y,L)} (×${L/d}).`,`${add?'Add':'Subtract'} the tops: ${M(`${x} ${op} ${y} = ${t}`)}.`,`Answer: <b>${F(t,L)}</b>${simpNote(t,L)}`]}}},
 {id:'f10',title:'Multiply fractions',
  learn:`<p>Multiplying is the easy one: top × top, bottom × bottom. Then simplify.</p><span class="ex">2/3 × 3/4 = 6/12 = 1/2</span><p>“Of” often means multiply: ${F(1,2)} of ${F(3,4)} is ${F(1,2)} × ${F(3,4)}.</p>`,
  gen(){const [a,b]=simpleFrac(8),[c,d]=simpleFrac(8);
-  return{prompt:`${F(a,b)} × ${F(c,d)} = ?`,say:`${sayF(a,b)} times ${sayF(c,d)}`,type:'frac',fn:a*c,fd:b*d,
+  return{prompt:`${F(a,b)} × ${F(c,d)} = ?`,say:`${sayF(a,b)} times ${sayF(c,d)}`,type:'frac',fn:a*c,fd:b*d,mis:[[[a*d,b*c],'That’s the rule for dividing. For ×, multiply top × top and bottom × bottom. No flipping.'],[[a+c,b+d],'Multiply the tops and multiply the bottoms. Don’t add them.']],
   steps:[`Top × top: ${M(`${a} × ${c} = ${a*c}`)}.`,`Bottom × bottom: ${M(`${b} × ${d} = ${b*d}`)}.`,`Answer: <b>${F(a*c,b*d)}</b>${simpNote(a*c,b*d)}`]}}},
 {id:'f11',title:'Divide fractions',
  learn:`<p>Keep, change, flip. <b>Keep</b> the first fraction, <b>change</b> ÷ to ×, <b>flip</b> the second fraction. Then multiply.</p><span class="ex">1/2 ÷ 1/4
 → 1/2 × 4/1 = 4/2 = 2
 (there are 2 quarters in a half)</span>`,
  gen(){const [a,b]=simpleFrac(8),[c,d]=simpleFrac(8);
-  return{prompt:`${F(a,b)} ÷ ${F(c,d)} = ?`,say:`${sayF(a,b)} divided by ${sayF(c,d)}`,type:'frac',fn:a*d,fd:b*c,
+  return{prompt:`${F(a,b)} ÷ ${F(c,d)} = ?`,say:`${sayF(a,b)} divided by ${sayF(c,d)}`,type:'frac',fn:a*d,fd:b*c,mis:[[[a*c,b*d],`You multiplied without flipping. Keep ${F(a,b)}, change ÷ to ×, then flip ${F(c,d)} to ${F(d,c)}.`],[[b*c,a*d],'You flipped the first fraction. Keep the first one as it is and flip the second one.']],
   steps:[`Keep ${F(a,b)}. Change ÷ to ×. Flip ${F(c,d)} to ${F(d,c)}.`,`Multiply: ${F(a,b)} × ${F(d,c)}. Top: ${M(`${a} × ${d} = ${a*d}`)}. Bottom: ${M(`${b} × ${c} = ${b*c}`)}.`,`Answer: <b>${F(a*d,b*c)}</b>${simpNote(a*d,b*c)}`]}}},
 {id:'f12',title:'Fraction of a number',
  learn:`<p>Divide by the bottom, then multiply by the top.</p><span class="ex">3/4 of 20
@@ -672,29 +818,29 @@ both go into 6
    [`A class has ${N} students. ${F(a,b)} of them passed the test. How many passed?`,`A class has ${N} students. ${sayF(a,b)} of them passed. How many passed?`],
    [`A road trip is ${N} miles. You have driven ${F(a,b)} of it. How many miles have you driven?`,`A trip is ${N} miles. You drove ${sayF(a,b)} of it. How many miles?`],
    [`What is ${F(a,b)} of ${N}?`,`What is ${sayF(a,b)} of ${N}?`]]);
-  return{prompt:ctx[0],word:1,say:ctx[1],type:'num',ans,
+  return{prompt:ctx[0],word:1,say:ctx[1],type:'num',ans,mis:[[one,`That’s one piece, ${F(1,b)} of ${N}. Multiply by ${a} to get ${F(a,b)}.`],[N*a,`Divide by the bottom number (${b}) first, then multiply by ${a}.`],[N/a,`Divide by the bottom number (${b}), not the top.`]],
   steps:[`Divide by the bottom number to find one piece: ${M(`${N} ÷ ${b} = ${one}`)}.`,`Multiply by the top number: ${M(`${one} × ${a} = ${ans}`)}.`,`Answer: <b>${ans}</b>`]}}}
 ]},
 {id:'conv',name:'Conversions',tag:'Stretch goal',intro:'Fractions, decimals and percents are three ways to write the same amount. Try these after fractions feel solid.',skills:[
 {id:'c1',title:'Fraction → decimal',
  learn:`<p>The fraction bar means <b>divide</b>: top ÷ bottom.</p><span class="ex">3/4 = 3 ÷ 4 = 0.75</span><p>This is the same skill as “When it doesn’t come out even” on the Decimals tab.</p>`,
  gen(){const d=P([2,4,5,8,10,20,25,4,5,8]),n=R(1,d-1);
-  return{prompt:`${F(n,d)} = ? (as a decimal)`,say:`Write ${sayF(n,d)} as a decimal.`,type:'num',ans:n/d,
+  return{prompt:`${F(n,d)} = ? (as a decimal)`,say:`Write ${sayF(n,d)} as a decimal.`,type:'num',ans:n/d,mis:[[d/n,`You divided bottom ÷ top. The fraction bar means top ÷ bottom: ${n} ÷ ${d}.`],[n/10,'The top number isn’t the decimal by itself. Divide top ÷ bottom.']],
   steps:[`The fraction bar means divide: ${M(`${n} ÷ ${d}`)}.`,...longDiv(n,d),`Answer: <b>${M(fmt(n/d))}</b>`]}}},
 {id:'c2',title:'Decimal → percent',
  learn:`<p>Percent means “out of 100.” Multiply by 100: move the point <b>2 places right</b>.</p><span class="ex">0.35 → 35%     0.6 → 60%     1.2 → 120%</span>`,
  gen(){const v=Math.random()<.8?R(1,150)/100:R(1,999)/1000,ans=v*100;
-  return{prompt:`${fmt(v)} = ?%`,say:`Write ${fmt(v)} as a percent.`,type:'num',unit:'%',ans,
+  return{prompt:`${fmt(v)} = ?%`,say:`Write ${fmt(v)} as a percent.`,type:'num',unit:'%',ans,mis:[[v/100,'You moved the point the wrong way. For a percent, move it 2 places to the right.'],[v*10,'Move the point 2 places, not 1.']],
   steps:[`Multiply by 100: move the decimal point 2 places to the right. Add a 0 if you run out of digits.`,`${M(fmt(v))} → <b>${M(fmt(ans)+'%')}</b>`]}}},
 {id:'c3',title:'Percent → decimal',
  learn:`<p>Divide by 100: move the point <b>2 places left</b>. Fill empty spots with 0.</p><span class="ex">45% → 0.45     8% → 0.08     150% → 1.5</span>`,
  gen(){const p=Math.random()<.8?R(1,150):R(1,99)+0.5,ans=p/100;
-  return{prompt:`${fmt(p)}% = ? (as a decimal)`,say:`Write ${fmt(p)} percent as a decimal.`,type:'num',ans,
+  return{prompt:`${fmt(p)}% = ? (as a decimal)`,say:`Write ${fmt(p)} percent as a decimal.`,type:'num',ans,mis:[[p*100,'You moved the point the wrong way. Percent to decimal: move it 2 places left.'],[p/10,'Move the point 2 places, not 1.'],[p,'Take off the % by moving the point 2 places left.']],
   steps:[`Percent means out of 100, so divide by 100: move the point 2 places left.`,`${M(fmt(p)+'%')} → <b>${M(fmt(ans))}</b>`]}}},
 {id:'c4',title:'Fraction → percent',
  learn:`<p>Make the bottom number <b>100</b>. The top number is then the percent.</p><span class="ex">3/20 → ×5 top and bottom → 15/100 = 15%</span>`,
  gen(){const d=P([2,4,5,10,20,25,50]),n=R(1,d-1),m=100/d,ans=n*m;
-  return{prompt:`${F(n,d)} = ?%`,say:`Write ${sayF(n,d)} as a percent.`,type:'num',unit:'%',ans,
+  return{prompt:`${F(n,d)} = ?%`,say:`Write ${sayF(n,d)} as a percent.`,type:'num',unit:'%',ans,mis:[[n/d,'That’s the decimal. Multiply by 100 (move the point 2 places right) to get the percent.'],[n,'The top number is the percent only when the bottom is 100. First make the bottom 100.']],
   steps:[`What times ${d} makes 100? ${M(`${d} × ${m} = 100`)}.`,`Do the same to the top: ${M(`${n} × ${m} = ${ans}`)}.`,`${F(ans,100)} = <b>${M(ans+'%')}</b>`]}}},
 {id:'c5',title:'Know the common ones',
  learn:`<p>These show up again and again. Knowing them by heart saves a lot of time on the test.</p><div class="tw"><table class="btable"><tr><th>Fraction</th><th>Decimal</th><th>Percent</th></tr>
@@ -714,28 +860,28 @@ both go into 6
 → multiply first: 4 × 2 = 8
 → then add: 3 + 8 = 11</span>`,
  gen(){const f=R(0,3);
-  if(f===0){const a=R(2,20),b=R(2,9),c=R(2,9),ans=a+b*c;return{prompt:M(`${a} + ${b} × ${c} = ?`),say:`${a} plus ${b} times ${c}`,type:'num',ans,steps:[`No parentheses or exponents here. Multiply before you add: ${M(`${b} × ${c} = ${b*c}`)}.`,`Then add: ${M(`${a} + ${b*c} = ${ans}`)}.`,`Adding first would give ${(a+b)*c}, which is wrong.`]}}
-  if(f===1){const a=R(2,12),b=R(2,9),c=R(2,6),ans=(a+b)*c;return{prompt:M(`(${a} + ${b}) × ${c} = ?`),say:`${a} plus ${b} in parentheses, times ${c}`,type:'num',ans,steps:[`Parentheses first: ${M(`${a} + ${b} = ${a+b}`)}.`,`Then multiply: ${M(`${a+b} × ${c} = ${ans}`)}.`]}}
-  if(f===2){const c=R(2,6),q=R(2,9),b=c*q,m=R(2,5),a=q*m+R(1,20),ans=a-q*m;return{prompt:M(`${a} − ${b} ÷ ${c} × ${m} = ?`),say:`${a} minus ${b} divided by ${c} times ${m}`,type:'num',ans,steps:[`Do × and ÷ first, going left to right: ${M(`${b} ÷ ${c} = ${q}`)}, then ${M(`${q} × ${m} = ${q*m}`)}.`,`Then subtract: ${M(`${a} − ${q*m} = ${ans}`)}.`]}}
-  const a=R(2,6),b=R(2,9),c=R(2,9),ans=a*a+b*c;return{prompt:M(`${a}<sup>2</sup> + ${b} × ${c} = ?`),say:`${a} squared plus ${b} times ${c}`,type:'num',ans,steps:[`Exponent first: ${M(`${a}<sup>2</sup> = ${a} × ${a} = ${a*a}`)}.`,`Then multiply: ${M(`${b} × ${c} = ${b*c}`)}.`,`Then add: ${M(`${a*a} + ${b*c} = ${ans}`)}.`]}}},
+  if(f===0){const a=R(2,20),b=R(2,9),c=R(2,9),ans=a+b*c;return{prompt:M(`${a} + ${b} × ${c} = ?`),say:`${a} plus ${b} times ${c}`,type:'num',ans,mis:[[(a+b)*c,'You added first. Multiply before you add.']],steps:[`No parentheses or exponents here. Multiply before you add: ${M(`${b} × ${c} = ${b*c}`)}.`,`Then add: ${M(`${a} + ${b*c} = ${ans}`)}.`,`Adding first would give ${(a+b)*c}, which is wrong.`]}}
+  if(f===1){const a=R(2,12),b=R(2,9),c=R(2,6),ans=(a+b)*c;return{prompt:M(`(${a} + ${b}) × ${c} = ?`),say:`${a} plus ${b} in parentheses, times ${c}`,type:'num',ans,mis:[[a+b*c,'Parentheses come first. Add inside them before you multiply.']],steps:[`Parentheses first: ${M(`${a} + ${b} = ${a+b}`)}.`,`Then multiply: ${M(`${a+b} × ${c} = ${ans}`)}.`]}}
+  if(f===2){const c=R(2,6),q=R(2,9),b=c*q,m=R(2,5),a=q*m+R(1,20),ans=a-q*m;return{prompt:M(`${a} − ${b} ÷ ${c} × ${m} = ?`),say:`${a} minus ${b} divided by ${c} times ${m}`,type:'num',ans,mis:[[a-b/(c*m),'Do × and ÷ in order from left to right: divide first here, then multiply.'],[(a-b)/c*m,'Subtract last. Do the ÷ and × first.']],steps:[`Do × and ÷ first, going left to right: ${M(`${b} ÷ ${c} = ${q}`)}, then ${M(`${q} × ${m} = ${q*m}`)}.`,`Then subtract: ${M(`${a} − ${q*m} = ${ans}`)}.`]}}
+  const a=R(2,6),b=R(2,9),c=R(2,9),ans=a*a+b*c;return{prompt:M(`${a}<sup>2</sup> + ${b} × ${c} = ?`),say:`${a} squared plus ${b} times ${c}`,type:'num',ans,mis:[[a*2+b*c,`${a}<sup>2</sup> means ${a} × ${a}, not ${a} × 2.`],[(a*a+b)*c,'Multiply before you add.']],steps:[`Exponent first: ${M(`${a}<sup>2</sup> = ${a} × ${a} = ${a*a}`)}.`,`Then multiply: ${M(`${b} × ${c} = ${b*c}`)}.`,`Then add: ${M(`${a*a} + ${b*c} = ${ans}`)}.`]}}},
 {id:'m2',title:'Exponents & evaluating',
  learn:`<p>An exponent tells how many times to multiply a number by itself: ${M('2<sup>3</sup> = 2 × 2 × 2 = 8')}.</p><p>To <b>evaluate</b> an expression, put the number in place of the letter. Then follow the order of operations.</p><span class="ex">3x² when x = 4
 → 3 × 4² = 3 × 16 = 48</span>`,
  gen(){const f=R(0,3);
-  if(f===0){const b=R(2,9),e=b<=4?R(2,3):2,ans=b**e;return{prompt:M(`${b}<sup>${e}</sup> = ?`),say:`${b} to the power of ${e}`,type:'num',ans,steps:[`The exponent ${e} means multiply ${b} by itself ${e} times.`,M(Array(e).fill(b).join(' × ')+' = '+ans),`Careful: it is not ${M(`${b} × ${e} = ${b*e}`)}.`]}}
-  if(f===1){const a=R(2,9),b=R(1,20),k=R(2,10),ans=a*k+b;return{prompt:`Find the value of ${M(`${a}x + ${b}`)} when ${M(`x = ${k}`)}.`,word:1,say:`Find ${a} x plus ${b} when x is ${k}`,type:'num',ans,steps:[`Put ${k} in place of x: ${M(`${a} × ${k} + ${b}`)}.`,`Multiply first: ${M(`${a} × ${k} = ${a*k}`)}.`,`Then add: ${M(`${a*k} + ${b} = ${ans}`)}.`]}}
-  if(f===2){const a=R(2,5),k=R(2,6),ans=a*k*k;return{prompt:`Find the value of ${M(`${a}x<sup>2</sup>`)} when ${M(`x = ${k}`)}.`,word:1,say:`Find ${a} x squared when x is ${k}`,type:'num',ans,steps:[`Put ${k} in place of x: ${M(`${a} × ${k}<sup>2</sup>`)}.`,`Exponent first: ${M(`${k}<sup>2</sup> = ${k*k}`)}.`,`Then multiply: ${M(`${a} × ${k*k} = ${ans}`)}.`,`Multiplying ${a} × ${k} first and then squaring gives ${(a*k)**2}, which is wrong.`]}}
-  const a=R(2,6),b=R(1,8),k=b+R(1,9),ans=a*(k-b);return{prompt:`Find the value of ${M(`${a}(x − ${b})`)} when ${M(`x = ${k}`)}.`,word:1,say:`Find ${a} times the quantity x minus ${b}, when x is ${k}`,type:'num',ans,steps:[`Put ${k} in place of x: ${M(`${a}(${k} − ${b})`)}.`,`Parentheses first: ${M(`${k} − ${b} = ${k-b}`)}.`,`Then multiply: ${M(`${a} × ${k-b} = ${ans}`)}.`]}}},
+  if(f===0){const b=R(2,9),e=b<=4?R(2,3):2,ans=b**e;return{prompt:M(`${b}<sup>${e}</sup> = ?`),say:`${b} to the power of ${e}`,type:'num',ans,mis:[[b*e,`The small ${e} isn’t something to multiply by. It means multiply ${b} by itself ${e} times.`]],steps:[`The exponent ${e} means multiply ${b} by itself ${e} times.`,M(Array(e).fill(b).join(' × ')+' = '+ans),`Careful: it is not ${M(`${b} × ${e} = ${b*e}`)}.`]}}
+  if(f===1){const a=R(2,9),b=R(1,20),k=R(2,10),ans=a*k+b;return{prompt:`Find the value of ${M(`${a}x + ${b}`)} when ${M(`x = ${k}`)}.`,word:1,say:`Find ${a} x plus ${b} when x is ${k}`,type:'num',ans,mis:[[Number(`${a}${k}`)+b,`${a}x means ${a} × x. It doesn’t mean writing ${a} and ${k} side by side.`],[a+k+b,`${a}x means ${a} × x, so multiply ${a} by ${k}.`]],steps:[`Put ${k} in place of x: ${M(`${a} × ${k} + ${b}`)}.`,`Multiply first: ${M(`${a} × ${k} = ${a*k}`)}.`,`Then add: ${M(`${a*k} + ${b} = ${ans}`)}.`]}}
+  if(f===2){const a=R(2,5),k=R(2,6),ans=a*k*k;return{prompt:`Find the value of ${M(`${a}x<sup>2</sup>`)} when ${M(`x = ${k}`)}.`,word:1,say:`Find ${a} x squared when x is ${k}`,type:'num',ans,mis:[[(a*k)**2,`Square x first, then multiply by ${a}.`],[a*k*2,'x<sup>2</sup> means x × x, not x × 2.']],steps:[`Put ${k} in place of x: ${M(`${a} × ${k}<sup>2</sup>`)}.`,`Exponent first: ${M(`${k}<sup>2</sup> = ${k*k}`)}.`,`Then multiply: ${M(`${a} × ${k*k} = ${ans}`)}.`,`Multiplying ${a} × ${k} first and then squaring gives ${(a*k)**2}, which is wrong.`]}}
+  const a=R(2,6),b=R(1,8),k=b+R(1,9),ans=a*(k-b);return{prompt:`Find the value of ${M(`${a}(x − ${b})`)} when ${M(`x = ${k}`)}.`,word:1,say:`Find ${a} times the quantity x minus ${b}, when x is ${k}`,type:'num',ans,mis:[[a*k-b,`Multiply ${a} by the whole answer inside the parentheses: ${a} × (${k} − ${b}).`]],steps:[`Put ${k} in place of x: ${M(`${a}(${k} − ${b})`)}.`,`Parentheses first: ${M(`${k} − ${b} = ${k-b}`)}.`,`Then multiply: ${M(`${a} × ${k-b} = ${ans}`)}.`]}}},
 {id:'m3',title:'Solve equations',
  learn:`<p>Get x by itself. Undo what is being done to x, and do the <b>same thing to both sides</b>.</p><span class="ex">x + 7 = 20  → subtract 7    → x = 13
 4x = 30     → divide by 4   → x = 7.5
 x ÷ 3 = 6   → multiply by 3 → x = 18</span><p>Check by putting your answer back in.</p>`,
- gen(){const f=R(0,3);let eq,x,steps;
-  if(f===0){const a=R(3,30);x=R(2,40);const b=x+a;eq=`x + ${a} = ${b}`;steps=[`${a} is added to x. Undo that: subtract ${a} from both sides.`,M(`x = ${b} − ${a} = ${x}`),`Check: ${M(`${x} + ${a} = ${b}`)} ✓`]}
-  else if(f===1){const a=R(3,30),b=R(2,40);x=b+a;eq=`x − ${a} = ${b}`;steps=[`${a} is taken away from x. Undo that: add ${a} to both sides.`,M(`x = ${b} + ${a} = ${x}`),`Check: ${M(`${x} − ${a} = ${b}`)} ✓`]}
-  else if(f===2){const a=R(2,9);x=(a%2===0&&Math.random()<.4)?R(1,12)+0.5:R(2,15);const b=a*x;eq=`${a}x = ${fmt(b)}`;steps=[`${a}x means ${a} × x. Undo multiplying: divide both sides by ${a}.`,M(`x = ${fmt(b)} ÷ ${a} = ${fmt(x)}`),`Check: ${M(`${a} × ${fmt(x)} = ${fmt(b)}`)} ✓`]}
-  else{const a=R(2,9),b=R(2,12);x=a*b;eq=`x ÷ ${a} = ${b}`;steps=[`x is divided by ${a}. Undo that: multiply both sides by ${a}.`,M(`x = ${b} × ${a} = ${x}`),`Check: ${M(`${x} ÷ ${a} = ${b}`)} ✓`]}
-  return{prompt:M(eq),say:'Solve for x. '+eq,type:'num',pre:'x =',ans:x,steps}}},
+ gen(){const f=R(0,3);let eq,x,steps,mis=[];
+  if(f===0){const a=R(3,30);x=R(2,40);const b=x+a;eq=`x + ${a} = ${b}`;mis=[[b+a,`${a} is added to x, so undo it by subtracting: ${b} − ${a}.`]];steps=[`${a} is added to x. Undo that: subtract ${a} from both sides.`,M(`x = ${b} − ${a} = ${x}`),`Check: ${M(`${x} + ${a} = ${b}`)} ✓`]}
+  else if(f===1){const a=R(3,30),b=R(2,40);x=b+a;eq=`x − ${a} = ${b}`;mis=[[b-a,`${a} is taken away from x, so undo it by adding: ${b} + ${a}.`]];steps=[`${a} is taken away from x. Undo that: add ${a} to both sides.`,M(`x = ${b} + ${a} = ${x}`),`Check: ${M(`${x} − ${a} = ${b}`)} ✓`]}
+  else if(f===2){const a=R(2,9);x=(a%2===0&&Math.random()<.4)?R(1,12)+0.5:R(2,15);const b=a*x;eq=`${a}x = ${fmt(b)}`;mis=[[b*a,`x is multiplied by ${a}, so undo it by dividing: ${fmt(b)} ÷ ${a}.`],[b-a,`${a}x means ${a} × x. Undo multiplying by dividing, not subtracting.`]];steps=[`${a}x means ${a} × x. Undo multiplying: divide both sides by ${a}.`,M(`x = ${fmt(b)} ÷ ${a} = ${fmt(x)}`),`Check: ${M(`${a} × ${fmt(x)} = ${fmt(b)}`)} ✓`]}
+  else{const a=R(2,9),b=R(2,12);x=a*b;eq=`x ÷ ${a} = ${b}`;mis=[[b/a,`x is divided by ${a}, so undo it by multiplying: ${b} × ${a}.`]];steps=[`x is divided by ${a}. Undo that: multiply both sides by ${a}.`,M(`x = ${b} × ${a} = ${x}`),`Check: ${M(`${x} ÷ ${a} = ${b}`)} ✓`]}
+  return{prompt:M(eq),say:'Solve for x. '+eq,type:'num',pre:'x =',ans:x,steps,mis}}},
 {id:'m4',title:'Words to expressions',
  learn:`<p>“Product” means ×, “sum” means +, “quotient” means ÷. Watch “less than”: the order flips, so “5 less than n” is ${M('n − 5')}.</p><span class="ex">at least 18       →  x ≥ 18
 no more than 40   →  x ≤ 40
@@ -752,42 +898,42 @@ no more than 40   →  x ≤ 40
    q=`${t[0]} Which inequality fits?`;right=`x ${t[1]} ${n2}`;wrong=['≥','≤','>','<'].filter(z=>z!==t[1]).map(z=>`x ${z} ${n2}`);why=t[2]}
   else{const b=R(2,9);q=`Which expression is equal to ${M(`${k}(x + ${b})`)}?`;right=`${k}x + ${k*b}`;wrong=[`${k}x + ${b}`,`x + ${k*b}`,`${k+b}x`];why=`Multiply ${k} by each part inside the parentheses: ${k} × x = ${k}x and ${k} × ${b} = ${k*b}.`}
   const opts=sh([right,...wrong]);
-  return{prompt:q,word:1,type:'choice',choices:opts,correct:opts.indexOf(right),steps:[why,`Answer: <b>${M(right)}</b>`]}}},
+  return{prompt:q,word:1,type:'choice',choices:opts,correct:opts.indexOf(right),why:Object.fromEntries(opts.map((o,i)=>[i,why])),steps:[why,`Answer: <b>${M(right)}</b>`]}}},
 {id:'m5',title:'GCF & LCM',
  learn:`<p><b>GCF</b> (greatest common factor) is the biggest number that divides into both. Use it to simplify fractions.</p><p><b>LCM</b> (least common multiple) is the smallest number both go into. Use it to find a common bottom number.</p><span class="ex">GCF of 12 and 18 = 6
 LCM of 4 and 6 = 12</span>`,
  gen(){if(Math.random()<.5){let g,m1,m2;do{g=R(2,12);m1=R(1,6);m2=R(2,7)}while(m1===m2||gcd(m1,m2)!==1||g*Math.max(m1,m2)>84);const a=g*m1,b=g*m2,fa=factors(a),fb=factors(b),com=fa.filter(x=>fb.includes(x));
-  return{prompt:`What is the greatest common factor (GCF) of ${M(a)} and ${M(b)}?`,word:1,say:`What is the greatest common factor of ${a} and ${b}?`,type:'num',ans:g,steps:[`Factors of ${a}: ${M(fa.join(', '))}`,`Factors of ${b}: ${M(fb.join(', '))}`,`In both lists: ${M(com.join(', '))}. The biggest is <b>${g}</b>.`]}}
+  return{prompt:`What is the greatest common factor (GCF) of ${M(a)} and ${M(b)}?`,word:1,say:`What is the greatest common factor of ${a} and ${b}?`,type:'num',ans:g,mis:[[lcm(a,b),'That’s the least common multiple. The GCF is the biggest number that divides into both.'],[a*b,'Multiplying gives a multiple. The GCF is the biggest number that divides into both.']],steps:[`Factors of ${a}: ${M(fa.join(', '))}`,`Factors of ${b}: ${M(fb.join(', '))}`,`In both lists: ${M(com.join(', '))}. The biggest is <b>${g}</b>.`]}}
   let a,b;do{a=R(2,12);b=R(2,12)}while(a===b||a%b===0||b%a===0);const L=lcm(a,b),big=Math.max(a,b),small=Math.min(a,b),ms=[];for(let v=big;v<=L;v+=big)ms.push(v);
-  return{prompt:`What is the least common multiple (LCM) of ${M(a)} and ${M(b)}?`,word:1,say:`What is the least common multiple of ${a} and ${b}?`,type:'num',ans:L,steps:[`List the multiples of the bigger number, ${big}: ${M(ms.join(', '))}`,`Stop at the first one that ${small} also goes into: <b>${L}</b>.`]}}},
+  return{prompt:`What is the least common multiple (LCM) of ${M(a)} and ${M(b)}?`,word:1,say:`What is the least common multiple of ${a} and ${b}?`,type:'num',ans:L,mis:[[gcd(a,b),'That’s the greatest common factor. The LCM is the smallest number both go into.'],[a*b,`${a} × ${b} is a common multiple, but there’s a smaller one.`]],steps:[`List the multiples of the bigger number, ${big}: ${M(ms.join(', '))}`,`Stop at the first one that ${small} also goes into: <b>${L}</b>.`]}}},
 {id:'m6',title:'Unit rates',
  learn:`<p>A unit rate is the amount for <b>one</b>: miles per hour, price per ounce. Divide the total by the number of units.</p><span class="ex">150 miles in 3 hours
 150 ÷ 3 = 50 miles per hour</span>`,
  gen(){return P([
-  ()=>{const h=R(2,6),r=R(35,65),mi=r*h;return{word:1,prompt:`A truck drives ${mi} miles in ${h} hours at a steady speed. How many miles per hour is that?`,type:'num',post:'miles per hour',ans:r,steps:[`“Per hour” means the amount for 1 hour. Divide by the hours.`,M(`${mi} ÷ ${h} = ${r}`),`The truck goes <b>${r} miles per hour</b>.`]}},
+  ()=>{const h=R(2,6),r=R(35,65),mi=r*h;return{word:1,prompt:`A truck drives ${mi} miles in ${h} hours at a steady speed. How many miles per hour is that?`,type:'num',post:'miles per hour',ans:r,mis:[[h/mi,'You divided the hours by the miles. Divide the miles by the hours.'],[mi*h,'“Per hour” means divide by the hours, not multiply.']],steps:[`“Per hour” means the amount for 1 hour. Divide by the hours.`,M(`${mi} ÷ ${h} = ${r}`),`The truck goes <b>${r} miles per hour</b>.`]}},
   ()=>{const oz=P([8,12,16,20,24,32]),c=R(5,40),tot=oz*c/100;return{word:1,prompt:`A ${oz}-ounce jar of peanut butter costs ${money(tot)}. What is the price per ounce?`,type:'num',unit:'$',ans:c/100,steps:[`Price per ounce = total price ÷ number of ounces.`,M(`${tot.toFixed(2)} ÷ ${oz} = ${(c/100).toFixed(2)}`),`Each ounce costs <b>${money(c/100)}</b>.`]}},
-  ()=>{const m=R(3,10),r=R(20,60),w=r*m;return{word:1,prompt:`You type ${w} words in ${m} minutes. How many words per minute is that?`,type:'num',post:'words per minute',ans:r,steps:[`Divide the words by the minutes.`,M(`${w} ÷ ${m} = ${r}`),`You type <b>${r} words per minute</b>.`]}},
+  ()=>{const m=R(3,10),r=R(20,60),w=r*m;return{word:1,prompt:`You type ${w} words in ${m} minutes. How many words per minute is that?`,type:'num',post:'words per minute',ans:r,mis:[[m/w,'You divided the other way. Divide the words by the minutes.'],[w*m,'“Per minute” means divide by the minutes, not multiply.']],steps:[`Divide the words by the minutes.`,M(`${w} ÷ ${m} = ${r}`),`You type <b>${r} words per minute</b>.`]}},
   ()=>{const n=R(3,8),c=R(10,80)*5,tot=n*c;return{word:1,prompt:`${n} pounds of apples cost ${money(tot/100)}. What is the price per pound?`,type:'num',unit:'$',ans:c/100,steps:[`Price per pound = total price ÷ number of pounds.`,M(`${(tot/100).toFixed(2)} ÷ ${n} = ${(c/100).toFixed(2)}`),`One pound costs <b>${money(c/100)}</b>.`]}}
  ])()}},
 {id:'m7',title:'Measurement conversions',
  learn:`<p>Going from a <b>big</b> unit to a <b>small</b> unit, multiply. Going from small to big, divide.</p><span class="ex">2.5 feet → inches:   2.5 × 12 = 30 inches
 3,200 grams → kg:     3,200 ÷ 1,000 = 3.2 kg</span><p>The Fact Sheet tab lists the units you need.</p>`,
  gen(){const [b1,bs,s1,ss,k]=P(CONV);const half=Math.random()<.35,cap=w=>w[0].toUpperCase()+w.slice(1),K=k.toLocaleString('en-US');
-  if(Math.random()<.5){const v=R(2,9)+(half?0.5:0),ans=v*k;return{word:1,prompt:`How many ${ss} are in ${fmt(v)} ${bs}?`,type:'num',post:ss,ans,steps:[`1 ${b1} = ${K} ${ss}.`,`${cap(bs)} are bigger than ${ss}, so multiply.`,M(`${fmt(v)} × ${K} = ${ans.toLocaleString('en-US')}`)+` ${ss}`]}}
-  const v=R(2,9)+(half&&k%2===0?0.5:0),sm=v*k;return{word:1,prompt:`How many ${bs} are in ${sm.toLocaleString('en-US')} ${ss}?`,type:'num',post:bs,ans:v,steps:[`1 ${b1} = ${K} ${ss}.`,`${cap(ss)} are smaller than ${bs}, so divide.`,M(`${sm.toLocaleString('en-US')} ÷ ${K} = ${fmt(v)}`)+` ${bs}`]}}},
+  if(Math.random()<.5){const v=R(2,9)+(half?0.5:0),ans=v*k;return{word:1,prompt:`How many ${ss} are in ${fmt(v)} ${bs}?`,type:'num',post:ss,ans,mis:[[v/k,`You divided. ${cap(bs)} are bigger than ${ss}, so you get more ${ss}: multiply.`]],steps:[`1 ${b1} = ${K} ${ss}.`,`${cap(bs)} are bigger than ${ss}, so multiply.`,M(`${fmt(v)} × ${K} = ${ans.toLocaleString('en-US')}`)+` ${ss}`]}}
+  const v=R(2,9)+(half&&k%2===0?0.5:0),sm=v*k;return{word:1,prompt:`How many ${bs} are in ${sm.toLocaleString('en-US')} ${ss}?`,type:'num',post:bs,ans:v,mis:[[sm*k,`You multiplied. ${cap(ss)} are smaller than ${bs}, so you get fewer ${bs}: divide.`]],steps:[`1 ${b1} = ${K} ${ss}.`,`${cap(ss)} are smaller than ${bs}, so divide.`,M(`${sm.toLocaleString('en-US')} ÷ ${K} = ${fmt(v)}`)+` ${bs}`]}}},
 {id:'m8',title:'Area & perimeter',
  learn:`<p><b>Perimeter</b> is the distance around: add all the sides.</p><p><b>Area</b> is the space inside, in square units.</p><span class="ex">rectangle:  A = length × width
 triangle:   A = ½ × base × height</span>`,
  gen(){const u=P(['ft','cm','in','m']),f=R(0,2);
   if(f<2){const l=R(4,15),w=R(2,Math.min(10,l-1));
-   if(f===0)return{prompt:'What is the area of this rectangle?',word:1,visual:rectSVG(l,w,u),type:'num',post:`sq ${u}`,ans:l*w,steps:[`Area of a rectangle = length × width.`,M(`${l} × ${w} = ${l*w}`),`The area is <b>${l*w} square ${u}</b>.`]};
-   return{prompt:'What is the perimeter of this rectangle?',word:1,visual:rectSVG(l,w,u),type:'num',post:u,ans:2*(l+w),steps:[`Perimeter is the distance all the way around. A rectangle has 2 long sides and 2 short sides.`,M(`${l} + ${w} + ${l} + ${w} = ${2*(l+w)}`),`The perimeter is <b>${2*(l+w)} ${u}</b>.`]}}
-  const b=R(2,9)*2,h=R(3,12);return{prompt:'What is the area of this triangle?',word:1,visual:triSVG(b,h,u),type:'num',post:`sq ${u}`,ans:b*h/2,steps:[`Area of a triangle = ½ × base × height. A triangle is half of a rectangle.`,M(`${b} × ${h} = ${b*h}`),`Half of that: ${M(`${b*h} ÷ 2 = ${b*h/2}`)}. The area is <b>${b*h/2} square ${u}</b>.`]}}},
+   if(f===0)return{prompt:'What is the area of this rectangle?',word:1,visual:rectSVG(l,w,u),type:'num',post:`sq ${u}`,ans:l*w,mis:[[2*(l+w),'That’s the perimeter, the distance around. Area is length × width.'],[l+w,'Area means multiply: length × width.']],steps:[`Area of a rectangle = length × width.`,M(`${l} × ${w} = ${l*w}`),`The area is <b>${l*w} square ${u}</b>.`]};
+   return{prompt:'What is the perimeter of this rectangle?',word:1,visual:rectSVG(l,w,u),type:'num',post:u,ans:2*(l+w),mis:[[l*w,'That’s the area. Perimeter is the distance around: add all four sides.'],[l+w,'That’s only two sides. A rectangle has four, so add the other two.']],steps:[`Perimeter is the distance all the way around. A rectangle has 2 long sides and 2 short sides.`,M(`${l} + ${w} + ${l} + ${w} = ${2*(l+w)}`),`The perimeter is <b>${2*(l+w)} ${u}</b>.`]}}
+  const b=R(2,9)*2,h=R(3,12);return{prompt:'What is the area of this triangle?',word:1,visual:triSVG(b,h,u),type:'num',post:`sq ${u}`,ans:b*h/2,mis:[[b*h,'Don’t forget the ½. A triangle is half of a rectangle.'],[b+h,'Area means multiply: ½ × base × height.']],steps:[`Area of a triangle = ½ × base × height. A triangle is half of a rectangle.`,M(`${b} × ${h} = ${b*h}`),`Half of that: ${M(`${b*h} ÷ 2 = ${b*h/2}`)}. The area is <b>${b*h/2} square ${u}</b>.`]}}},
 {id:'m9',title:'Volume of a box',
  learn:`<p>Volume is the space inside. For a box, multiply <b>length × width × height</b>. The answer is in cubic units.</p><span class="ex">5 in × 4 in × 3 in = 60 cubic inches</span>`,
  gen(){const u=P([['in','inches'],['ft','feet'],['cm','centimeters']]),cube=Math.random()<.2,l=R(2,12),w=cube?l:R(2,10),h=cube?l:R(2,10),ans=l*w*h;
   const q=cube?`A cube-shaped box is ${l} ${u[1]} on each side. What is its volume?`:`A box is ${l} ${u[1]} long, ${w} ${u[1]} wide, and ${h} ${u[1]} tall. What is its volume?`;
-  return{prompt:q,word:1,type:'num',post:`cubic ${u[0]}`,ans,steps:[`Volume = length × width × height.`,M(`${l} × ${w} = ${l*w}`)+', then '+M(`${l*w} × ${h} = ${ans}`)+'.',`The volume is <b>${ans} cubic ${u[1]}</b>.`]}}},
+  return{prompt:q,word:1,type:'num',post:`cubic ${u[0]}`,ans,mis:[[l*w,'That’s the area of the bottom. Multiply by the height too.'],[l+w+h,'Volume means multiply all three: length × width × height.']],steps:[`Volume = length × width × height.`,M(`${l} × ${w} = ${l*w}`)+', then '+M(`${l*w} × ${h} = ${ans}`)+'.',`The volume is <b>${ans} cubic ${u[1]}</b>.`]}}},
 {id:'m10',title:'Mean, median & range',
  learn:`<p><b>Mean</b> (average): add them all, then divide by how many.<br><b>Median</b>: the middle number after you put them in order.<br><b>Range</b>: biggest minus smallest.</p><span class="ex">6, 15, 9, 20, 10
 mean   = 60 ÷ 5 = 12
@@ -801,12 +947,13 @@ range  = 20 − 6 = 14</span>`,
   else if(kind==='median'){const m=n/2;ans=n%2?s[(n-1)/2]:(s[m-1]+s[m])/2;steps=[`Put them in order: ${M(s.join(', '))}.`,n%2?`The middle number is <b>${ans}</b>.`:`There are two middle numbers, ${s[m-1]} and ${s[m]}. Find their average: ${M(`(${s[m-1]} + ${s[m]}) ÷ 2 = ${fmt(ans)}`)}.`]}
   else{ans=s[n-1]-s[0];steps=[`Biggest: ${s[n-1]}. Smallest: ${s[0]}.`,`Range = biggest − smallest: ${M(`${s[n-1]} − ${s[0]} = ${ans}`)}.`]}
   const label={mean:'mean (average)',median:'median',range:'range'}[kind];
-  return{prompt:`${ctx}: ${M(xs.join(', '))}. What is the ${label}?`,word:1,say:`${ctx}: ${xs.join(', ')}. What is the ${label}?`,type:'num',ans,steps:[...steps,`Answer: <b>${fmt(ans)}</b>`]}}},
+  const medv=n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2,mis=kind==='mean'?[[medv,'That’s the median, the middle number. The mean is the total ÷ how many.'],[sum,`That’s the total. Divide it by how many numbers there are (${n}).`]]:kind==='median'?[[n%2?xs[(n-1)/2]:(xs[n/2-1]+xs[n/2])/2,'Put the numbers in order first, then find the middle.'],[sum/n,'That’s the mean. The median is the middle number once they’re in order.']]:[[s[n-1],'That’s the biggest number. Range = biggest − smallest.']];
+  return{prompt:`${ctx}: ${M(xs.join(', '))}. What is the ${label}?`,word:1,say:`${ctx}: ${xs.join(', ')}. What is the ${label}?`,type:'num',ans,mis,steps:[...steps,`Answer: <b>${fmt(ans)}</b>`]}}},
 {id:'m11',title:'Coordinate plane',
  learn:`<p>A point is written as ${M('(x, y)')}. Start at the center, (0, 0).</p><p><b>x</b> comes first: go right (+) or left (−). Then <b>y</b>: go up (+) or down (−).</p><span class="ex">(−3, 2) → 3 left, then 2 up</span>`,
  gen(){let x,y;do{x=R(-5,5);y=R(-5,5)}while(!x||!y||Math.abs(x)===Math.abs(y));
   const opts=sh([[x,y],[y,x],[-x,y],[x,-y]]);
-  return{prompt:'What are the coordinates of point P?',word:1,visual:gridSVG([{x,y,l:'P'}]),type:'choice',choices:opts.map(o=>pair(...o)),correct:opts.findIndex(o=>o[0]===x&&o[1]===y),
+  return{prompt:'What are the coordinates of point P?',word:1,visual:gridSVG([{x,y,l:'P'}]),type:'choice',choices:opts.map(o=>pair(...o)),correct:opts.findIndex(o=>o[0]===x&&o[1]===y),why:Object.fromEntries(opts.map((o,i)=>[i,o[0]===y&&o[1]===x?'You swapped them. x (left or right) comes first, then y (up or down).':o[0]!==x?`Check the sign of x. P is ${x>0?'right':'left'} of center, so x is ${x>0?'positive':'negative'}.`:`Check the sign of y. P is ${y>0?'above':'below'} center, so y is ${y>0?'positive':'negative'}.`])),
    steps:[`Start at the center, (0, 0).`,`Go ${x>0?'right':'left'} ${Math.abs(x)} along the x-axis: x = ${neg(x)}.`,`Then go ${y>0?'up':'down'} ${Math.abs(y)}: y = ${neg(y)}.`,`x always comes first: <b>${pair(x,y)}</b>.`]}}},
 {id:'m12',title:'Multi-step word problems',
  learn:`<p>Break the problem into steps. Write down what each step gives you before you start the next one.</p><span class="ex">3 shirts at $14.50, paid with $50
@@ -814,21 +961,54 @@ step 1: 3 × 14.50 = 43.50
 step 2: 50.00 − 43.50 = 6.50 change</span>`,
  gen(){return P([
   ()=>{let n,pc,tot,bill;do{n=R(2,5);pc=R(20,90)*25;tot=n*pc;bill=[20,50,100].find(b=>b*100>tot)}while(!bill);const ch=bill*100-tot,item=P(['shirts','books','phone cases','pizzas']);
-   return{word:1,prompt:`You buy ${n} ${item} for ${money(pc/100)} each and pay with a $${bill} bill. How much change do you get?`,type:'num',unit:'$',ans:ch/100,steps:[`Step 1, total cost: ${M(`${n} × ${(pc/100).toFixed(2)} = ${(tot/100).toFixed(2)}`)}.`,`Step 2, change: ${M(`${bill}.00 − ${(tot/100).toFixed(2)} = ${(ch/100).toFixed(2)}`)}.`,`You get <b>${money(ch/100)}</b> back.`]}},
+   return{word:1,prompt:`You buy ${n} ${item} for ${money(pc/100)} each and pay with a $${bill} bill. How much change do you get?`,type:'num',unit:'$',ans:ch/100,mis:[[tot/100,`That’s the total cost. One more step: subtract it from $${bill}.`]],steps:[`Step 1, total cost: ${M(`${n} × ${(pc/100).toFixed(2)} = ${(tot/100).toFixed(2)}`)}.`,`Step 2, change: ${M(`${bill}.00 − ${(tot/100).toFixed(2)} = ${(ch/100).toFixed(2)}`)}.`,`You get <b>${money(ch/100)}</b> back.`]}},
   ()=>{const h=R(4,8),r=R(10,22),l=R(600,1500),pay=h*r*100,left=pay-l;
-   return{word:1,prompt:`You work ${h} hours at $${r}.00 per hour, then spend ${money(l/100)} on lunch. How much of the day’s pay is left?`,type:'num',unit:'$',ans:left/100,steps:[`Step 1, pay: ${M(`${h} × ${r} = ${h*r}`)}, so ${money(h*r)}.`,`Step 2, subtract lunch: ${M(`${(pay/100).toFixed(2)} − ${(l/100).toFixed(2)} = ${(left/100).toFixed(2)}`)}.`,`You have <b>${money(left/100)}</b> left.`]}},
+   return{word:1,prompt:`You work ${h} hours at $${r}.00 per hour, then spend ${money(l/100)} on lunch. How much of the day’s pay is left?`,type:'num',unit:'$',ans:left/100,mis:[[h*r,'That’s the day’s pay. One more step: subtract the lunch.']],steps:[`Step 1, pay: ${M(`${h} × ${r} = ${h*r}`)}, so ${money(h*r)}.`,`Step 2, subtract lunch: ${M(`${(pay/100).toFixed(2)} − ${(l/100).toFixed(2)} = ${(left/100).toFixed(2)}`)}.`,`You have <b>${money(left/100)}</b> left.`]}},
   ()=>{const a=R(2,4),A=R(9,15),k=R(1,4),C=R(4,8),tot=a*A+k*C;
-   return{word:1,prompt:`Movie tickets cost $${A} for adults and $${C} for kids. How much do ${a} adults and ${k} ${k===1?'kid':'kids'} pay in all?`,type:'num',unit:'$',ans:tot,steps:[`Step 1, adults: ${M(`${a} × ${A} = ${a*A}`)}.`,`Step 2, kids: ${M(`${k} × ${C} = ${k*C}`)}.`,`Step 3, add: ${M(`${a*A} + ${k*C} = ${tot}`)}. They pay <b>${money(tot)}</b>.`]}}
+   return{word:1,prompt:`Movie tickets cost $${A} for adults and $${C} for kids. How much do ${a} adults and ${k} ${k===1?'kid':'kids'} pay in all?`,type:'num',unit:'$',ans:tot,mis:[[a*A,'That’s only the adults. Add the kids’ tickets too.'],[(a+k)*A,'Kids’ tickets cost less. Find the adults and kids separately.']],steps:[`Step 1, adults: ${M(`${a} × ${A} = ${a*A}`)}.`,`Step 2, kids: ${M(`${k} × ${C} = ${k*C}`)}.`,`Step 3, add: ${M(`${a*A} + ${k*C} = ${tot}`)}. They pay <b>${money(tot)}</b>.`]}}
  ])()}}
 ]}
 
 ];
 
+// ---------- mixed review ----------
+const MIX_DEFAULT=['d1','d3','d4','f5','f7','f8','f9','f10','f11','f12','c1','m1'];
+function mixPool(){
+  const skip=new Set(['x1','f2']),w={};
+  for(const[id,st]of Object.entries(ST))if(st.n>0&&!skip.has(id)&&findSkill(id)[1])w[id]=1+(st.n>=3?(1-st.f/st.n)*3:1);
+  for(const id of Object.keys(PG))if(!skip.has(id)&&!w[id]&&findSkill(id)[1])w[id]=1;
+  try{if(HIST[0])for(const m of analyze(HIST[0]).recs){const T=TOPICS[m.t];if(T&&T.go)w[T.go[1]]=(w[T.go[1]]||1)+2}}catch(e){}
+  if(Object.keys(w).length<4)for(const id of MIX_DEFAULT)w[id]=w[id]||1;
+  return w;
+}
+let LASTMIX='';
+TRACKS.push({id:'mix',name:'Mixed Review',tag:'Like the real test',intro:'Problems from different skills, mixed together like the real test. Part of the challenge is choosing the right method.',skills:[
+{id:'x1',title:'Mixed review',
+ learn(){const w=mixPool(),ids=Object.keys(w).sort((a,b)=>w[b]-w[a]);
+  return `<p>Each problem comes from a different skill, like the real test. Before you start, ask yourself: what kind of problem is this, and which method fits?</p><p>Skills you find harder, and topics from your last practice test, come up more often. Hints and steps work the same as always.</p><p><b>In your mix (${ids.length}):</b> ${ids.map(id=>findSkill(id)[1].title).join(', ')}</p>`},
+ gen(){const w=mixPool();let ids=Object.keys(w);if(ids.length>1)ids=ids.filter(i=>i!==LASTMIX);
+  let r=Math.random()*ids.reduce((a,i)=>a+w[i],0),id=ids[0];for(const i of ids){r-=w[i];if(r<=0){id=i;break}}
+  LASTMIX=id;const p=findSkill(id)[1].gen();p.src=id;return p}}
+]});
+
 // ---------- state ----------
 const $=s=>document.querySelector(s);
 let PG={};try{PG=JSON.parse(localStorage.getItem('fdw-progress')||'{}')||{}}catch(e){PG={}}
-const saveP=()=>{try{localStorage.setItem('fdw-progress',JSON.stringify(PG))}catch(e){}};
-let S={track:'dec',skill:'d1',p:null,tries:0,done:false,shade:[],today:0};
+const saveP=()=>{try{localStorage.setItem('fdw-progress',JSON.stringify(PG))}catch(e){}notify()};
+function notify(){try{window.FDW&&window.FDW.onChange&&window.FDW.onChange()}catch(e){}}
+let ST={};try{ST=JSON.parse(localStorage.getItem('fdw-stats')||'{}')||{}}catch(e){ST={}}
+let DAYS={};try{DAYS=JSON.parse(localStorage.getItem('fdw-days')||'{}')||{}}catch(e){DAYS={}}
+const saveSt=()=>{try{localStorage.setItem('fdw-stats',JSON.stringify(ST));localStorage.setItem('fdw-days',JSON.stringify(DAYS))}catch(e){}};
+const dayKey=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function findSkill(id){for(const t of TRACKS)for(const k of t.skills)if(k.id===id)return[t,k];return[null,null]}
+const srcId=()=>(S.p&&S.p.src)||S.skill;
+const stOf=id=>ST[id]=ST[id]||{n:0,c:0,f:0,h:0};
+function touch(){
+  if(S.counted||S.done)return;S.counted=true;
+  stOf(srcId()).n++;const k=dayKey();const d=DAYS[k]=DAYS[k]||{n:0,f:0};d.n++;
+  const keys=Object.keys(DAYS).sort();while(keys.length>90)delete DAYS[keys.shift()];
+}
+let S={track:'dec',skill:'d1',p:null,tries:0,done:false,shade:[],today:0,counted:false,hinted:false,hintk:0};
 try{const l=JSON.parse(localStorage.getItem('fdw-last')||'null');if(l&&TRACKS.some(t=>t.id===l.track&&t.skills.some(s=>s.id===l.skill))){S.track=l.track;S.skill=l.skill}}catch(e){}
 const curTrack=()=>TRACKS.find(t=>t.id===S.track);
 const curSkill=()=>curTrack().skills.find(s=>s.id===S.skill);
@@ -850,7 +1030,7 @@ function renderRail(){
   const t=curTrack();
   $('#rail').innerHTML=`<h2>Skills</h2>`+t.skills.map((s,i)=>{const c=(PG[s.id]||0);return `<button class="skill" data-s="${s.id}" aria-current="${s.id===S.skill}"><span class="no">${String(i+1).padStart(2,'0')}</span><span>${s.title}</span><span class="ct">${c?'✓'+c:''}</span></button>`}).join('');
 }
-function renderLearn(){$('#learnbody').innerHTML=curSkill().learn;$('#skilltitle').textContent=curSkill().title}
+function renderLearn(){const L=curSkill().learn;$('#learnbody').innerHTML=typeof L==='function'?L():L;$('#skilltitle').textContent=curSkill().title}
 function remember(){try{localStorage.setItem('fdw-last',JSON.stringify({track:S.track,skill:S.skill}))}catch(e){}}
 
 function answerHTML(p){
@@ -861,20 +1041,32 @@ function answerHTML(p){
   if(p.type==='choice')return `<div class="choices">${p.choices.map((c,i)=>`<button type="button" class="choice${/^They/.test(c)?' txt':''}" data-i="${i}">${c}</button>`).join('')}</div>`;
   if(p.type==='shade')return `<div class="bar tap" style="--n:${p.n}" id="shadebar">${Array.from({length:p.n},(_,i)=>`<button type="button" class="cell" data-c="${i}" aria-label="Piece ${i+1}" aria-pressed="false"></button>`).join('')}</div><p class="hint-s">Shaded: <b id="shcount">0</b> of ${p.n} pieces</p>`;
 }
-function newProblem(){S.p=curSkill().gen();S.tries=0;S.done=false;S.shade=new Array(S.p.n||0).fill(false);renderProblem()}
+function newProblem(){S.p=curSkill().gen();S.tries=0;S.done=false;S.counted=false;S.hinted=false;S.hintk=0;S.shade=new Array(S.p.n||0).fill(false);renderProblem()}
 function renderProblem(){
   const p=S.p;
   const pr=$('#prompt');pr.innerHTML=p.prompt;pr.className='prompt'+(p.word?' word':'');
   $('#visual').innerHTML=p.visual||'';$('#visual').hidden=!p.visual;
   $('#answer').innerHTML=answerHTML(p);
   $('#steplist').innerHTML=p.steps.map(s=>`<li>${s}</li>`).join('');
-  $('#steps').hidden=true;$('#showsteps').textContent='Show steps';
+  applyHints();
   setFb('','');
   const ck=$('#check');ck.textContent='Check';ck.classList.remove('go');ck.hidden=p.type==='choice';
   const first=$('#answer input');if(first&&matchMedia('(hover:hover)').matches)first.focus();
 }
 function setFb(msg,cls){const f=$('#feedback');f.innerHTML=msg;f.className='feedback'+(cls?' '+cls:'')}
-function showSteps(open=true){$('#steps').hidden=!open;$('#showsteps').textContent=open?'Hide steps':'Show steps'}
+function applyHints(){
+  const lis=[...document.querySelectorAll('#steplist li')],n=lis.length,b=$('#showsteps');
+  lis.forEach((li,i)=>li.hidden=i>=S.hintk);$('#steps').hidden=S.hintk===0;
+  if(S.hintk>=n){b.textContent='All steps shown';b.disabled=true}
+  else{b.disabled=false;b.textContent=S.hintk===0?'Hint':`Next hint (${S.hintk+1} of ${n})`}
+}
+function hint(){
+  if(!S.done){touch();if(!S.hinted){S.hinted=true;stOf(srcId()).h++}saveSt();notify()}
+  S.hintk++;applyHints();
+  const lis=document.querySelectorAll('#steplist li');const li=lis[Math.min(S.hintk,lis.length)-1];if(li&&li.scrollIntoView&&innerWidth<820)li.scrollIntoView({block:'nearest'});
+}
+function showAllSteps(){S.hintk=S.p.steps.length;applyHints()}
+const mixNote=()=>{if(!S.p||!S.p.src)return'';const[t,k]=findSkill(S.p.src);return k?` <span class="srcskill">Skill: <b>${k.title}</b> (${t.name})</span>`:''};
 
 function parseNum(s){s=(s||'').replace(/[$,%\s]/g,'');if(s==='')return NaN;if(/^-?\d*\.?\d+\/\d*\.?\d+$/.test(s)){const[a,b]=s.split('/');return Number(a)/Number(b)}return Number(s)}
 const intOr=(v,dflt)=>{v=(v||'').trim();if(v==='')return dflt;return /^\d+$/.test(v)?parseInt(v,10):NaN};
@@ -886,11 +1078,13 @@ function evaluate(choiceIdx){
     if(isNaN(v))return setFb('Type a number first.','no');
     ok=Math.abs(v-p.ans)<1e-6;
     if(!ok&&v!==0&&p.ans!==0){const r=v/p.ans;if([10,100,1000,.1,.01,.001].some(k=>Math.abs(r-k)<1e-6))bad='Close. The digits are right, but the decimal point is in the wrong place.'}
+    if(!ok&&p.mis){const m=p.mis.find(([val])=>isFinite(val)&&Math.abs(val-p.ans)>1e-9&&Math.abs(v-val)<=Math.max(1e-6,Math.abs(val)*0.004));if(m)bad=m[1]}
   }else if(p.type==='frac'){
     const n=intOr($('#in-n').value,NaN),d=intOr($('#in-d').value,1);
     if(isNaN(n))return setFb('Fill in the top number with a whole number.','no');
     if(isNaN(d)||d===0)return setFb('The bottom number must be a whole number bigger than 0.','no');
     ok=n*p.fd===p.fn*d;
+    if(!ok&&p.mis){const m=p.mis.find(([[a,b]])=>a>0&&b>0&&n*b===a*d&&a*p.fd!==p.fn*b);if(m)bad=m[1]}
     if(ok&&p.simplest&&gcd(n,d)!==1){ok=false;bad='That is the same amount, but it can be simplified more.'}
     else if(ok){const[x,y]=simp(n,d);if(x!==n)msg=` It can also be simplified to ${y===1?x:F(x,y)}.`}
   }else if(p.type==='mixed'){
@@ -903,19 +1097,24 @@ function evaluate(choiceIdx){
     ok=choiceIdx===p.correct;
     const b=document.querySelector(`.choice[data-i="${choiceIdx}"]`);
     b.classList.add(ok?'right':'wrong');if(!ok)b.disabled=true;
+    if(!ok&&p.why&&p.why[choiceIdx])bad=p.why[choiceIdx];
   }else if(p.type==='shade'){
     const c=S.shade.filter(Boolean).length;ok=c===p.k;
     if(!ok)bad=c<p.k?`You shaded ${c}. That's not enough yet.`:`You shaded ${c}. That's too many.`;
   }
+  touch();
   if(ok){
-    S.done=true;S.today++;$('#tally').textContent=S.today;PG[p===S.p?S.skill:S.skill]=(PG[S.skill]||0)+1;saveP();renderRail();
-    setFb(P(['Correct.','That’s it.','Right.','Nice work.'])+msg,'ok');
+    const sid=srcId(),st=stOf(sid);st.c++;
+    if(S.tries===0&&!S.hinted){st.f++;const d=DAYS[dayKey()];if(d)d.f++}
+    saveSt();
+    S.done=true;S.today++;$('#tally').textContent=S.today;PG[sid]=(PG[sid]||0)+1;saveP();renderRail();
+    setFb(P(['Correct.','That’s it.','Right.','Nice work.'])+msg+mixNote(),'ok');
     document.querySelectorAll('#answer input,#answer button').forEach(e=>e.disabled=true);
     const ck=$('#check');ck.hidden=false;ck.textContent='Next problem →';ck.classList.add('go');ck.focus();
   }else{
-    S.tries++;
-    if(S.tries>=2){setFb((bad||'Not quite.')+' Here are the steps.','no');showSteps(true)}
-    else setFb((bad||'Not quite.')+' Try again, or tap Show steps.','no');
+    S.tries++;saveSt();notify();
+    if(S.tries>=2){setFb((bad||'Not quite.')+' Here are the steps.'+mixNote(),'no');showAllSteps()}
+    else setFb((bad||'Not quite.')+' Try again, or tap Hint.','no');
   }
 }
 
@@ -930,7 +1129,7 @@ $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(
 $('#rail').addEventListener('click',e=>{const b=e.target.closest('.skill');if(!b)return;S.skill=b.dataset.s;remember();renderRail();renderLearn();newProblem();if(innerWidth<=820)$('#learn').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
 $('#check').addEventListener('click',()=>{if(S.done)newProblem();else evaluate()});
 $('#newp').addEventListener('click',newProblem);
-$('#showsteps').addEventListener('click',()=>showSteps($('#steps').hidden));
+$('#showsteps').addEventListener('click',hint);
 $('#answer').addEventListener('click',e=>{
   if(S.done)return;
   const ch=e.target.closest('.choice');if(ch){evaluate(+ch.dataset.i);return}
@@ -968,11 +1167,12 @@ const TOPICS={
  area:{name:'Area of shapes',book:'Lessons 57–59, pp. 150–155',go:['lvm','m8']},
  coord:{name:'The coordinate plane',book:'Lessons 55, 60, pp. 146, 156',go:['lvm','m11']}
 };
-function dotPlotSVG(){const cnt=[1,3,4,3,2,1],x0=40,dx=50,ay=150;let g=`<line class="ax" x1="20" y1="${ay}" x2="${x0+5*dx+20}" y2="${ay}"/>`;
+function dotPlotSVG(cnt=[1,3,4,3,2,1],label='Books read last month',aria='Dot plot. 0 books: 1 dot. 1 book: 3 dots. 2 books: 4 dots. 3 books: 3 dots. 4 books: 2 dots. 5 books: 1 dot.'){const x0=40,dx=50,ay=150;let g=`<line class="ax" x1="20" y1="${ay}" x2="${x0+5*dx+20}" y2="${ay}"/>`;
  cnt.forEach((n,i)=>{const x=x0+i*dx;g+=`<line class="ln" x1="${x}" y1="${ay}" x2="${x}" y2="${ay+6}"/><text x="${x}" y="${ay+24}" text-anchor="middle" font-size="16">${i}</text>`;for(let k=0;k<n;k++)g+=`<circle class="dot" cx="${x}" cy="${ay-16-k*22}" r="8"/>`});
- return `<svg class="svgx" style="width:330px" viewBox="0 0 330 200" role="img" aria-label="Dot plot. 0 books: 1 dot. 1 book: 3 dots. 2 books: 4 dots. 3 books: 3 dots. 4 books: 2 dots. 5 books: 1 dot."><text x="165" y="196" text-anchor="middle" font-size="14">Books read last month</text>${g}</svg>`}
+ return `<svg class="svgx" style="width:330px" viewBox="0 0 330 200" role="img" aria-label="${aria}"><text x="165" y="196" text-anchor="middle" font-size="14">${label}</text>${g}</svg>`}
 function roomSVG(){return `<svg class="svgx" style="width:320px" viewBox="0 0 300 236" role="img" aria-label="L-shaped room. Bottom part is 10 feet by 4 feet. Top-left part is 4 feet wide and 3 feet tall."><polygon class="shp" points="40,200 240,200 240,120 120,120 120,60 40,60"/><line class="ln" x1="40" y1="120" x2="120" y2="120" stroke-dasharray="5 4"/><text x="140" y="224" text-anchor="middle" font-size="16">10 ft</text><text x="248" y="166" font-size="16">4 ft</text><text x="80" y="50" text-anchor="middle" font-size="16">4 ft</text><text x="32" y="96" text-anchor="end" font-size="16">3 ft</text></svg>`}
-const TEST=[
+function houseSVG(){return `<svg class="svgx" style="width:320px" viewBox="0 0 300 290" role="img" aria-label="A shape made of a rectangle 10 feet wide and 6 feet tall, with a triangle on top. The triangle has a base of 10 feet and a height of 4 feet."><polygon class="shp" points="40,250 240,250 240,130 140,50 40,130"/><line class="ln" x1="40" y1="130" x2="240" y2="130" stroke-dasharray="5 4"/><line class="ln" x1="140" y1="50" x2="140" y2="130" stroke-dasharray="5 4"/><text x="140" y="274" text-anchor="middle" font-size="16">10 ft</text><text x="248" y="196" font-size="16">6 ft</text><text x="148" y="100" font-size="16">4 ft</text></svg>`}
+const TEST_A=[
 {u:1,t:'place',q:'In the number 7,482,105, what is the value of the digit 4?',c:['4,000','40,000','400,000','4,000,000'],a:2,why:'The 4 is in the hundred-thousands place, so its value is 400,000.'},
 {u:1,t:'wdiv',q:'A warehouse packs 1,152 cans into boxes of 24 cans each. How many boxes does it fill?',c:['46','48','52','480'],a:1,why:'1,152 ÷ 24 = 48. Check: 48 × 24 = 1,152.'},
 {u:2,t:'fdconv',q:`Which decimal is equal to ${F(3,5)}?`,c:['0.35','0.53','0.6','3.5'],a:2,why:'3 ÷ 5 = 0.6. Or: 3/5 = 6/10 = 0.6.'},
@@ -999,6 +1199,35 @@ const TEST=[
 {u:7,t:'coord',q:'Which point is at (−3, 2)?',vis:()=>gridSVG([{x:3,y:2,l:'A'},{x:-3,y:2,l:'B'},{x:2,y:-3,l:'C'},{x:-3,y:-2,l:'D'}]),c:['A','B','C','D'],a:1,why:'Start at (0, 0). Go 3 left (x = −3), then 2 up (y = 2). That is point B.'},
 {u:7,t:'area',calc:1,q:'This room is made of two rectangles. What is the area of the floor?',vis:roomSVG,c:['21 sq ft','52 sq ft','70 sq ft','120 sq ft'],a:1,why:'Bottom part: 10 × 4 = 40. Top part: 4 × 3 = 12. Total: 40 + 12 = 52 square feet.'}
 ];
+const TEST_B=[
+{u:1,t:'place',q:'In the number 3,926,457, what is the value of the digit 9?',c:['9,000','90,000','900,000','9,000,000'],a:2,why:'The 9 is in the hundred-thousands place, so its value is 900,000.'},
+{u:1,t:'wdiv',q:'A school orders 1,368 pencils in packs of 36. How many packs is that?',c:['36','38','42','380'],a:1,why:'1,368 ÷ 36 = 38. Check: 38 × 36 = 1,368.'},
+{u:2,t:'fdconv',q:`Which decimal is equal to ${F(7,20)}?`,c:['0.72','0.7','3.5','0.35'],a:3,why:'7 ÷ 20 = 0.35. Or: 7/20 = 35/100 = 0.35.'},
+{u:2,t:'fmul',q:`${F(3,4)} × ${F(2,9)} = ?`,c:[F(1,6),F(5,13),F(6,13),F(1,3)],a:0,why:'Top × top = 6. Bottom × bottom = 36. 6/36 simplifies to 1/6.'},
+{u:2,t:'fdiv',q:`3 ÷ ${F(1,4)} = ?`,c:[F(3,4),'7',F(4,3),'12'],a:3,why:'Keep, change, flip: 3 × 4/1 = 12. There are 12 quarters in 3 wholes.'},
+{u:2,t:'fdiv',q:`${F(2,3)} ÷ 2 = ?`,c:['3',F(1,3),F(4,3),F(1,6)],a:1,why:'2/3 × 1/2 = 2/6 = 1/3. Splitting two-thirds into 2 equal parts gives one-third each.'},
+{u:2,t:'ddiv',q:'8.4 ÷ 0.12 = ?',c:['0.7','7','70','700'],a:2,why:'Move both decimal points two places right: 840 ÷ 12 = 70.'},
+{u:2,t:'fmixed',q:`1${F(1,2)} × 2${F(2,3)} = ?`,c:[`2${F(1,3)}`,'4',`3${F(1,6)}`,`2${F(2,3)}`],a:1,why:'Change to fractions first: 3/2 × 8/3 = 24/6 = 4.'},
+{u:2,t:'rate',calc:1,q:'A 5-pound bag of rice costs $6.25. What is the price per pound?',c:['$1.25','$1.20','$31.25','$0.80'],a:0,why:'Price per pound = $6.25 ÷ 5 = $1.25.'},
+{u:3,t:'expr',q:'Which expression means “3 more than the quotient of n and 2”?',c:['3 + 2n','n ÷ 2 + 3','(n + 3) ÷ 2','2 ÷ n + 3'],a:1,why:'The quotient of n and 2 is n ÷ 2. Three more than that is n ÷ 2 + 3.'},
+{u:3,t:'evalx',calc:1,q:'What is the value of 2y<sup>2</sup> when y = 5?',c:['20','25','100','50'],a:3,why:'Exponent first: 5² = 25. Then 2 × 25 = 50. (100 comes from squaring 2 × 5, which is the wrong order.)'},
+{u:3,t:'eq',q:'Solve for x: x ÷ 6 = 4.5',c:['0.75','10.5','27','1.5'],a:2,why:'Multiply both sides by 6: x = 4.5 × 6 = 27.'},
+{u:3,t:'expr',q:'A van can carry no more than 12 people. Which inequality shows the number of people, p?',c:['p < 12','p > 12','p ≥ 12','p ≤ 12'],a:3,why:'“No more than 12” means 12 or fewer: p ≤ 12.'},
+{u:3,t:'expr',q:'Which expression is equal to 5(2x − 3)?',c:['10x − 3','2x − 15','10x − 15','7x − 8'],a:2,why:'Multiply 5 by each part inside the parentheses: 5 × 2x − 5 × 3 = 10x − 15.'},
+{u:4,t:'order',q:'20 + 12 ÷ 4 × 3 = ?',c:['29','24','21','8'],a:0,why:'Divide and multiply left to right first: 12 ÷ 4 = 3, then 3 × 3 = 9. Then 20 + 9 = 29.'},
+{u:4,t:'gcf',calc:1,q:'What is the least common multiple (LCM) of 6 and 8?',c:['2','48','24','14'],a:2,why:'24 is the smallest number both 6 and 8 go into. (48 is a common multiple, but not the least. 2 is the GCF.)'},
+{u:4,t:'multi',calc:1,q:'Dana buys 4 notebooks for $2.75 each and one pen for $1.50. How much does she spend in all?',c:['$4.25','$11.00','$12.50','$17.00'],a:2,why:'4 × $2.75 = $11.00. Then $11.00 + $1.50 = $12.50.'},
+{u:5,t:'conv',calc:1,q:'A recipe needs 3 quarts of water. How many cups is that?',c:['6 cups','8 cups','16 cups','12 cups'],a:3,why:'1 quart = 2 pints = 4 cups. 3 × 4 = 12 cups.'},
+{u:5,t:'conv',calc:1,q:'A walking trail is 4,500 meters long. How many kilometers is that?',c:['0.45 km','4.5 km','45 km','450 km'],a:1,why:'1 kilometer = 1,000 meters. 4,500 ÷ 1,000 = 4.5 km.'},
+{u:5,t:'vol',calc:1,q:'A fish tank is 20 inches long, 10 inches wide, and 12 inches tall. What is its volume?',c:['42 cubic inches','240 cubic inches','1,200 cubic inches','2,400 cubic inches'],a:3,why:'Volume = length × width × height = 20 × 10 × 12 = 2,400 cubic inches.'},
+{u:6,t:'stats',calc:1,q:'Six test scores are 72, 85, 90, 68, 85, 80. What is the median?',c:['82.5','80','85','80.5'],a:0,why:'In order: 68, 72, 80, 85, 85, 90. The two middle numbers are 80 and 85, and their average is 82.5. (80 is the mean and 85 is the mode.)'},
+{u:6,t:'stats',q:'The dot plot shows how many pets each person in a group has. Each dot is one person. How many people have fewer than 2 pets?',vis:()=>dotPlotSVG([3,4,2,2,1,0],'Number of pets','Dot plot. 0 pets: 3 dots. 1 pet: 4 dots. 2 pets: 2 dots. 3 pets: 2 dots. 4 pets: 1 dot. 5 pets: 0 dots.'),c:['4','7','9','12'],a:1,why:'“Fewer than 2” means 0 or 1 pets: 3 + 4 = 7 people.'},
+{u:7,t:'area',calc:1,q:'A rug is 7.5 feet long and 4 feet wide. What is its area?',c:['30 sq ft','23 sq ft','11.5 sq ft','28 sq ft'],a:0,why:'Area = length × width = 7.5 × 4 = 30 square feet. (23 is the perimeter.)'},
+{u:7,t:'coord',q:'Which point is at (2, −4)?',vis:()=>gridSVG([{x:-4,y:2,l:'A'},{x:2,y:4,l:'B'},{x:2,y:-4,l:'C'},{x:-2,y:-4,l:'D'}]),c:['A','B','C','D'],a:2,why:'Start at (0, 0). Go 2 right (x = 2), then 4 down (y = −4). That is point C.'},
+{u:7,t:'area',calc:1,q:'This wall is a rectangle with a triangle on top. What is its total area?',vis:houseSVG,c:['80 sq ft','100 sq ft','60 sq ft','70 sq ft'],a:0,why:'Rectangle: 10 × 6 = 60. Triangle: ½ × 10 × 4 = 20. Total: 60 + 20 = 80 square feet. (100 forgets the ½.)'}
+];
+const FORMS={A:TEST_A,B:TEST_B},TEST=TEST_A;
+const nextForm=()=>HIST.length&&(HIST[0].form||'A')==='A'?'B':'A';
 const NQ=TEST.length,LET='ABCD',TKEY='fdw-test-progress',HKEY='fdw-test-history';
 const ld=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
 const sv=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
@@ -1012,6 +1241,7 @@ const band=p=>p>=80?['s','Looks ready for Level M','You answered most questions 
 const ustat=(c,n)=>{const p=c/n*100;return p>=75?['s','Strong']:p>=50?['d','Developing']:['f','Focus here']};
 
 function analyze(r){
+ const TEST=FORMS[r.form||'A'];
  const ok=r.ans.map((a,i)=>a===TEST[i].a),score=ok.filter(Boolean).length,pct=Math.round(score/NQ*100);
  const units=UNITS.map(([u,name])=>{const idx=TEST.map((t,i)=>t.u===u?i:-1).filter(i=>i>=0);return{u,name,c:idx.filter(i=>ok[i]).length,n:idx.length}});
  const miss={};TEST.forEach((t,i)=>{if(!ok[i])(miss[t.t]=miss[t.t]||{t:t.t,u:t.u,qs:[]}).qs.push(i+1)});
@@ -1025,20 +1255,22 @@ function startTick(){stopTick();TICK=setInterval(()=>{if(VIEW!=='test'||!TP||doc
 function introHTML(){
  const rows=UNITS.map(([u,n])=>`<tr><td>${u}</td><td style="text-align:left">${n}</td><td>${TEST.filter(t=>t.u===u).length}</td></tr>`).join('');
  const answered=TP?TP.ans.filter(a=>a!=null).length:0;
- const act=TP?`<button class="btn primary" data-act="resume">Resume test (${answered} of ${NQ} answered)</button><button class="btn" data-act="restart">${ARMED?'Tap again to erase and start over':'Start over'}</button>`:`<button class="btn primary" data-act="start">Start the test</button>`;
- const hist=HIST.length?`<div class="card"><h3 class="h3">Past results</h3><div class="tw"><table class="btable hist"><tr><th>Date</th><th>Score</th><th>Result</th><th></th></tr>${HIST.map((h,i)=>{const a=analyze(h),b=band(a.pct);return `<tr><td>${day(h.date)}</td><td>${a.score}/${NQ} (${a.pct}%)</td><td><span class="st ${b[0]}">${b[1]}</span></td><td><button class="btn" style="padding:4px 12px;font-size:14px" data-act="view" data-h="${i}">View</button></td></tr>`}).join('')}</table></div></div>`:'';
+ const act=TP?`<button class="btn primary" data-act="resume">Resume test (${answered} of ${NQ} answered)</button><button class="btn" data-act="restart">${ARMED?'Tap again to erase and start over':'Start over'}</button>`:(()=>{const nf=nextForm(),of=nf==='A'?'B':'A';return `<button class="btn primary" data-act="start" data-form="${nf}">Start Form ${nf}</button><button class="btn" data-act="start" data-form="${of}">Start Form ${of}</button>`})();
+ const hist=HIST.length?`<div class="card"><h3 class="h3">Past results</h3><div class="tw"><table class="btable hist"><tr><th>Date</th><th>Form</th><th>Score</th><th>Result</th><th></th></tr>${HIST.map((h,i)=>{const a=analyze(h),b=band(a.pct);return `<tr><td>${day(h.date)}</td><td>${h.form||'A'}</td><td>${a.score}/${NQ} (${a.pct}%)</td><td><span class="st ${b[0]}">${b[1]}</span></td><td><button class="btn" style="padding:4px 12px;font-size:14px" data-act="view" data-h="${i}">View</button></td></tr>`}).join('')}</table></div></div>`:'';
  return `<div class="card"><div><p class="eyebrow">TABE 13 &amp; 14 · Level M</p><h2 class="th">Math practice test</h2></div>
  <div class="chips"><span>${NQ} questions</span><span>About 25–30 minutes</span><span>All 7 units</span></div>
  <p>This test covers the topics in ${BOOK}. When you finish, you will see your score, which units are strong, which need work, and exactly what to practice next.</p>
+ <p>There are two versions, <b>Form A</b> and <b>Form B</b>, with the same topics and different numbers. Switch forms each time you take it, so the score shows real progress and not remembered answers.${HIST.length?` Your last test was Form ${HIST[0].form||'A'}.`:''}</p>
  <div class="tw"><table class="btable"><tr><th>Unit</th><th style="text-align:left">Topic</th><th>Questions</th></tr>${rows}</table></div>
  <ul><li>Have scratch paper and a pencil ready.</li><li>Questions marked <span class="calc">Calculator OK</span> allow a calculator, like the calculator icon in your book. Do the others by hand.</li><li>If you are not sure, make your best guess. A blank answer counts as wrong.</li><li>You can stop and come back later. Your answers are saved on this device.</li></ul>
  <div class="actions">${act}</div></div>${hist}`;
 }
 function qHTML(){
+ const TEST=FORMS[TP.form||'A'];
  const i=TP.idx,it=TEST[i],ch=TP.ans[i];
  const segs=TEST.map((_,k)=>`<i class="${k===i?'c':TP.ans[k]!=null?'a':''}"></i>`).join('');
  const nav=TEST.map((_,k)=>`<button type="button" class="${k===i?'c':''} ${TP.ans[k]!=null?'a':''}" data-act="goto" data-q="${k}" aria-label="Question ${k+1}${TP.ans[k]!=null?', answered':''}">${k+1}</button>`).join('');
- return `<div class="card" id="qcard"><div class="qtop"><span class="eyebrow">Question ${i+1} of ${NQ} · Unit ${it.u}: ${UNITS[it.u-1][1].replace('&','&amp;')}</span><span class="ttime">Time <span id="ttime">${mmss(TP.elapsed||0)}</span></span></div>
+ return `<div class="card" id="qcard"><div class="qtop"><span class="eyebrow">Form ${TP.form||'A'} · Question ${i+1} of ${NQ} · Unit ${it.u}: ${UNITS[it.u-1][1].replace('&','&amp;')}</span><span class="ttime">Time <span id="ttime">${mmss(TP.elapsed||0)}</span></span></div>
  <div class="segs" aria-hidden="true">${segs}</div>
  <div class="qtext">${it.q}</div>${it.calc?'<span class="calc">Calculator OK</span>':''}
  ${it.vis?`<div class="visual">${it.vis()}</div>`:''}
@@ -1054,23 +1286,24 @@ function submitHTML(){
  <div class="actions"><button class="btn" data-act="goto" data-q="${NQ-1}">← Back to the questions</button><button class="btn primary" data-act="submit">Submit and see results</button></div></div>`;
 }
 function resultHTML(r){
+ const TEST=FORMS[r.form||'A'],F_=r.form||'A',NF=F_==='A'?'B':'A';
  const A=analyze(r),b=band(A.pct);
  const urows=A.units.map(x=>{const s=ustat(x.c,x.n);return `<div class="urow"><span>Unit ${x.u}: ${x.name.replace('&','&amp;')}</span><span class="meter"><i style="width:${x.c/x.n*100}%"></i></span><span class="n">${x.c}/${x.n}</span><span class="st ${s[0]}">${s[1]}</span></div>`}).join('');
  const strong=A.units.filter(x=>x.c===x.n).map(x=>x.name);
  const recs=A.recs.length?A.recs.map((m,k)=>{const T=TOPICS[m.t];return `<div class="rec"><div><b>${k===0?'Start here: ':''}${T.name.replace('&','&amp;')}</b><span class="meta">Missed question${m.qs.length>1?'s':''} ${m.qs.join(', ')} · In the book: ${T.book}</span></div>${T.go?`<button class="btn" data-act="practice" data-tr="${T.go[0]}" data-sk="${T.go[1]}">Practice now →</button>`:'<span class="meta">Book practice</span>'}</div>`}).join(''):'<p>Every answer was correct. Keep your skills fresh with the Level M Topics practice.</p>';
  const rev=TEST.map((t,i)=>{const a=r.ans[i],ok=a===t.a;return `<li><span>${t.q}</span><span>${a==null?'<span class="no">Left blank</span>':`Your answer: ${LET[a]}. ${t.c[a]} <span class="${ok?'ok':'no'}">${ok?'✓ Correct':'✗'}</span>`}${ok?'':` · Correct answer: <b>${LET[t.a]}. ${t.c[t.a]}</b>`}</span><span class="why">${t.why}</span></li>`}).join('');
- return `<div class="card"><div><p class="eyebrow">Practice test results · ${day(r.date)}</p><h2 class="th">How you did</h2></div>
+ return `<div class="card"><div><p class="eyebrow">Practice test results · Form ${F_} · ${day(r.date)}</p><h2 class="th">How you did</h2></div>
  <div class="scorebox"><span class="big">${A.score}<small> / ${NQ}</small></span><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span class="band ${b[0]}">${b[1]}</span><span class="tally">${A.pct}% correct${r.elapsed?` · ${mmss(r.elapsed)}`:''}</span></div></div>
  <p>${b[2]}</p>
  <p class="note">This is a practice estimate based on the Level M topics in your book. It is not an official TABE score.</p></div>
  <div class="card"><h3 class="h3">By unit</h3><div class="urows">${urows}</div>${strong.length?`<p>Strengths: <b>${strong.join(', ').replace(/&/g,'&amp;')}</b>. Every question in ${strong.length>1?'these units':'this unit'} was correct.</p>`:''}</div>
  <div class="card"><h3 class="h3">What to practice next</h3><p class="note">Ordered from the weakest unit first. “Practice now” opens matching problems in this app.</p><div class="recs">${recs}</div></div>
  <div class="card"><details class="rev"><summary>Review every question</summary><ol>${rev}</ol></details></div>
- <div class="actions"><button class="btn primary" data-act="copy">Copy results summary</button><button class="btn" data-act="retake">Take the test again</button><button class="btn" data-act="home">Back to test home</button></div><div id="copyout"></div>`;
+ <div class="actions"><button class="btn primary" data-act="copy">Copy results summary</button><button class="btn" data-act="retake" data-form="${NF}">Take Form ${NF} next</button><button class="btn" data-act="home">Back to test home</button></div><div id="copyout"></div>`;
 }
 function summaryText(r){
  const A=analyze(r),b=band(A.pct);
- return [`TABE Level M math practice test, ${day(r.date)}`,`Score: ${A.score} of ${NQ} (${A.pct}%), ${b[1]}`,r.elapsed?`Time: ${mmss(r.elapsed)}`:'', '', 'By unit:',...A.units.map(x=>`  Unit ${x.u} ${x.name}: ${x.c}/${x.n} (${ustat(x.c,x.n)[1]})`),'', 'Practice next:',...(A.recs.length?A.recs.map(m=>`  ${TOPICS[m.t].name} (missed Q${m.qs.join(', Q')}; book ${TOPICS[m.t].book})`):['  Nothing missed'])].filter((l,i,a)=>l!==''||a[i-1]!=='').join('\n');
+ return [`TABE Level M math practice test, Form ${r.form||'A'}, ${day(r.date)}`,`Score: ${A.score} of ${NQ} (${A.pct}%), ${b[1]}`,r.elapsed?`Time: ${mmss(r.elapsed)}`:'', '', 'By unit:',...A.units.map(x=>`  Unit ${x.u} ${x.name}: ${x.c}/${x.n} (${ustat(x.c,x.n)[1]})`),'', 'Practice next:',...(A.recs.length?A.recs.map(m=>`  ${TOPICS[m.t].name} (missed Q${m.qs.join(', Q')}; book ${TOPICS[m.t].book})`):['  Nothing missed'])].filter((l,i,a)=>l!==''||a[i-1]!=='').join('\n');
 }
 function renderTest(){
  const root=$('#tv');
@@ -1082,16 +1315,16 @@ function goSkill(tr,sk){VIEW='practice';S.track=tr;S.skill=sk;remember();renderT
 $('#tv').addEventListener('click',e=>{
  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const act=b.dataset.act;
  if(act!=='restart')ARMED=false;
- if(act==='start'||act==='retake'){TP={ans:Array(NQ).fill(null),idx:0,elapsed:0};sv(TKEY,TP);TMODE='q'}
+ if(act==='start'||act==='retake'){TP={ans:Array(NQ).fill(null),idx:0,elapsed:0,form:b.dataset.form||'A'};sv(TKEY,TP);TMODE='q'}
  else if(act==='resume'){TMODE='q'}
- else if(act==='restart'){if(!ARMED){ARMED=true;renderTest();return}ARMED=false;TP={ans:Array(NQ).fill(null),idx:0,elapsed:0};sv(TKEY,TP);TMODE='q'}
+ else if(act==='restart'){if(!ARMED){ARMED=true;renderTest();return}ARMED=false;TP={ans:Array(NQ).fill(null),idx:0,elapsed:0,form:(TP&&TP.form)||'A'};sv(TKEY,TP);TMODE='q'}
  else if(act==='pick'){TP.ans[TP.idx]=+b.dataset.k;sv(TKEY,TP);
    document.querySelectorAll('#tv .opt').forEach(o=>o.setAttribute('aria-checked',o===b));
    const sg=document.querySelectorAll('#tv .segs i')[TP.idx];if(sg)sg.className='c';return}
  else if(act==='prev'){TP.idx=Math.max(0,TP.idx-1);sv(TKEY,TP)}
  else if(act==='next'){if(TP.idx===NQ-1)TMODE='submit';else TP.idx++;sv(TKEY,TP)}
  else if(act==='goto'){TP.idx=+b.dataset.q;TMODE='q';sv(TKEY,TP)}
- else if(act==='submit'){RES={date:new Date().toISOString(),ans:TP.ans.slice(),elapsed:TP.elapsed||0};HIST.unshift(RES);HIST=HIST.slice(0,10);sv(HKEY,HIST);TP=null;sv(TKEY,null);TMODE='result'}
+ else if(act==='submit'){RES={date:new Date().toISOString(),ans:TP.ans.slice(),elapsed:TP.elapsed||0,form:TP.form||'A'};HIST.unshift(RES);HIST=HIST.slice(0,10);sv(HKEY,HIST);notify();TP=null;sv(TKEY,null);TMODE='result'}
  else if(act==='view'){RES=HIST[+b.dataset.h];TMODE='result'}
  else if(act==='home'){TMODE='intro'}
  else if(act==='practice'){goSkill(b.dataset.tr,b.dataset.sk);return}
@@ -1101,6 +1334,109 @@ $('#tv').addEventListener('click',e=>{
    return}
  renderTest();
 });
+
+// ---------- sync hooks (used by the sign-in module on the GitHub version) ----------
+window.FDW={
+ get(){return{skills:{...PG},tests:HIST.slice(),stats:JSON.parse(JSON.stringify(ST)),days:JSON.parse(JSON.stringify(DAYS))}},
+ set(d){PG=(d&&d.skills)||{};try{localStorage.setItem('fdw-progress',JSON.stringify(PG))}catch(e){}
+  HIST=Array.isArray(d&&d.tests)?d.tests.slice(0,10):[];sv(HKEY,HIST);
+  ST=(d&&d.stats)||{};DAYS=(d&&d.days)||{};saveSt();
+  renderRail();if(VIEW==='test'&&TMODE==='intro')renderTest()},
+ skillName(id){for(const t of TRACKS)for(const k of t.skills)if(k.id===id)return[t.name,k.title];return[null,id]},
+ testSummary(r){const A=analyze(r);return{score:A.score,n:NQ,pct:A.pct,band:band(A.pct)[1],bandKey:band(A.pct)[0],form:r.form||'A',units:A.units,recs:A.recs,weak:A.recs.slice(0,3).map(m=>TOPICS[m.t].name)}},
+ onChange:null
+};
+
+// ---------- tutor dashboard views (data comes from the sign-in module) ----------
+(function(){
+const DAYMS=86400000;
+const escH=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const BOOKX={f1:'Lessons 9–10, pp. 24–27',f2:'Lessons 9–10, pp. 24–27',f4:'Lesson 10, p. 26',f5:'Lesson 10, p. 26',f6:'Lesson 10, p. 26',f10:'Lesson 12, p. 30',f12:'Lesson 11, p. 28',d1:'Lesson 20, p. 46',d2:'Lesson 21, p. 48',d4:'Lesson 20, p. 46',d5:'Lesson 22, p. 50'};
+function bookFor(id){if(BOOKX[id])return BOOKX[id];for(const T of Object.values(TOPICS))if(T.go&&T.go[1]===id)return T.book;return''}
+const keyToDate=k=>{const[y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d)};
+const startOf=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
+const shortDate=d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+function agoText(d){if(!d)return'Never';const n=Math.round((startOf(new Date())-startOf(d))/DAYMS);return n<=0?'Today':n===1?'Yesterday':n<14?`${n} days ago`:shortDate(d)}
+const pct=(a,b)=>b?Math.round(a/b*100):0;
+
+function info(s){
+  const days=s.days||{},stats=s.stats||{};
+  const tests=(Array.isArray(s.tests)?s.tests:[]).filter(t=>t&&t.date).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  const pkeys=Object.keys(days).filter(k=>days[k]&&days[k].n>0).sort();
+  const lastPrac=pkeys.length?keyToDate(pkeys[pkeys.length-1]):null,lastTest=tests[0]?new Date(tests[0].date):null;
+  const last=[lastPrac,lastTest].filter(Boolean).sort((a,b)=>b-a)[0]||null;
+  const since=last?Math.max(0,Math.round((startOf(new Date())-startOf(last))/DAYMS)):null;
+  const span=[];for(let i=13;i>=0;i--){const d=new Date(Date.now()-i*DAYMS),k=dayKey(d),v=days[k]||{n:0,f:0};span.push({d,n:v.n||0,f:v.f||0})}
+  const wk=span.slice(-7),weekN=wk.reduce((a,x)=>a+x.n,0),weekF=wk.reduce((a,x)=>a+x.f,0),weekDays=wk.filter(x=>x.n>0).length;
+  const skills=Object.entries(stats).map(([id,v])=>{const[t,k]=findSkill(id);return k&&v&&v.n>0?{id,title:k.title,track:t.name,n:v.n||0,c:v.c||0,f:v.f||0,h:v.h||0,rate:(v.f||0)/(v.n||1)}:null}).filter(Boolean);
+  const stuck=skills.filter(k=>k.n>=4&&k.rate<.5).sort((a,b)=>a.rate-b.rate||b.n-a.n);
+  const strong=skills.filter(k=>k.n>=5&&k.rate>=.8).sort((a,b)=>b.n-a.n);
+  const sum=t=>window.FDW.testSummary(t);
+  const latest=tests[0]?sum(tests[0]):null,prev=tests[1]?sum(tests[1]):null,first=tests.length>1?sum(tests[tests.length-1]):null;
+  const trend=prev?latest.score-prev.score:null,sinceFirst=first?latest.score-first.score:null;
+  const reasons=[];
+  if(since!==null&&since>=7)reasons.push(`${since} days since last practice`);
+  if(stuck.length)reasons.push(`Stuck on ${stuck[0].title}`);
+  if(trend!==null&&trend<=-2)reasons.push(`Test score dropped by ${-trend}`);
+  const status=!pkeys.length&&!tests.length?'new':reasons.length?'attn':'ok';
+  const plan=[],used=new Set();
+  for(const k of stuck.slice(0,2)){plan.push({title:k.title,why:`${k.f} of ${k.n} right on the first try${k.h?`, hints used on ${k.h}`:''}`,book:bookFor(k.id),go:k.id});used.add(k.id)}
+  if(latest)for(const m of latest.recs){if(plan.length>=3)break;const T=TOPICS[m.t];if(T.go&&used.has(T.go[1]))continue;plan.push({title:T.name,why:`Missed on the practice test (question${m.qs.length>1?'s':''} ${m.qs.join(', ')})`,book:T.book});if(T.go)used.add(T.go[1])}
+  const nf=tests[0]&&(tests[0].form||'A')==='A'?'B':'A';
+  if(!tests.length)plan.push({title:'Take the practice test (Form A)',why:'Gives a starting point and shows where to focus'});
+  else if(lastTest&&(Date.now()-lastTest)/DAYMS>=14&&plan.length<3)plan.push({title:`Retake the practice test (Form ${nf})`,why:`Last test was ${agoText(lastTest).toLowerCase()}`});
+  if(!plan.length)plan.push({title:'Mixed review',why:'No weak spots right now. Mixed practice keeps every skill fresh.'});
+  return{...s,tests,last,since,span,weekN,weekF,weekDays,skills,stuck,strong,latest,prev,trend,sinceFirst,firstDate:tests.length?new Date(tests[tests.length-1].date):null,reasons,status,plan:plan.slice(0,3)};
+}
+const trendChip=x=>x===null?'':x>0?`<span class="tr up">▲ ${x}</span>`:x<0?`<span class="tr down">▼ ${-x}</span>`:'<span class="tr">no change</span>';
+
+function roster(list){
+  const S=list.map(info),G={attn:[],ok:[],new:[]};S.forEach(x=>G[x.status].push(x));
+  G.attn.sort((a,b)=>(b.since||0)-(a.since||0));G.ok.sort((a,b)=>(b.last||0)-(a.last||0));
+  const row=x=>`<button type="button" class="rrow ${x.status}" data-sid="${escH(x.id)}">
+    <span class="rn"><b>${escH(x.name||'(no name)')}</b><small>${escH(x.login||'')}</small></span>
+    <span class="rc hide-s"><span>${agoText(x.last)}</span><small>last active</small></span>
+    <span class="rc hide-s"><span>${x.weekN} ${x.weekN===1?'problem':'problems'}</span><small>${x.weekN?`this week · ${pct(x.weekF,x.weekN)}% first try`:'this week'}</small></span>
+    <span class="rc"><span>${x.latest?`<b>${x.latest.score}/${x.latest.n}</b> ${trendChip(x.trend)}`:'—'}</span><small>${x.latest?escH(x.latest.band):'no test yet'}</small></span>
+    <span class="rwhy">${x.status==='attn'?x.reasons.map(escH).join(' · '):x.status==='new'?'Has not practiced or taken the test yet':'Next: '+escH(x.plan[0].title)}</span>
+  </button>`;
+  const grp=(k,title,desc)=>G[k].length?`<section class="rgroup ${k}"><h3>${title} <span>${G[k].length}</span></h3><p class="note">${desc}</p><div class="rlist">${G[k].map(row).join('')}</div></section>`:'';
+  return `<div class="dlghead"><div><h2>Your students</h2><p class="note">${S.length} ${S.length===1?'student':'students'}${G.attn.length?` · <b>${G.attn.length} ${G.attn.length===1?'needs':'need'} attention</b>`:''}</p></div><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
+  ${S.length?grp('attn','Needs attention','Hasn’t practiced in a week, is stuck on a skill, or dropped on the test.')+grp('ok','On track','Practicing and making progress. Tap a name for the full report.')+grp('new','Not started yet','Signed up but hasn’t practiced or taken the practice test.'):'<p>No students have signed in yet. Once a student creates an account and practices, they show up here.</p>'}`;
+}
+
+function spark(tests){
+  const pts=tests.slice().reverse().map(t=>window.FDW.testSummary(t).score);if(pts.length<2)return'';
+  const W=240,H=64,px=i=>12+i*(W-24)/(pts.length-1),py=v=>H-10-(v/25)*(H-20);
+  const d=pts.map((v,i)=>`${i?'L':'M'}${px(i).toFixed(1)} ${py(v).toFixed(1)}`).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="Test scores over time: ${pts.join(', ')} out of 25"><line class="sg" x1="12" x2="${W-12}" y1="${py(20)}" y2="${py(20)}"/><text class="sl" x="12" y="${py(20)-4}">ready line (20)</text><path class="sp" d="${d}"/>${pts.map((v,i)=>`<circle class="sd${i===pts.length-1?' last':''}" cx="${px(i)}" cy="${py(v)}" r="${i===pts.length-1?5:3.5}"/>`).join('')}<text class="sv" x="${px(pts.length-1)}" y="${py(pts[pts.length-1])-9}" text-anchor="end">${pts[pts.length-1]}</text></svg>`;
+}
+function bars(span){
+  const W=300,H=86,bw=W/14,max=Math.max(4,...span.map(x=>x.n));
+  const g=span.map((x,i)=>{const h1=x.n/max*(H-26),h2=x.f/max*(H-26),X=i*bw+3,w=bw-6;return `${x.n?`<rect class="b1" x="${X}" y="${H-18-h1}" width="${w}" height="${h1}" rx="2"/><rect class="b2" x="${X}" y="${H-18-h2}" width="${w}" height="${h2}" rx="2"/>`:`<rect class="b0" x="${X}" y="${H-20}" width="${w}" height="2"/>`}<text class="bl" x="${X+w/2}" y="${H-4}" text-anchor="middle">${'SMTWTFS'[x.d.getDay()]}</text>`}).join('');
+  return `<svg class="bars" viewBox="0 0 ${W} ${H}" role="img" aria-label="Problems per day for the last 14 days: ${span.map(x=>x.n).join(', ')}">${g}</svg><p class="legend"><i class="k2"></i>right on first try <i class="k1"></i>other problems</p>`;
+}
+function report(raw){
+  const x=info(raw),L=x.latest;
+  const unitRows=L?L.units.map(u=>{const r=u.c/u.n;return `<div class="mini"><span>${escH(u.name)}</span><span class="meter"><i style="width:${r*100}%"></i></span><span class="n">${u.c}/${u.n}</span></div>`}).join(''):'';
+  const trendTxt=!L?'':x.sinceFirst!==null?(x.sinceFirst>0?`Up ${x.sinceFirst} since the first test (${shortDate(x.firstDate)})`:x.sinceFirst<0?`Down ${-x.sinceFirst} since the first test (${shortDate(x.firstDate)})`:`Same score as the first test (${shortDate(x.firstDate)})`):'First practice test';
+  const sk=k=>`<li><span class="skn">${escH(k.title)} <small>${escH(k.track)}</small></span><span class="meter ${k.rate<.5?'lo':k.rate>=.8?'hi':''}"><i style="width:${Math.round(k.rate*100)}%"></i></span><span class="n">${k.f}/${k.n}</span></li>`;
+  const weak=x.skills.filter(k=>k.n>=3&&k.rate<.7).sort((a,b)=>a.rate-b.rate).slice(0,5);
+  return `<div class="dlghead"><button type="button" class="linkbtn" data-back>← All students</button><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
+  <div class="rhead"><div><h2>${escH(x.name||'(no name)')}</h2><p class="note">${escH(x.login||'')} · last active ${agoText(x.last).toLowerCase()}</p></div><span class="stchip ${x.status}">${x.status==='attn'?'Needs attention':x.status==='new'?'Not started':'On track'}</span></div>
+  ${x.status==='attn'?`<p class="attnline">${x.reasons.map(escH).join(' · ')}</p>`:''}
+  <div class="rgrid">
+    <section class="rcard"><h4>Readiness for Level M</h4>${L?`<div class="rscore"><span class="big2">${L.score}<small>/${L.n}</small></span><span class="band ${L.bandKey}">${escH(L.band)}</span></div><p class="note">${trendTxt} · Form ${L.form}, ${shortDate(new Date(x.tests[0].date))}</p>${spark(x.tests)}<div class="minis">${unitRows}</div>`:'<p>No practice test yet. Have them take <b>Form A</b> to get a starting point.</p>'}</section>
+    <section class="rcard"><h4>Practice activity</h4><div class="kpis"><div><b>${x.weekN}</b><small>problems this week</small></div><div><b>${x.weekN?pct(x.weekF,x.weekN)+'%':'—'}</b><small>right on first try</small></div><div><b>${x.weekDays}<span>/7</span></b><small>days practiced</small></div></div>${bars(x.span)}</section>
+    <section class="rcard"><h4>Where they’re stuck</h4>${weak.length?`<ul class="sklist">${weak.map(sk).join('')}</ul><p class="note">Right on the first try, without hints, out of problems tried.</p>`:`<p class="note">${x.skills.length?'Nothing stands out yet. Skills show up here after 3 or more problems with under 70% right on the first try.':'No practice yet.'}</p>`}
+      ${x.strong.length?`<h5>Going well</h5><ul class="sklist">${x.strong.slice(0,4).map(sk).join('')}</ul>`:''}</section>
+    <section class="rcard plan"><h4>Plan for next session</h4><ol class="planlist">${x.plan.map(p=>`<li><b>${escH(p.title)}</b><small>${escH(p.why)}</small>${p.book?`<small class="bk">Book: ${escH(p.book)}</small>`:''}</li>`).join('')}</ol></section>
+  </div>
+  ${x.tests.length?`<details class="rmore"><summary>Practice test history (${x.tests.length})</summary><div class="tw"><table class="btable"><tr><th>Date</th><th>Form</th><th>Score</th><th style="text-align:left">Work on</th></tr>${x.tests.map(t=>{const m=window.FDW.testSummary(t);return `<tr><td>${shortDate(new Date(t.date))}</td><td>${m.form}</td><td>${m.score}/${m.n}</td><td style="text-align:left">${m.weak.map(escH).join(', ')||'Nothing missed'}</td></tr>`}).join('')}</table></div></details>`:''}
+  ${x.skills.length?`<details class="rmore"><summary>Every skill practiced (${x.skills.length})</summary><div class="tw"><table class="btable"><tr><th style="text-align:left">Skill</th><th>Problems</th><th>First try</th><th>Hints</th></tr>${x.skills.sort((a,b)=>b.n-a.n).map(k=>`<tr><td style="text-align:left">${escH(k.title)} <small class="note">${escH(k.track)}</small></td><td>${k.n}</td><td>${pct(k.f,k.n)}%</td><td>${k.h}</td></tr>`).join('')}</table></div></details>`:''}`;
+}
+window.FDW.dash={roster,report,info};
+})();
 
 // ---------- times table ----------
 const MT={pat:'random',n:2,size:12,blanks:new Set(),shown:false};
@@ -1166,5 +1502,201 @@ mtNew();
 renderTabs();renderRail();renderLearn();newProblem();
 </script>
 
+<script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,signOut,GoogleAuthProvider,signInWithPopup,sendPasswordResetEmail} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import {getFirestore,doc,getDoc,setDoc,getDocs,collection,serverTimestamp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCeI2d9ij39S0qJSJ4IzMd_5kPy3LdbYgU",
+  authDomain: "beginanewmathpractice.firebaseapp.com",
+  projectId: "beginanewmathpractice",
+  storageBucket: "beginanewmathpractice.firebasestorage.app",
+  messagingSenderId: "500163280186",
+  appId: "1:500163280186:web:d212256070ebf61025e403"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+
+// Students without email pick a username; it is stored as username@UDOM behind the scenes.
+const UDOM='students.beginanewmath.app';
+const USERNAME=/^[a-z0-9._-]{3,30}$/;
+const isUsernameEmail=e=>!!e&&e.endsWith('@'+UDOM);
+const loginLabel=u=>!u?'':isUsernameEmail(u.email)?u.email.split('@')[0]:(u.email||'');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $$=s=>document.querySelector(s);
+const FDW=window.FDW;
+const ICON_USER='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>';
+
+let user=null,profileName='',pendingName='',isTutor=false,saveTimer=null,saveState='',signingOut=false;
+
+const acct=$$('#acct');acct.hidden=false;
+const dlg=document.createElement('dialog');dlg.className='acctdlg';document.body.appendChild(dlg);
+const dash=document.createElement('dialog');dash.className='acctdlg dash';document.body.appendChild(dash);
+for(const d of [dlg,dash])d.addEventListener('click',e=>{if(e.target===d||e.target.closest('[data-close]'))d.close()});
+
+function firstName(){return(profileName||loginLabel(user)).split(' ')[0]}
+function renderAcct(){
+  acct.innerHTML=user
+   ?`<span class="savest" id="savest">${esc(saveState)}</span><button type="button" class="acctbtn in" id="acctbtn">${ICON_USER}${esc(firstName())}</button>`
+   :`<button type="button" class="acctbtn" id="acctbtn">${ICON_USER}Sign in</button>`;
+  $$('#acctbtn').onclick=()=>user?openMenu():openAuth('in');
+}
+function setSave(t){saveState=t;const el=$$('#savest');if(el)el.textContent=t}
+
+// ---------- errors in plain words ----------
+function errText(e){
+  const c=(e&&e.code)||'';
+  if(/invalid-credential|wrong-password|user-not-found|invalid-login/.test(c))return'That email or username and password don’t match. Check both and try again.';
+  if(c.includes('email-already-in-use'))return'An account with that email or username already exists. Sign in instead.';
+  if(c.includes('weak-password'))return'Use at least 6 characters for the password.';
+  if(c.includes('invalid-email'))return'Check the email address. A username can use only letters, numbers, dots, dashes and underscores.';
+  if(c.includes('operation-not-allowed'))return'This way of signing in isn’t turned on yet. Your tutor needs to turn it on in Firebase.';
+  if(c.includes('unauthorized-domain'))return'This website isn’t on Firebase’s list of authorized domains yet.';
+  if(c.includes('too-many-requests'))return'Too many tries. Wait a few minutes, then try again.';
+  if(c.includes('network'))return'Couldn’t reach the server. Check your internet connection and try again.';
+  if(c.includes('popup-blocked'))return'Your browser blocked the Google window. Allow pop-ups for this site and try again.';
+  return'Something went wrong'+(c?` (${c})`:'')+'. Try again.';
+}
+function loginToEmail(raw){
+  const v=raw.trim().toLowerCase();
+  if(v.includes('@'))return v;
+  if(!USERNAME.test(v))throw{code:'auth/invalid-email'};
+  return `${v}@${UDOM}`;
+}
+
+// ---------- sign in / create account ----------
+function openAuth(mode){
+  const create=mode==='up';
+  dlg.innerHTML=`<form class="dlgin" id="authform" novalidate>
+    <div class="dlghead"><h2>${create?'Create an account':'Sign in'}</h2><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
+    <p class="note">${create?'An account saves your practice and test results, so you can pick up on any phone or computer.':'Sign in to save your practice and see it on any device.'}</p>
+    ${create?`<label class="fld2">First name<input id="au-name" autocomplete="given-name" required></label>`:''}
+    <label class="fld2">Email or username<input id="au-login" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+      ${create?'<small>No email? Make up a username, like <b>maria.g</b> or <b>jkim22</b>. Write it down with your password.</small>':''}</label>
+    <label class="fld2">Password<input id="au-pass" type="password" autocomplete="${create?'new-password':'current-password'}" minlength="6" required>
+      ${create?'<small>At least 6 characters.</small>':''}</label>
+    <p class="autherr" id="autherr" role="alert"></p>
+    <button class="btn primary wide" type="submit" id="au-go">${create?'Create account':'Sign in'}</button>
+    <div class="or">or</div>
+    <button class="btn wide" type="button" id="au-google">Continue with Google</button>
+    <p class="note">${create?'Already have an account? <button type="button" class="linkbtn" id="au-switch">Sign in</button>':'New here? <button type="button" class="linkbtn" id="au-switch">Create an account</button>'}</p>
+    ${create?'':'<p class="note"><button type="button" class="linkbtn" id="au-forgot">Forgot your password?</button></p>'}
+  </form>`;
+  if(!dlg.open)dlg.showModal();
+  const err=$$('#autherr'),go=$$('#au-go');
+  $$('#au-switch').onclick=()=>openAuth(create?'in':'up');
+  $$('#au-google').onclick=async()=>{err.textContent='';try{await signInWithPopup(auth,new GoogleAuthProvider());dlg.close()}catch(e){if(!String(e.code).includes('popup-closed'))err.textContent=errText(e)}};
+  const fg=$$('#au-forgot');
+  if(fg)fg.onclick=async()=>{
+    const v=$$('#au-login').value.trim();
+    if(!v.includes('@')){err.textContent=v?'Accounts made with a username can’t reset by email. Ask your tutor for help.':'Type your email above first, then tap “Forgot your password?”';return}
+    try{await sendPasswordResetEmail(auth,v.toLowerCase());err.textContent='';fg.parentElement.innerHTML='We sent a password reset link to <b>'+esc(v)+'</b>. Check your inbox and spam folder.'}catch(e){err.textContent=errText(e)}};
+  $$('#authform').onsubmit=async e=>{
+    e.preventDefault();err.textContent='';
+    const name=create?$$('#au-name').value.trim():'',login=$$('#au-login').value,pass=$$('#au-pass').value;
+    if(create&&!name){err.textContent='Type your first name.';return}
+    if(!login.trim()){err.textContent='Type your email or username.';return}
+    if(pass.length<6){err.textContent=create?'Use at least 6 characters for the password.':'Type your password.';return}
+    go.disabled=true;go.textContent=create?'Creating…':'Signing in…';
+    try{
+      const email=loginToEmail(login);
+      if(create){pendingName=name;const cred=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(cred.user,{displayName:name});profileName=name;renderAcct();scheduleSave(0)}
+      else await signInWithEmailAndPassword(auth,email,pass);
+      dlg.close();
+    }catch(ex){err.textContent=errText(ex);go.disabled=false;go.textContent=create?'Create account':'Sign in'}
+  };
+  setTimeout(()=>($$(create?'#au-name':'#au-login')||{}).focus?.(),50);
+}
+
+// ---------- signed-in menu ----------
+function openMenu(){
+  dlg.innerHTML=`<div class="dlgin">
+    <div class="dlghead"><h2>Hi, ${esc(firstName())}</h2><button type="button" class="xbtn" data-close aria-label="Close">×</button></div>
+    <p>Signed in as <b>${esc(loginLabel(user))}</b>.</p>
+    <p class="note">Your practice counts and practice test results save to your account automatically, so they show up on any device you sign in on.</p>
+    ${isTutor?'<button class="btn primary wide" type="button" id="mn-dash">Open tutor dashboard</button>':''}
+    <button class="btn wide" type="button" id="mn-out">Sign out</button>
+    <details><summary class="note" style="cursor:pointer">Account ID (for tutors setting up access)</summary><p class="uid" style="margin-top:8px">${esc(user.uid)}</p></details>
+  </div>`;
+  if(!dlg.open)dlg.showModal();
+  const d=$$('#mn-dash');if(d)d.onclick=()=>{dlg.close();openDash()};
+  $$('#mn-out').onclick=async()=>{
+    await flushSave();signingOut=true;
+    try{await signOut(auth)}catch(e){}
+    dlg.close();
+  };
+}
+
+// ---------- syncing ----------
+function mergeData(a,b){
+  const skills={...(a.skills||{})};
+  for(const[k,v]of Object.entries(b.skills||{}))skills[k]=Math.max(skills[k]||0,+v||0);
+  const seen=new Map();
+  for(const t of [...(a.tests||[]),...(b.tests||[])])if(t&&t.date&&!seen.has(t.date))seen.set(t.date,t);
+  const tests=[...seen.values()].sort((x,y)=>String(y.date).localeCompare(String(x.date))).slice(0,10);
+  const stats=JSON.parse(JSON.stringify(a.stats||{}));
+  for(const[k,v]of Object.entries(b.stats||{})){const o=stats[k]=stats[k]||{n:0,c:0,f:0,h:0};for(const f of ['n','c','f','h'])o[f]=Math.max(o[f]||0,+(v&&v[f])||0)}
+  const days=JSON.parse(JSON.stringify(a.days||{}));
+  for(const[k,v]of Object.entries(b.days||{})){const o=days[k]=days[k]||{n:0,f:0};for(const f of ['n','f'])o[f]=Math.max(o[f]||0,+(v&&v[f])||0)}
+  return{skills,tests,stats,days};
+}
+function scheduleSave(delay=1500){
+  if(!user)return;clearTimeout(saveTimer);setSave('Saving…');
+  saveTimer=setTimeout(save,delay);
+}
+async function save(){
+  saveTimer=null;if(!user)return;
+  const d=FDW.get();
+  try{
+    await setDoc(doc(db,'progress',user.uid),{name:profileName||loginLabel(user),login:loginLabel(user),skills:d.skills,tests:d.tests,stats:d.stats,days:d.days,tutor:isTutor,updatedAt:serverTimestamp()},{merge:true});
+    setSave('Saved');
+  }catch(e){console.error(e);setSave('Not saved. Check your connection.')}
+}
+async function flushSave(){if(saveTimer){clearTimeout(saveTimer);await save()}}
+
+onAuthStateChanged(auth,async u=>{
+  user=u;isTutor=false;
+  if(!u){
+    FDW.onChange=null;profileName='';setSave('');
+    // Clear this device after an explicit sign-out, so the next person starts fresh.
+    if(signingOut){FDW.set({skills:{},tests:[]});signingOut=false}
+    renderAcct();return;
+  }
+  profileName=pendingName||u.displayName||'';pendingName='';
+  renderAcct();setSave('Loading…');
+  try{
+    const snap=await getDoc(doc(db,'progress',u.uid));
+    const cloud=snap.exists()?snap.data():{};
+    if(!profileName&&cloud.name)profileName=cloud.name;
+    FDW.set(mergeData(FDW.get(),cloud));
+    renderAcct();
+    await save();
+  }catch(e){console.error(e);setSave('Couldn’t load saved progress.')}
+  FDW.onChange=()=>scheduleSave();
+  try{isTutor=(await getDoc(doc(db,'tutors',u.uid))).exists()}catch(e){isTutor=false}
+  if(isTutor)scheduleSave(500);
+});
+window.addEventListener('pagehide',()=>{if(saveTimer)save()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&saveTimer)save()});
+
+// ---------- tutor dashboard ----------
+let STUDENTS=[];
+async function openDash(){
+  dash.innerHTML=`<div class="dlgin"><div class="dlghead"><h2>Your students</h2><button type="button" class="xbtn" data-close aria-label="Close">×</button></div><p class="note">Loading students…</p></div>`;
+  if(!dash.open)dash.showModal();
+  const box=dash.querySelector('.dlgin');
+  try{STUDENTS=(await getDocs(collection(db,'progress'))).docs.map(d=>({id:d.id,...d.data()})).filter(s=>!s.tutor&&s.id!==user.uid)}
+  catch(e){box.querySelector('.note').textContent=String(e.code).includes('permission')?'Your account isn’t on the tutors list yet, so you can’t see student progress.':'Couldn’t load students. Check your connection and try again.';return}
+  box.innerHTML=FDW.dash.roster(STUDENTS);
+}
+dash.addEventListener('click',e=>{
+  const box=dash.querySelector('.dlgin');if(!box)return;
+  const r=e.target.closest('[data-sid]');
+  if(r){const st=STUDENTS.find(x=>x.id===r.dataset.sid);if(st){box.innerHTML=FDW.dash.report(st);dash.scrollTop=0;box.scrollIntoView({block:'start'})}return}
+  if(e.target.closest('[data-back]')){box.innerHTML=FDW.dash.roster(STUDENTS);dash.scrollTop=0}
+});
+
+renderAcct();
+</script>
 </body>
 </html>
